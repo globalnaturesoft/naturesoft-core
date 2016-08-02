@@ -1,40 +1,3 @@
-<!-- Main navbar -->
-<%= render "admin/dashboard/main_navbar" %>
-<!-- /main navbar -->
-
-<!-- Page container -->
-<div class="page-container">
-
-    <!-- Page content -->
-    <div class="page-content">
-
-        <!-- Main sidebar -->
-        <div class="sidebar sidebar-main">
-            <div class="sidebar-content">
-
-                <!-- User menu -->
-                <%= render "admin/dashboard/user_menu" %>
-                <!-- /user menu -->
-
-                <!-- Main navigation -->
-                <%= render "admin/dashboard/main_nav" %>
-                <!-- /main navigation -->
-
-            </div>
-        </div>
-        <!-- /main sidebar -->
-
-
-        <!-- Main content -->
-        <div class="content-wrapper">
-
-            <!-- Page header -->
-            <%= render "admin/dashboard/page_header" %>
-            <!-- /page header -->
-
-            <!-- Content area -->
-            <div class="content">
-              
               <!-- Profile info -->
               <div class="panel panel-flat">
                 <div class="panel-heading">
@@ -116,21 +79,3 @@
                 </div>
               </div>
               <!-- /unhappy -->
-                    
-            </div>
-            <!-- /content area -->
-
-        </div>
-        <!-- /main content -->
-        
-        
-
-    </div>
-    <!-- /page content -->
-
-</div>
-<!-- /page container -->
-
-<!-- Theme JS files -->
-<%= javascript_include_tag "/backend/assets/js/core/app.js" %>
-<!-- /theme JS files -->

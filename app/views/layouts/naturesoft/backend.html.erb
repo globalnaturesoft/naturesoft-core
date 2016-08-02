@@ -16,7 +16,7 @@
         <%= stylesheet_link_tag "/backend/assets/css/core.min.css" %>
         <%= stylesheet_link_tag "/backend/assets/css/components.min.css" %>
         <%= stylesheet_link_tag "/backend/assets/css/colors.min.css" %>
-        <%= stylesheet_link_tag "/backend/assets/stylesheets/custom.css" %>
+        <%= stylesheet_link_tag "/backend/css/custom.css" %>
         <!-- /global stylesheets -->
         
         <!-- JS for Rails -->
@@ -29,9 +29,10 @@
         <%= javascript_include_tag "/backend/assets/js/core/libraries/bootstrap.min.js" %>
         <%= javascript_include_tag "/backend/assets/js/plugins/loaders/blockui.min.js" %>
         <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
-        <%= javascript_include_tag "/backend/assets/js/custom.js" %>
         <%= javascript_include_tag '/backend/assets/js/plugins/notifications/sweet_alert.min.js' %>
         <%= javascript_include_tag '/backend/assets/js/plugins/notifications/bootbox.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
         <!-- /core JS files -->
     
     </head>
@@ -56,7 +57,7 @@
                         <!-- /user menu -->
         
                         <!-- Main navigation -->
-                        <%= render "admin/modules/main_nav" %>
+                        <%= render "admin/modules/main_menu" %>
                         <!-- /main navigation -->
         
                     </div>

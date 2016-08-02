@@ -4,12 +4,12 @@
 
             <!-- Main -->
             <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-            <li class="active" data-naturesoft-hook='main_nav'><%= link_to '<i class="icon-home4"></i> <span>Dashboard</span>'.html_safe, naturesoft.admin_dashboard_path %></li>
+            <li class="" data-naturesoft-hook='main_nav'><%= link_to '<i class="icon-home4"></i> <span>Dashboard</span>'.html_safe, naturesoft.admin_dashboard_path %></li>
             <li>
-                <a href="#"><i class="icon-user-plus"></i> <span>Users</span></a>
+                <a href="#"><i class="icon-user"></i> <span>User</span></a>
                 <ul>
                     <li class="<%= active(naturesoft.admin_users_path) %>">
-                        <%= link_to "Users Management", naturesoft.admin_users_path %>
+                        <%= link_to "Users", naturesoft.admin_users_path %>
                     </li>
                 </ul>
             </li>

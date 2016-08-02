@@ -1,0 +1,6 @@
+.datatable-footer {
+    padding: 20px;
+}
+.dataTables_info, .dataTables_paginate {
+    margin-bottom: 0;
+}

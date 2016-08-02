@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%= csrf_meta_tags %>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Global Naturesoft | CMS</title>
+        
+        <meta content="abc123blahblahauthenticitytoken" name="csrf-token">
+    
+        <!-- Global stylesheets -->
+        <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" %>
+        <%= stylesheet_link_tag "/backend/assets/css/icons/icomoon/styles.css" %>
+        <%= stylesheet_link_tag "/backend/assets/css/bootstrap.min.css" %>
+        <%= stylesheet_link_tag "/backend/assets/css/core.min.css" %>
+        <%= stylesheet_link_tag "/backend/assets/css/components.min.css" %>
+        <%= stylesheet_link_tag "/backend/assets/css/colors.min.css" %>
+        <%= stylesheet_link_tag "/backend/assets/stylesheets/custom.css" %>
+        <!-- /global stylesheets -->
+        
+        <!-- JS for Rails -->
+        <%= javascript_include_tag 'application' %>
+        <!-- /js for rails -->
+    
+        <!-- Core JS files -->
+        <%= javascript_include_tag "/backend/assets/js/plugins/loaders/pace.min.js" %>
+        <%= javascript_include_tag "/backend/assets/js/core/libraries/jquery.min.js" %>
+        <%= javascript_include_tag "/backend/assets/js/core/libraries/bootstrap.min.js" %>
+        <%= javascript_include_tag "/backend/assets/js/plugins/loaders/blockui.min.js" %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
+        <%= javascript_include_tag "/backend/assets/js/custom.js" %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/notifications/sweet_alert.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/notifications/bootbox.min.js' %>
+        <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js' %>
+        <!-- /core JS files -->
+    
+    </head>
+    
+    <body>
+        
+        <%= yield %>
+      
+    </body>
+</html>

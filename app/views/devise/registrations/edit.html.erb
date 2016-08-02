@@ -1,0 +1,136 @@
+<!-- Main navbar -->
+<%= render "admin/dashboard/main_navbar" %>
+<!-- /main navbar -->
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main">
+            <div class="sidebar-content">
+
+                <!-- User menu -->
+                <%= render "admin/dashboard/user_menu" %>
+                <!-- /user menu -->
+
+                <!-- Main navigation -->
+                <%= render "admin/dashboard/main_nav" %>
+                <!-- /main navigation -->
+
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Page header -->
+            <%= render "admin/dashboard/page_header" %>
+            <!-- /page header -->
+
+            <!-- Content area -->
+            <div class="content">
+              
+              <!-- Profile info -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Account Information</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                      <li><a data-action="close"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                    
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Email</label>
+                          <%= f.email_field :email, autofocus: true, class: "form-control", value: current_user.email, readonly: true %>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Current Password (We need your current password to confirm your changes)</label>
+                          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Password (leave blank if you don't want to change it)</label>
+                          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                          <% if @minimum_password_length %>
+                          <span class="help-block text-danger"><i class="icon-cancel-circle2 position-left"></i> <%= @minimum_password_length %> characters minimum</span>
+                          <% end %>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Password confirmation</label>
+                          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Upload profile image</label>
+                          <input type="file" class="file-styled">
+                          <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+                    
+                    <%= devise_error_messages! %>
+                    
+                  <% end %>
+                </div>
+              </div>
+              <!-- /profile info -->
+              
+              <!-- Unhappy -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Unhappy?</h6>
+                </div>
+
+                <div class="panel-body">
+                  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-rounded" %>
+                </div>
+              </div>
+              <!-- /unhappy -->
+                    
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+        
+        
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag "/backend/assets/js/core/app.js" %>
+<!-- /theme JS files -->

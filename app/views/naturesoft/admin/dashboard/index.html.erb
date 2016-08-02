@@ -1,0 +1,62 @@
+<!-- Main navbar -->
+<%= render "admin/dashboard/main_navbar" %>
+<!-- /main navbar -->
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main">
+            <div class="sidebar-content">
+
+                <!-- User menu -->
+                <%= render "admin/dashboard/user_menu" %>
+                <!-- /user menu -->
+
+                <!-- Main navigation -->
+                <%= render "admin/dashboard/main_nav" %>
+                <!-- /main navigation -->
+
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Page header -->
+            <%= render "admin/dashboard/page_header" %>
+            <!-- /page header -->
+
+            <!-- Content area -->
+            <div class="content">
+
+                <!-- Dashboard content -->
+                <div class="row">
+                    <div class="col-lg-12">
+        
+                        <h1 class="text-center text-teal">WELCOME TO CMS GLOBAL NATURESOFT</h1>
+        
+                    </div>
+                </div>
+                <!-- /dashboard content -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/backend/assets/js/core/app.js' %>
+<!-- /theme JS files -->

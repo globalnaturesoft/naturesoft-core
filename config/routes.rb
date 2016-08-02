@@ -3,6 +3,6 @@ Naturesoft::Core::Engine.routes.draw do
   root to: "home#index"
   namespace :admin do
     get '/' => 'dashboard#index', as: :dashboard
-    resources :users, only: :index
+    resources :users
   end
 end

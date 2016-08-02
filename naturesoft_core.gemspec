@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '~> 4.2.0'
   s.add_dependency 'will_paginate'
   s.add_dependency 'will_paginate-bootstrap'
+  
 end

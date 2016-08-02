@@ -1,12 +1,44 @@
 <!-- Basic datatable -->
 <div class="panel panel-flat listing-form">
     
-    
-    <form class="listing-form"
-        data-url=""
-    >				
+    <form class="listing-form">
+        
+        <div class="filter-box">
+            
+            <span class="inline check_all_list">
+                <input type="checkbox" class="styled check_all">
+            </span>
+            <span class="btn-group list_actions hide">
+                <button type="button" class="btn btn-xs btn-grey-600 dropdown-toggle" data-toggle="dropdown">
+                    Actions <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a delete-confirm="" href="">
+                            <i class="icon-trash"></i> Delete
+                        </a>
+                    </li>
+                </ul>
+            </span>
+
+            <span class="filter-group">
+                <span class="title text-semibold text-muted">Sort by</span>
+                <select class="select" name="sort-order">
+                    <option value="name">Name</option>
+                    <option value="created_at">Created at</option>
+                </select>										
+                <button class="btn btn-xs sort-direction" rel="asc" data-popup="tooltip" title="Change sort direction" type="button" class="btn btn-xs">
+                    <i class="icon-sort-amount-asc"></i>
+                </button>
+            </span>
+            <span class="text-nowrap filter-group pull-right">
+                <input name="search_keyword" class="form-control search" placeholder="Type to search" />
+                <i class="icon-search4 keyword_search_button"></i>
+            </span>
+        </div>
+        
         <div class="table-container">
-            <table class="table">
+            <table class="table" current-page="<%= params[:page] %>">
                 <thead>
                     <tr class="bg-teal-800">
                         <th>Email</th>

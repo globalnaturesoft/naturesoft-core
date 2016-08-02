@@ -46,10 +46,15 @@ function tableFilter(form, custom_url) {
     }).get().join(",");
     
     // all data
-    var d = {};
+    var data = {
+        per_page: per_page,
+        sort_direction: sort_direction,
+        columns: columns
+    };
+    
     form.serializeArray().forEach(function(entry) {
-        if(entry.value!="") {
-            d[entry.name] = entry.value
+        if(entry.value != "") {
+            data[entry.name] = entry.value
         }
     });
     
@@ -57,14 +62,7 @@ function tableFilter(form, custom_url) {
     $.ajax({
         method: "GET",
         url: url,
-        data: {
-            per_page: per_page,
-            sort_order: sort_order,
-            sort_direction: sort_direction,
-            keyword: keyword,
-            columns: columns,
-            filters: d
-        }
+        data: data
     })
     .done(function( msg ) {
         var container = form.find(".table-container");
@@ -89,7 +87,7 @@ function tableFilter(form, custom_url) {
         form.find(".select").select2({minimumResultsForSearch: -1});
         
         // Hightlight
-        if (keyword != 'undefined' && keyword.trim() != '') {
+        if (typeof(keyword) != 'undefined' && keyword.trim() != '') {
             keywords = keyword.split(" ");
             keywords.forEach(function (v) {
                 hiliterList(form, v.trim());

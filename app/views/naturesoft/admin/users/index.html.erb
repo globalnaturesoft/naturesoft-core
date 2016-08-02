@@ -1,98 +1,43 @@
-<!-- Main navbar -->
-<%= render "admin/dashboard/main_navbar" %>
-<!-- /main navbar -->
 
-<!-- Page container -->
-<div class="page-container">
-
-    <!-- Page content -->
-    <div class="page-content">
-
-        <!-- Main sidebar -->
-        <div class="sidebar sidebar-main">
-            <div class="sidebar-content">
-
-                <!-- User menu -->
-                <%= render "admin/dashboard/user_menu" %>
-                <!-- /user menu -->
-
-                <!-- Main navigation -->
-                <%= render "admin/dashboard/main_nav" %>
-                <!-- /main navigation -->
-
-            </div>
-        </div>
-        <!-- /main sidebar -->
-
-
-        <!-- Main content -->
-        <div class="content-wrapper">
-
-            <!-- Page header -->
-            <%= render "admin/dashboard/page_header" %>
-            <!-- /page header -->
-
-            <!-- Content area -->
-            <div class="content">
-
-                <!-- Basic datatable -->
-                <div class="panel panel-flat">
-                    
-                    <table class="table">
-                        <thead>
-                            <tr class="bg-teal-800">
-                                <th>Email</th>
-                                <th>Admin?</th>
-                                <th>Created At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @users.each do |item| %>
-                                <tr>
-                                    <td>
-                                        <%= item.email %>
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
-                                    <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                    <div class="dataTables_wrapper no-footer">
-                        <div class="datatable-footer showed">
-                            <div class="dataTables_info" ><%= page_entries_info @users %></div>
-                            <div class="dataTables_paginate paging_simple_numbers">
-                                <%= will_paginate @users, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
-                            </div>
-                        </div>
+        <!-- Basic datatable -->
+        <div class="panel panel-flat">
+            
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+                        <th>Email</th>
+                        <th>Admin?</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |item| %>
+                        <tr>
+                            <td>
+                                <%= item.email %>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @users %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @users, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
                     </div>
                 </div>
-                <!-- /basic datatable -->
-                
-                <!-- Footer -->
-                <%= render 'admin/dashboard/footer' %>
-                <!-- /footer -->
-
             </div>
-            <!-- /content area -->
-
         </div>
-        <!-- /main content -->
-        
-        
+        <!-- /basic datatable -->
+                
 
-    </div>
-    <!-- /page content -->
-
-</div>
-<!-- /page container -->
-
-<!-- Theme JS files -->
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
-
-<%= javascript_include_tag '/backend/assets/js/core/app.js' %>
-<!-- /theme JS files -->
+        <!-- Theme JS files -->
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
+        <!-- /theme JS files -->

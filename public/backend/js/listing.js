@@ -285,6 +285,11 @@ $(document).ready(function() {
         var form = $(this).parents(".listing-form");
         
         tableFilter(form);
+    });    
+    $(document).on("keyup", ".listing-form input", function() {
+        var form = $(this).parents(".listing-form");
+        
+        tableFilter(form);
     });
     
     // Search when typing

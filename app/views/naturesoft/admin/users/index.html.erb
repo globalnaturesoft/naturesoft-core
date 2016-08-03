@@ -1,9 +1,11 @@
+<% title t(:users) %>
+
 <!-- Basic datatable -->
 <div class="panel panel-flat listing-form">
     
     <div class="panel-heading col-md-12">
-        <h5 class="panel-title col-md-6"><span class="text-semibold"><%= @title_2 %></span></h5>
-        <%= link_to "New User", naturesoft.new_admin_user_path, class: 'btn btn-primary pull-right' %>
+        <h5 class="panel-title col-md-6"><span class="text-semibold"><%= t(:users) %></span></h5>
+        <%= link_to t(:new_user), naturesoft.new_admin_user_path, class: 'btn btn-primary pull-right' %>
     </div>
     
     <form class="listing-form" data-url="">				
@@ -11,9 +13,10 @@
             <table class="table">
                 <thead>
                     <tr class="bg-teal-800">
-                        <th>Email</th>
-                        <th>Admin?</th>
-                        <th>Created At</th>
+                        <th><%= t(:email) %></th>
+                        <th><%= t(:is_admin) %></th>
+                        <th><%= t(:created_at) %></th>
+                        <th><%= t(:actions) %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +29,7 @@
                                 <%= item.admin %>
                             </td>
                             <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                            <td></td>
                         </tr>
                     <% end %>
                 </tbody>

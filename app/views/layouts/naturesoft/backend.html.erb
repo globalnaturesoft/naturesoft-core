@@ -28,13 +28,16 @@
         <%= javascript_include_tag "/backend/assets/js/core/libraries/jquery.min.js" %>
         <%= javascript_include_tag "/backend/assets/js/core/libraries/bootstrap.min.js" %>
         <%= javascript_include_tag "/backend/assets/js/plugins/loaders/blockui.min.js" %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/notifications/sweet_alert.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/notifications/bootbox.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
         <!-- /core JS files -->
-    
+        
+        <!-- Theme JS files -->
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
+        <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
+        
+        <%= javascript_include_tag '/backend/assets/js/core/app.js' %>
+        <%= javascript_include_tag '/backend/assets/js/pages/form_layouts.js' %>
+        <!-- /theme JS files -->
+        
     </head>
     
     <body>
@@ -66,8 +69,22 @@
         
                 <!-- Main content -->
                 <div class="content-wrapper">
+                    
+                    <!-- Page header -->
+                    <%= render "admin/modules/page_header" %>
+                    <!-- /page header -->
+                    
+                    <!-- Content area -->
+                    <div class="content">
         
-                    <%= yield %>
+                        <%= yield %>
+                        
+                        <!-- Footer -->
+                        <%= render 'admin/modules/footer' %>
+                        <!-- /footer -->
+                    
+                    </div>
+                    <!-- /content area -->
         
                 </div>
                 <!-- /main content -->
@@ -77,12 +94,6 @@
         
         </div>
         <!-- /page container -->
-        
-        <!-- Theme JS files -->
-        <%= javascript_include_tag '/backend/assets/js/core/app.js' %>
-        <%= javascript_include_tag '/backend/js/main.js' %>
-        <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js' %>
-        <!-- /theme JS files -->
       
     </body>
 </html>

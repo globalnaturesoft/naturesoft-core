@@ -1,0 +1,14 @@
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><%= link_to '<i class="icon-arrow-left52 position-left"></i>'.html_safe, naturesoft.admin_dashboard_path %> <span class="text-semibold">Home</span><% if @title_2.present? %> - <%= @title_2 %><% else %> - Dashboard<% end %></h4>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><%= link_to '<i class="icon-home2 position-left"></i> Home'.html_safe, naturesoft.admin_dashboard_path %></li>
+            <%= render_breadcrumbs :tag => :li, :separator => "" %>
+        </ul>
+    </div>
+</div>

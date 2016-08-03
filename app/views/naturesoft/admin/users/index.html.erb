@@ -1,75 +1,47 @@
-<!-- Page header -->
-<div class="page-header">
-    <div class="page-header-content">
-        <div class="page-title">
-            <h4><span class="text-semibold">Users</span></h4>
-        </div>
-    </div>
-
-    <div class="breadcrumb-line">
-        <ul class="breadcrumb">
-            <li><%= link_to '<i class="icon-home2 position-left"></i> Home'.html_safe, naturesoft.admin_dashboard_path %></li>
-            <li><%= link_to 'User', naturesoft.admin_users_path %></li>
-            <li class="active">Users</li>
-        </ul>
-    </div>
-</div>
-<!-- /page header -->
-
-<!-- Content area -->
-<div class="content">
+<!-- Basic datatable -->
+<div class="panel panel-flat listing-form">
     
-    <!-- Basic datatable -->
-    <div class="panel panel-flat listing-form">
-        
-        <form class="listing-form" data-url="">				
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr class="bg-teal-800">
-                            <th>Email</th>
-                            <th>Admin?</th>
-                            <th>Created At</th>
+    <div class="panel-heading col-md-12">
+        <h5 class="panel-title col-md-6"><span class="text-semibold"><%= @title_2 %></span></h5>
+        <%= link_to "New User", naturesoft.new_admin_user_path, class: 'btn btn-primary pull-right' %>
+    </div>
+    
+    <form class="listing-form" data-url="">				
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+                        <th>Email</th>
+                        <th>Admin?</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |item| %>
+                        <tr>
+                            <td>
+                                <%= item.email %>
+                            </td>
+                            <td>
+                                <%= item.admin %>
+                            </td>
+                            <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <% @users.each do |item| %>
-                            <tr>
-                                <td>
-                                    <%= item.email %>
-                                </td>
-                                <td>
-                                    <%= item.admin %>
-                                </td>
-                                <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-                
-                <div class="dataTables_wrapper no-footer">
-                    <div class="datatable-footer showed">
-                        <div class="dataTables_info" ><%= page_entries_info @users %></div>
-                        <div class="dataTables_paginate paging_simple_numbers">
-                            <%= will_paginate @users, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
-                        </div>
+                    <% end %>
+                </tbody>
+            </table>
+            
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @users %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @users, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
                     </div>
                 </div>
-                
             </div>
-        </form>
-        
-    </div>
-    <!-- /basic datatable -->
-    
-    <!-- Footer -->
-    <%= render 'admin/modules/footer' %>
-    <!-- /footer -->
+            
+        </div>
+    </form>
     
 </div>
-
-<!-- /content area -->
-
-<!-- Theme JS files -->
-<%= javascript_include_tag '/backend/js/listing.js' %>
-<!-- /theme JS files -->
+<!-- /basic datatable -->

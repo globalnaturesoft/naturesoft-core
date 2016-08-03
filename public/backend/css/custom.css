@@ -7,6 +7,18 @@
 .filter-box .form-group {
     margin-bottom: 0;
 }
+.align_center {
+    text-align: center;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f8f8f8;
+}
+.media-left.align_center img:not(.media-preview) {
+    width: 30px;
+    height: 30px;
+    max-width: none;
+}
+
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
     z-index: 3;
     color: #fff;

@@ -1,11 +1,11 @@
 module Naturesoft::Admin
   class UsersController < Naturesoft::Admin::AdminController
-    before_filter :variable_controller
+    before_action :default_breadcrumb
         
-    def variable_controller
-      @title_1 = "User"
-      @title_2 = "Users"
-      @link = naturesoft.admin_users_path
+    # add top breadcrumb
+    def default_breadcrumb
+      add_breadcrumb "User", naturesoft.admin_users_path
+      add_breadcrumb "Users", naturesoft.admin_users_path
     end
     
     def index

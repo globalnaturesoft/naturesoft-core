@@ -18,7 +18,6 @@
     height: 30px;
     max-width: none;
 }
-
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
     z-index: 3;
     color: #fff;

@@ -35,7 +35,11 @@
                 <div class="datatable-footer showed">
                     <div class="dataTables_info" ><%= page_entries_info @users %></div>
                     <div class="dataTables_paginate paging_simple_numbers">
-                        <%= will_paginate @users, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+                        <%= will_paginate @users,
+                            previous_label: '←',
+                            next_label: '→',
+                            renderer: BootstrapPagination::Rails
+                        %>
                     </div>
                 </div>
             </div>

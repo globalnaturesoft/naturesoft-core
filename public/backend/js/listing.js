@@ -84,7 +84,7 @@ function tableFilter(form, custom_url) {
         
         // Select2
         // ------------------------------
-        form.find(".select").select2({minimumResultsForSearch: -1});
+        // form.find(".select").select2({minimumResultsForSearch: -1});
         
         // Hightlight
         if (typeof(keyword) != 'undefined' && keyword.trim() != '') {

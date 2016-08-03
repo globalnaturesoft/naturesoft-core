@@ -4,37 +4,19 @@
 .dataTables_info, .dataTables_paginate {
     margin-bottom: 0;
 }
-.filter-box {
-    padding: 15px 20px;
-}
-.filter-group {
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-}
-.filter-box .select2-container {
-    max-width: 150px;
-    display: inline-block;
-}
-.filter-box input.search {
-    width: 300px;
-}
-.filter-box .sort-direction {
-    height: 36px;
-    padding: 8px;
-    width: 36px;
-}
-.keyword_search_button {
-    position: absolute;
-    top: 10px;
-    color: #999;
-    right: 10px;
-}
-.filter-box span.title {
-    line-height: 20px;
-}
 .filter-box .form-group {
     margin-bottom: 0;
+}
+.align_center {
+    text-align: center;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f8f8f8;
+}
+.media-left.align_center img:not(.media-preview) {
+    width: 30px;
+    height: 30px;
+    max-width: none;
 }
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
     z-index: 3;

@@ -33,6 +33,9 @@
 .filter-box span.title {
     line-height: 20px;
 }
+.filter-box .form-group {
+    margin-bottom: 0;
+}
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
     z-index: 3;
     color: #fff;

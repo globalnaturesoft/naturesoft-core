@@ -26,5 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate'
   s.add_dependency 'will_paginate-bootstrap'
   s.add_dependency 'breadcrumbs_on_rails'
+  s.add_dependency 'carrierwave'
+  s.add_dependency 'mini_magick'
   
 end

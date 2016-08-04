@@ -11,4 +11,19 @@ $(document).ready(function() {
         checkboxClass: 'checker',
         wrapperClass: "border-teal text-teal-600"
     });
+    // Checkboxes and radios
+    $(".styled-level-2, .multiselect-container input").uniform({
+        radioClass: 'choice',
+        checkboxClass: 'checker',
+        wrapperClass: "border-warning text-warning-600"
+    });
+    // Select2 ultiselect item color
+    $('.select-item-color').select2({
+        formatSelectionCssClass: function (data, container) { return "bg-primary"; }
+    });
+    // File input
+    $(".file-styled").uniform({
+        wrapperClass: 'bg-primary',
+        fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
+    });
 });

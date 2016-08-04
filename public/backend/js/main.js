@@ -1,4 +1,7 @@
-$(document).ready(function() {    
+$(document).ready(function() {
+    // Default select2
+    $(".select2").select2();
+    
     // Default initialization
     $(".styled").uniform();
     

@@ -18,7 +18,7 @@ $(document).ready(function() {
         wrapperClass: "border-warning text-warning-600"
     });
     // Select2 ultiselect item color
-    $('.select-item-color').select2({
+    $('.multi-select2-article-categories').select2({
         formatSelectionCssClass: function (data, container) { return "bg-primary"; }
     });
     // File input

@@ -3,6 +3,7 @@ PATH
   specs:
     naturesoft_core (0.1.0)
       autoprefixer-rails (~> 5.1.5)
+      breadcrumbs_on_rails
       devise (~> 4.2.0)
       rails (~> 5.0.0)
       will_paginate
@@ -53,6 +54,7 @@ GEM
       execjs
       json
     bcrypt (3.1.11)
+    breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
     concurrent-ruby (1.0.2)
     devise (4.2.0)

@@ -35,3 +35,7 @@
     border-radius: 3px;
     margin-left: 2px;
 }
+.navbar-brand>img {
+    margin-top: -6px;
+    height: 28px;
+}

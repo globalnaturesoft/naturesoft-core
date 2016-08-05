@@ -19,10 +19,6 @@
         <%= stylesheet_link_tag "/backend/css/custom.css" %>
         <!-- /global stylesheets -->
         
-        <!-- JS for Rails -->
-        <%= javascript_include_tag 'application' %>
-        <!-- /js for rails -->
-    
         <!-- Core JS files -->
         <%= javascript_include_tag "/backend/assets/js/plugins/loaders/pace.min.js" %>
         <%= javascript_include_tag "/backend/assets/js/core/libraries/jquery.min.js" %>
@@ -35,6 +31,8 @@
         <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
         <%= javascript_include_tag '/backend/assets/js/plugins/notifications/pnotify.min.js' %>
         <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/bootstrap_multiselect.js' %>
+		
+		<%= javascript_include_tag '/backend/assets/js/plugins/notifications/sweet_alert.min.js' %>
         
         <%= javascript_include_tag '/backend/assets/js/core/app.js' %>
         <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
@@ -97,6 +95,10 @@
         
         </div>
         <!-- /page container -->
-      
+		
+		<!-- Footer -->
+		<%= render 'admin/modules/modals' %>
+		<!-- /footer -->
+		
     </body>
 </html>

@@ -29,4 +29,38 @@ $(document).ready(function() {
         wrapperClass: 'bg-primary',
         fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
     });
+	
+	//replace delete-confirm link
+	$(document).on('click', 'a[data-method=delete]', function(e) {
+		var msg = $(this).attr("data-confirm");
+		var url = $(this).attr("href");
+		var modal = $('#modal_delete_cofirm');
+		if(typeof(msg) != 'undefined') {
+			modal.find('.btn-confirm').attr('href', url);
+			modal.find('.modal-body h4').html(msg);
+			modal.modal("show");
+			e.preventDefault();
+		}
+	});
+	$(document).on('click', '#modal_delete_cofirm a.btn-confirm', function(e) {
+		var url = $(this).attr("href");
+		var modal = $('#modal_delete_cofirm');
+		modal.modal("hide");
+		
+		$.ajax({ url: url,
+			type: 'DELETE',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			success: function(response) {
+				tableFilterAll();
+				swal({
+					title: response,
+					confirmButtonColor: "#00acc1",
+					type: "success"
+				});
+			}
+		});
+		
+		
+		e.preventDefault();
+	});
 });

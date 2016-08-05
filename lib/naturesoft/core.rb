@@ -7,7 +7,9 @@ require 'carrierwave'
 require 'mini_magick'
 
 module Naturesoft
-    module Core
-      # Your code goes here...
+  module Core
+    def self.available?(engine_name)
+	  Object.const_defined?("Samurai::#{engine_name.to_s.camelize}")
     end
+  end
 end

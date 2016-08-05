@@ -55,7 +55,8 @@ $(document).ready(function() {
 				swal({
 					title: response,
 					confirmButtonColor: "#00acc1",
-					type: "success"
+					type: "success",
+					allowOutsideClick: true
 				});
 			}
 		});

@@ -1,0 +1,13 @@
+<% flash.each do |key, value| %>
+<script>
+	$(document).ready(function() {
+		<% flash.each do |key, value| %>
+			swal({
+				title: '<%= value %>',
+				confirmButtonColor: "#00acc1",
+				allowOutsideClick: true
+			});
+		 <% end %>
+	});
+</script>
+<% end %>

@@ -42,3 +42,7 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+.navbar-brand>img {
+    margin-top: -6px;
+    height: 28px;
+}

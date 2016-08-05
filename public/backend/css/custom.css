@@ -35,3 +35,10 @@
     border-radius: 3px;
     margin-left: 2px;
 }
+#error_explanation > h2 {
+    font-size: 20px;
+}
+#error_explanation > h2, #error_explanation > ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,12 +1,16 @@
-function getUrlParams(url) {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-		if (results==null){
-		   return null;
+function urlParams(url) {
+	var result = {};
+
+	var params = url.split(/\?|\&/);
+
+	params.forEach( function(it) {
+		if (it) {
+			var param = it.split("=");
+			result[param[0]] = param[1];
 		}
-		else{
-		   return results[1] || 0;
-		}
-	}
+	});
+
+	return result;
 }
 
 function hiliter(word, element) {

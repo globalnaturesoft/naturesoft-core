@@ -71,14 +71,32 @@
                 <!-- Main content -->
                 <div class="content-wrapper">
                     
-                    <!-- Page header -->
-                    <%= render "admin/modules/page_header" %>
+                    <!-- Page header render "admin/modules/page_header" -->
+                    
                     <!-- /page header -->
                     
                     <!-- Content area -->
                     <div class="content">
         
-                        <%= yield %>
+                        <div class="tabbable tab-content-bordered">
+							<ul class="nav nav-tabs nav-tabs-highlight">
+								<li class="active">
+									<a href="#tab_home" data-toggle="tab">
+										<i class="icon-home4"></i> <%= yield(:title) %>
+									</a>									
+								</li>
+								<li><a href="#tab_2" data-toggle="tab">Inactive</a></li>
+							</ul>
+
+							<div class="tab-content">
+								<div class="tab-pane has-padding active" id="tab_home">
+									<%= yield %>
+								</div>
+								<div class="tab-pane has-padding active" id="tab_2">
+									aaa
+								</div>
+							</div>
+						</div>
                         
                         <!-- Footer -->
                         <%= render 'admin/modules/footer' %>

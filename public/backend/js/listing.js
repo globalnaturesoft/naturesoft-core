@@ -78,6 +78,7 @@ function tableFilter(form, custom_url) {
     
     // all data
     var data = {
+		ajax: true,
         per_page: per_page,
 		page: page,
         sort_direction: sort_direction,

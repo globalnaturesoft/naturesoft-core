@@ -1,3 +1,7 @@
+function getUrlParams() {
+	
+}
+
 function hiliter(word, element) {
     var rgxp = new RegExp(word, 'gi');
     var string = element.html().match(rgxp);
@@ -34,7 +38,7 @@ function tableFilter(form, custom_url) {
     }
     
     var sort_direction = form.find(".sort-direction").attr("rel");
-    var keyword = form.find("input[name='search_keyword']").val();
+    var keyword = form.find("input[name='keyword']").val();
     // Default page
     if(typeof(custom_url) != 'undefined') {
         url = custom_url;
@@ -292,12 +296,12 @@ $(document).ready(function() {
         tableFilter(form);
     });
     
-    // Search when typing
-    $(document).on("keyup", "input[name='search_keyword']", function() {
-        var form = $(this).parents(".listing-form");
+    //// Search when typing
+    // $(document).on("keyup", "input[name='keyword']", function() {
+        // var form = $(this).parents(".listing-form");
         
-        tableFilter(form);
-    });
+        // tableFilter(form);
+    // });
     
     // Columns filters
     $(document).on("click", ".list_columns ul li", function(e) {

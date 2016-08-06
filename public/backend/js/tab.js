@@ -30,10 +30,31 @@ function openTab(url, name) {
 	});
 }
 
-function resizeAllFrame() {
+function ajustTabbar() {
+	// Fix top tabs width
+	var width = 0;
+	$(".ns-main-tabs ul li").each(function() {
+		width += $(this).width();
+	});
+	$(".ns-main-tabs .tabs-scroll-cont").width(width+200);
+}
+
+function ajustActiveNavPos() {
+	// ajust tab scroll
+	var ol = $(".ns-main-tabs .nav li.active").offset().left;
+	var ou = $(".ns-main-tabs .nav").offset().left;
+	$(".tabs-scroll").scrollLeft(ol - ou - 20);
+}
+
+function autoLayout() {
+	// Auto iframe
 	$(".tab-pane iframe").each(function() {
 		resizeIframe($(this)[0]);
 	});
+	// tabbar width
+	ajustTabbar();
+	// scroll active
+	
 }
 
 function refreshTab(url) {
@@ -46,6 +67,12 @@ function refreshTab(url) {
 function selectTab(url) {
 	var tab_but = $("a[data-src='"+url+"']");
 	tab_but.click();
+	
+	// hide sidebar if open
+	$(".sidebar-xs-indicator").removeClass("sidebar-mobile-main");
+	
+	// ative pos
+	setTimeout("ajustActiveNavPos()", 500);
 }
 
 function selectTabById(id) {
@@ -85,7 +112,7 @@ var randomString = function (len, bits)
 
 var tab_ids = ["tab_home"];
 $(document).ready(function() {
-	setInterval("resizeAllFrame()", 500);
+	setInterval("autoLayout()", 500);
 	
 	// remove loading effect
 	$(".tab-loading").hide();
@@ -114,6 +141,11 @@ $(document).ready(function() {
 	$(document).on('click', '.ns-main-tabs .tab-close', function(e) {
 		var url = $(this).parent().attr("data-src");
 		closeTab(url);
+	});
+	
+	$(document).on('click', '.ns-main-tabs .nav li a', function(e) {
+		// ative pos
+		setTimeout("ajustActiveNavPos()", 500);
 	});
 	
 	$(document).on('click', '.ns-main-tabs .tab-refresh', function(e) {

@@ -52,13 +52,17 @@
 						<!-- Content area -->
 						<div class="content main-content">        
 							<div class="tabbable tab-content-bordered ns-main-tabs">
-								<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
-									<li class="active">
-										<a href="#tab_home" data-toggle="tab">
-											<i class="icon-home4"></i> <%= yield(:title) %>
-										</a>									
-									</li>									
-								</ul>
+								<div class="tabs-scroll">
+									<div class="tabs-scroll-cont">
+										<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
+											<li class="active">
+												<a href="#tab_home" data-toggle="tab">
+													<i class="icon-home4"></i>
+												</a>									
+											</li>									
+										</ul>
+									</div>
+								</div>
 								<div class="tab-content">
 									<div class="tab-pane active" id="tab_home">									
 										<%= yield %>

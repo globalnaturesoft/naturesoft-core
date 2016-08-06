@@ -79,23 +79,41 @@ hl {
 .ns-main-tabs .nav {
 	margin-bottom: 0;
 }
-@media (min-width: 769px) {
-	.ns-main-tabs .nav {
-		clear: both;
-		border-bottom: solid 2px #00838F;
-	}
+.ns-main-tabs .nav {
+	clear: both;
+	border-bottom: solid 2px #00838F;
+}
+.ns-main-tabs .nav.nav-pills-toolbar>li>a {
+	border-bottom-color: #fff;
+}
+.ns-main-tabs .nav.nav-pills-toolbar>li.active>a {
+		border-bottom-color: #00838F;
+	}	
+@media (min-width: 769px) {	
 	.ns-main-tabs .nav.nav-pills-toolbar>li:last-child>a {
 		border-radius: 0;
 	}
 	.ns-main-tabs .nav.nav-pills-toolbar>li:first-child>a {
 		border-radius: 0;
+	}	
+}
+@media (max-width: 768px) {
+	.ns-main-tabs .nav-pills>li {
+		float: left;
 	}
-	.ns-main-tabs .nav.nav-pills-toolbar>li>a {
-		border-bottom-color: #fff;
+	.ns-main-tabs .nav-pills>li+li>a {
+		margin-top: 0;
 	}
-	.ns-main-tabs .nav.nav-pills-toolbar>li.active>a {
-		border-bottom-color: #00838F;
+	.ns-main-tabs .nav-pills>li>a {
+		border-radius: 0;
+	}	
+	.tabs-scroll {
+    width: 100%;
+    overflow: scroll;
 	}
+}
+.tabs-scroll-cont {
+	min-width: 100%;
 }
 .ns-main-tabs iframe {
 	width: 100%;

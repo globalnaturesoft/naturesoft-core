@@ -38,6 +38,7 @@ function tableFilter(form, custom_url) {
     var url = form.attr("data-url");
     var per_page = form.attr("per-page")
     var sort_order = form.find("select[name='sort-order']").val();
+	var container = form.find(".table-container");
     
     // Remove sort direction when sort order == custom_order
     if(sort_order == 'custom_order') {
@@ -50,10 +51,24 @@ function tableFilter(form, custom_url) {
     
     var sort_direction = form.find(".sort-direction").attr("rel");
     var keyword = form.find("input[name='keyword']").val();
-    // Default page
+	
+	// Default page
+	var page = 1;
+	
+	// Current page
+    if(typeof(container.attr("data-page")) != 'undefined') {
+		page = container.attr("data-page");
+    }	
+	
+    // Custom page
     if(typeof(custom_url) != 'undefined') {
-        url = custom_url;
+		if (typeof(urlParams(custom_url)["page"]) != 'undefined') {
+			page = urlParams(custom_url)["page"];
+		}
     }
+	
+	// Set current page
+	container.attr("data-page", page);
     
     // showed columns
     var columns = form.find("input[name='columns[]']:checked").map(function () {
@@ -63,6 +78,7 @@ function tableFilter(form, custom_url) {
     // all data
     var data = {
         per_page: per_page,
+		page: page,
         sort_direction: sort_direction,
         columns: columns
     };
@@ -79,8 +95,7 @@ function tableFilter(form, custom_url) {
         url: url,
         data: data
     })
-    .done(function( msg ) {
-        var container = form.find(".table-container");
+    .done(function( msg ) {        
         container.html($("<div>").html(msg).find(".table-container").html());
         
         // Uniform
@@ -298,11 +313,15 @@ $(document).ready(function() {
     // Sort button
     $(document).on("change", ".listing-form select", function() {
         var form = $(this).parents(".listing-form");
+		var container = form.find(".table-container");
+		container.attr("data-page", 1);
         
         tableFilter(form);
     });    
     $(document).on("keyup", ".listing-form input", function() {
         var form = $(this).parents(".listing-form");
+		var container = form.find(".table-container");
+		container.attr("data-page", 1);
         
         tableFilter(form);
     });

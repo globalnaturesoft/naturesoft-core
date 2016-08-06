@@ -8,109 +8,91 @@
         <title><%= yield(:title) %> - Global Naturesoft</title>
         
         <meta content="abc123blahblahauthenticitytoken" name="csrf-token">
-    
-        <!-- Global stylesheets -->
-        <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" %>
-        <%= stylesheet_link_tag "/backend/assets/css/icons/icomoon/styles.css" %>
-        <%= stylesheet_link_tag "/backend/assets/css/bootstrap.min.css" %>
-        <%= stylesheet_link_tag "/backend/assets/css/core.min.css" %>
-        <%= stylesheet_link_tag "/backend/assets/css/components.min.css" %>
-        <%= stylesheet_link_tag "/backend/assets/css/colors.min.css" %>
-        <%= stylesheet_link_tag "/backend/css/custom.css" %>
-        <!-- /global stylesheets -->
-        
-        <!-- Core JS files -->
-        <%= javascript_include_tag "/backend/assets/js/plugins/loaders/pace.min.js" %>
-        <%= javascript_include_tag "/backend/assets/js/core/libraries/jquery.min.js" %>
-        <%= javascript_include_tag "/backend/assets/js/core/libraries/bootstrap.min.js" %>
-        <%= javascript_include_tag "/backend/assets/js/plugins/loaders/blockui.min.js" %>
-        <!-- /core JS files -->
-        
-        <!-- Theme JS files -->
-        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/notifications/pnotify.min.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/bootstrap_multiselect.js' %>
 		
-		<%= javascript_include_tag '/backend/assets/js/plugins/notifications/sweet_alert.min.js' %>
+		<%= render "admin/modules/header_script" %>		
         
-        <%= javascript_include_tag '/backend/assets/js/core/app.js' %>
-        <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
-        <%= javascript_include_tag '/backend/js/listing.js' %>
-        <%= javascript_include_tag '/backend/js/main.js' %>
-        <!-- /theme JS files -->
     </head>
     
     <body>
-        <!-- Main navbar -->
-        <%= render "admin/modules/main_navbar" %>
-        <!-- /main navbar -->
-        
-        <!-- Page container -->
-        <div class="page-container">
-        
-            <!-- Page content -->
-            <div class="page-content">
-        
-                <!-- Main sidebar -->
-                <div class="sidebar sidebar-main">
-                    <div class="sidebar-content">
-        
-                        <!-- User menu -->
-                        <%= render "admin/modules/user_menu" %>
-                        <!-- /user menu -->
-        
-                        <!-- Main navigation -->
-                        <%= render "admin/modules/main_menu" %>
-                        <!-- /main navigation -->
-        
-                    </div>
-                </div>
-                <!-- /main sidebar -->
-        
-                <!-- Main content -->
-                <div class="content-wrapper">
-                    
-                    <!-- Page header render "admin/modules/page_header" -->
-                    
-                    <!-- /page header -->
+	
+		<% if params[:controller] == "naturesoft/admin/dashboard" %>
+			<!-- Main navbar -->
+			<%= render "admin/modules/main_navbar" %>
+			<!-- /main navbar -->
+			
+			<!-- Page container -->
+			<div class="page-container">
+			
+				<!-- Page content -->
+				<div class="page-content">
+			
+					<!-- Main sidebar -->
+					<div class="sidebar sidebar-main">
+						<div class="sidebar-content">
+			
+							<!-- User menu -->
+							<%= render "admin/modules/user_menu" %>
+							<!-- /user menu -->
+			
+							<!-- Main navigation -->
+							<%= render "admin/modules/main_menu" %>
+							<!-- /main navigation -->
+			
+						</div>
+					</div>
+					<!-- /main sidebar -->
+			
+					<!-- Main content -->
+					<div class="content-wrapper">
+						
+						<!-- Page header render "admin/modules/page_header" -->
+						
+						<!-- /page header -->
 
-                    <!-- Content area -->
-                    <div class="content main-content">        
-                        <div class="tabbable tab-content-bordered ns-main-tabs">
-							<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
-								<li class="active">
-									<a href="#tab_home" data-toggle="tab">
-										<i class="icon-home4"></i> <%= yield(:title) %>
-									</a>									
-								</li>
-								<li><a href="#tab_2" data-toggle="tab">Inactive</a></li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="tab_home">
-									<%= yield %>
-								</div>
-								<div class="tab-pane" id="tab_2">
-									aaa
+						<!-- Content area -->
+						<div class="content main-content">        
+							<div class="tabbable tab-content-bordered ns-main-tabs">
+								<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
+									<li class="active">
+										<a href="#tab_home" data-toggle="tab">
+											<i class="icon-home4"></i> <%= yield(:title) %>
+										</a>									
+									</li>									
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="tab_home">									
+										<%= yield %>
+									</div>
 								</div>
 							</div>
+							
+							<!-- Footer -->
+							<%= render 'admin/modules/footer' %>
+							<!-- /footer -->
+						
 						</div>
-                        
-                        <!-- Footer -->
-                        <%= render 'admin/modules/footer' %>
-                        <!-- /footer -->
-                    
-                    </div>
-                    <!-- /content area -->
-        
-                </div>
-                <!-- /main content -->
-        
-            </div>
-            <!-- /page content -->
-        
-        </div>
-        <!-- /page container -->
+						<!-- /content area -->
+			
+					</div>
+					<!-- /main content -->
+			
+				</div>
+				<!-- /page content -->
+			
+			</div>
+			<!-- /page container -->
+			
+		<% else %>
+			<style>
+				body {
+					background: none
+				}
+			</style>
+			<div class="tab-loading">
+				<i class="icon-spinner11 spinner position-left"></i>
+			</div>
+			<%= yield %>
+		<% end %>
 		
 		<!-- Flash messages -->
 		<%= render 'admin/modules/flash_messages' %>

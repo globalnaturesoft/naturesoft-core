@@ -2,11 +2,17 @@
 <script>
 	$(document).ready(function() {
 		<% flash.each do |key, value| %>
-			swal({
+			var config = {
 				title: '<%= value %>',
 				confirmButtonColor: "#00acc1",
 				allowOutsideClick: true
-			});
+			};
+			
+			if (window.frameElement) {
+				parent.swal(config);
+			} else {
+				swal(config);
+			}
 		 <% end %>
 	});
 </script>

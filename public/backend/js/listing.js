@@ -91,6 +91,11 @@ function tableFilter(form, custom_url) {
         }
     });
     
+	// Brefore filter
+	if(!container.find(".table-loading").length) {
+		container.prepend('<div class="table-loading"><i class="icon-spinner11 spinner position-left"></i></div>');
+	}
+	
     // ajax update custom sort
 	if(currentFilter && currentFilter.readyState != 4){
 		currentFilter.abort();
@@ -131,6 +136,9 @@ function tableFilter(form, custom_url) {
         
         // update checklist
         updateCheckList();
+		
+		// After filter
+		// form.find(".table-loading").hide();
     });
 }
 
@@ -284,9 +292,11 @@ $(document).ready(function() {
     
     // Change page
     $(document).on("click", ".listing-form .pagination a", function(e) {
-        e.preventDefault();
-        
         tableFilter($(this).parents(".listing-form"), $(this).attr("href"));
+
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
     });
     
     // Change item per page

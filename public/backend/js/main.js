@@ -42,6 +42,7 @@ $(document).ready(function() {
 			modal.find('.modal-body h4').html(msg);
 			modal.modal("show");			
 		} else {
+			modal.modal("hide");
 			$.ajax({ url: url,
 				type: method,
 				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},

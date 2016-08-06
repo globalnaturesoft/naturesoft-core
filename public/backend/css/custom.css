@@ -50,8 +50,9 @@ hl {
 	background: yellow;
 }
 .ns-main-tabs .tab-content {
+	padding: 15px;
 	border: none !important;
-	background: none !important;
+	background: #f9f9f9 !important;
 }
 .ns-main-tabs .nav a {
 	background: #fff;
@@ -59,4 +60,37 @@ hl {
 .page_actions {
 	padding: 15px 15px 0 15px;
 	text-align: right;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+	background-color: #00838F;
+}
+.nav-pills.nav-pills-toolbar>.active>a, .nav-pills.nav-pills-toolbar>.active.open>a {
+    border-color: #00838F;
+}
+.content-wrapper {
+	padding-bottom: 50px;
+}
+.main-content {
+	padding: 10px;
+}
+.ns-main-tabs .nav {
+	margin-bottom: 0;
+}
+@media (min-width: 769px) {
+	.ns-main-tabs .nav {
+		clear: both;
+		border-bottom: solid 2px #00838F;
+	}
+	.ns-main-tabs .nav.nav-pills-toolbar>li:last-child>a {
+		border-radius: 0;
+	}
+	.ns-main-tabs .nav.nav-pills-toolbar>li:first-child>a {
+		border-radius: 0;
+	}
+	.ns-main-tabs .nav.nav-pills-toolbar>li>a {
+		border-bottom-color: #fff;
+	}
+	.ns-main-tabs .nav.nav-pills-toolbar>li.active>a {
+		border-bottom-color: #00838F;
+	}
 }

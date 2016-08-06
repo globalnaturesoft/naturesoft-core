@@ -49,3 +49,14 @@
 hl {
 	background: yellow;
 }
+.ns-main-tabs .tab-content {
+	border: none !important;
+	background: none !important;
+}
+.ns-main-tabs .nav a {
+	background: #fff;
+}
+.page_actions {
+	padding: 15px 15px 0 15px;
+	text-align: right;
+}

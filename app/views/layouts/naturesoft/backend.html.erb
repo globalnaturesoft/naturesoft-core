@@ -74,12 +74,11 @@
                     <!-- Page header render "admin/modules/page_header" -->
                     
                     <!-- /page header -->
-                    
+
                     <!-- Content area -->
-                    <div class="content">
-        
-                        <div class="tabbable tab-content-bordered">
-							<ul class="nav nav-tabs nav-tabs-highlight">
+                    <div class="content">        
+                        <div class="tabbable tab-content-bordered ns-main-tabs">
+							<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
 								<li class="active">
 									<a href="#tab_home" data-toggle="tab">
 										<i class="icon-home4"></i> <%= yield(:title) %>
@@ -87,12 +86,12 @@
 								</li>
 								<li><a href="#tab_2" data-toggle="tab">Inactive</a></li>
 							</ul>
-
+							<hr>
 							<div class="tab-content">
-								<div class="tab-pane has-padding active" id="tab_home">
+								<div class="tab-pane active" id="tab_home">
 									<%= yield %>
 								</div>
-								<div class="tab-pane has-padding" id="tab_2">
+								<div class="tab-pane" id="tab_2">
 									aaa
 								</div>
 							</div>

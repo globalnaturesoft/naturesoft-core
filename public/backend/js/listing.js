@@ -34,6 +34,7 @@ function tableFilterAll() {
     });
 }
 
+var currentFilter = null; 
 function tableFilter(form, custom_url) {
     var url = form.attr("data-url");
     var per_page = form.attr("per-page")
@@ -90,7 +91,10 @@ function tableFilter(form, custom_url) {
     });
     
     // ajax update custom sort
-    $.ajax({
+	if(currentFilter && currentFilter.readyState != 4){
+		currentFilter.abort();
+	}
+    currentFilter = $.ajax({
         method: "GET",
         url: url,
         data: data

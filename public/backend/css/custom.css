@@ -179,18 +179,18 @@ hl {
 }
 @media (min-width: 769px) {
 	.navbar-nav {
-			margin-left: 10px;
+			margin-left: 0;
 	}
 	.tabs-scroll {
 			position: fixed;
 			width: 100%;
 			z-index: 1030;
 			top: 0;
-			margin-left: 65px;
+			margin-left: 47px;
 	}
 	.tabs-scroll .bottom-line {
 			border-bottom: solid 2px #00838F;
-			margin-left: -65px;
+			margin-left: -47px;
 	}
 	.ns-main-tabs .nav {
 		padding-left: 0px;

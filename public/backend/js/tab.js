@@ -74,7 +74,7 @@ function autoLayout() {
 	
 	// tab layout
 	if($(window).width() > 768) {
-		$(".tabs-scroll").width($(window).width()-$(".navbar-right").width()-$(".sidebar").width()-100);
+		$(".tabs-scroll").width($(window).width()-$(".navbar-right").width()-$(".sidebar").width()-82);
 		$(".tabs-scroll .bottom-line").css("margin-right", "-"+($(".navbar-right").width()+35)+"px");
 	} else {
 		$(".tabs-scroll").removeAttr("style");

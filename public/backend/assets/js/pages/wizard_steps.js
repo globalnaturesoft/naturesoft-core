@@ -43,7 +43,7 @@ $(function() {
             $(this).find('select.select').select2();
 
             $(this).find('select.select-simple').select2({
-                minimumResultsForSearch: '-1'
+                minimumResultsForSearch: Infinity
             });
 
             $(this).find('.styled').uniform({
@@ -201,7 +201,7 @@ $(function() {
 
     // Simple select without search
     $('.select-simple').select2({
-        minimumResultsForSearch: '-1'
+        minimumResultsForSearch: Infinity
     });
 
 

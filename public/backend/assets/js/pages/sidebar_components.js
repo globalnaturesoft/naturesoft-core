@@ -93,8 +93,7 @@ $(function() {
 
     // Select2 selects
     $('.select').select2({
-        minimumResultsForSearch: "-1",
-        width: '100%'
+        minimumResultsForSearch: Infinity
     });
 
 

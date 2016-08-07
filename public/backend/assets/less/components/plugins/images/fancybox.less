@@ -4,8 +4,8 @@
 *
 *  Mac-style "lightbox" plugin that floats overtop of web page.
 *
-*  Version: 1.0
-*  Latest update: May 25, 2015
+*  Version: 1.1
+*  Latest update: Nov 11, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -89,18 +89,13 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -(@icon-font-size);
-    margin-left: -(@icon-font-size);
-    background-color: #fff;
     cursor: pointer;
     z-index: 8060;
+    color: #fff;
     .opacity(0.8);
-    .animation(rotation 1s ease infinite);
 
     // Icon container
     div {
-        width: (@icon-font-size * 2);
-        height: (@icon-font-size * 2);
 
         // Icon
         &:after {
@@ -111,8 +106,11 @@
             margin-left: -(@icon-font-size / 2);
             display: block;
             line-height: 1;
+            width: @icon-font-size;
+            height: @icon-font-size;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            .animation(rotation 1s ease infinite);
         }
     }
 }
@@ -289,7 +287,7 @@
 
 // Helper
 .fancybox-lock {
-    overflow: hidden !important;
+    overflow: visible !important;
     width: auto;
 
     .fancybox-overlay {

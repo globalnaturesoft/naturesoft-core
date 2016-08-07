@@ -70,14 +70,7 @@ $(function() {
             alert('onHidden callback fired.')
         });
     });
-
-    // onLoaded callback
-    $('#onloaded_callback').on('click', function() {
-        $('#modal_remote').on('loaded.bs.modal', function() {
-            alert('onLoaded callback fired.')
-        });
-    });
-
+    
 
 
     // Sweet Alert extension
@@ -107,6 +100,64 @@ $(function() {
             text: "I will close in 2 seconds.",
             confirmButtonColor: "#2196F3",
             timer: 2000
+        });
+    });
+
+    // HTML message
+    $('#sweet_html').on('click', function() {
+        swal({
+            title: "HTML <small>small subtitle</small>",
+            text: "A custom <span style='color:#F8BB86'>html<span> message.",
+            html: true,
+            confirmButtonColor: "#2196F3"
+        });
+    });
+
+    // Prompt
+    $('#sweet_prompt').on('click', function() {
+        swal({
+            title: "An input!",
+            text: "Write something interesting:",
+            type: "input",
+            showCancelButton: true,
+            confirmButtonColor: "#2196F3",
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "Write something"
+        },
+        function(inputValue){
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false
+            }
+            swal({
+                title: "Nice!",
+                text: "You wrote: " + inputValue,
+                type: "success",
+                confirmButtonColor: "#2196F3"
+            });
+        });
+    });
+
+    // AJAX loader
+    $('#sweet_loader').on('click', function() {
+        swal({
+            title: "Ajax request example",
+            text: "Submit to run ajax request",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonColor: "#2196F3",
+            showLoaderOnConfirm: true
+        },
+        function() {
+            setTimeout(function() {
+                swal({
+                    title: "Ajax request finished!",
+                    confirmButtonColor: "#2196F3"
+                });
+            }, 2000);
         });
     });
 

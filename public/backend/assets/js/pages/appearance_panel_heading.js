@@ -16,7 +16,7 @@ $(function() {
     // -------------------------
 
     // jQuery UI slider
-    $( ".ui-slider" ).slider({
+    $(".ui-slider").slider({
         range: true,
         min: 0,
         max: 60,
@@ -25,7 +25,8 @@ $(function() {
 
 
     // NoUI slider
-    $('.noui-slider').noUiSlider({
+    var slider_noui = document.getElementById('noui-slider-demo');
+    noUiSlider.create(slider_noui, {
         start: [ 4000, 8000 ],
         connect: true,
         range: {
@@ -51,7 +52,7 @@ $(function() {
 
     // Select2 selects
     $('.select').select2({
-        minimumResultsForSearch: "-1",
+        minimumResultsForSearch: Infinity,
         width: 200
     });
 

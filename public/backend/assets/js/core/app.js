@@ -91,7 +91,7 @@ $(function() {
 
     // Show tabs inside dropdowns
     $('.dropdown-content a[data-toggle="tab"]').on('click', function (e) {
-        $(this).tab('show')
+        $(this).tab('show');
     });
 
 

@@ -4,8 +4,8 @@
 *
 *  Styles for jQuery UI slider pips extension
 *
-*  Version: 1.0
-*  Latest update: May 25, 2015
+*  Version: 1.1
+*  Latest update: Nov 15, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -38,7 +38,7 @@
     }
 
     // Pip and label wrapper
-    .ui-slider-pip { 
+    .ui-slider-pip {
         height: 10px;
         line-height: 10px;
         font-size: 85%;
@@ -82,15 +82,15 @@
 
     // Vertical slider needs right-margin, not bottom
     &.ui-slider-vertical {
-        margin-right: 25px;
+        margin: 10px 40px 10px 10px;
 
         // Align vertical pips left and to right of the slider
         .ui-slider-pip {
             text-align: left;
             top: auto;
-            left: 20px;
+            left: 18px;
             margin-left: 0;
-            margin-bottom: -5px;
+            margin-bottom: -4px;
         }
 
         // Vertical line/pip should be horizontal instead
@@ -145,7 +145,7 @@
         height: 30px;
         line-height: 32px;
         background: @gray-dark;
-        border-radius: 3px;
+        border-radius: @border-radius-base;
         text-align: center;
         font-size: @font-size-small;
         color: #fff;

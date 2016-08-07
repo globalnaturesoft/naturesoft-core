@@ -17,7 +17,7 @@ $(function() {
 
     // Fixed width
     $('.select').select2({
-        minimumResultsForSearch: "-1",
+        minimumResultsForSearch: Infinity,
         width: '200px',
         dropdownCssClass: 'border-info-700'
     });
@@ -25,8 +25,7 @@ $(function() {
 
     // Full width
     $('.select-full').select2({
-        minimumResultsForSearch: "-1",
-        width: '100%'
+        minimumResultsForSearch: Infinity
     });
 
 

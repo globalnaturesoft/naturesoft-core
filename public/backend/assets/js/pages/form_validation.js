@@ -44,7 +44,7 @@ $(function() {
 
     // Select2 select
     $('.select').select2({
-        minimumResultsForSearch: "-1"
+        minimumResultsForSearch: Infinity
     });
 
 

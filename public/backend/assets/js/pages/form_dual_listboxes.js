@@ -29,6 +29,7 @@ $(function() {
         selectedListLabel: 'Selected',
         preserveSelectionOnMove: 'moved',
         moveOnSelect: false,
+        filterTextClear: 'Display all <i class="icon-three-bars position-right"></i>',
         nonSelectedFilter: 'Biophysics|Econophysics|Geophysics|Thermodynamics'
     });
 

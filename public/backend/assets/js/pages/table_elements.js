@@ -4,8 +4,8 @@
 *
 *  Specific JS code additions for table_elements.html page
 *
-*  Version: 1.0
-*  Latest update: Aug 1, 2015
+*  Version: 1.1
+*  Latest update: Nov 25, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -29,7 +29,7 @@ $(function() {
 
     // Select2 basic
     $('.select').select2({
-        minimumResultsForSearch: '-1'
+        minimumResultsForSearch: Infinity
     });
 
 
@@ -37,18 +37,20 @@ $(function() {
     // Select2 with icons
     //
 
-    // Add icons
-    function iconFormat(state) {
-        var originalOption = state.element;
-        return "<i class='icon-" + $(originalOption).data('icon') + "'></i>" + state.text;
+    // Format icon
+    function iconFormat(icon) {
+        var originalOption = icon.element;
+        if (!icon.id) { return icon.text; }
+        var $icon = "<i class='icon-" + $(icon.element).data('icon') + "'></i>" + icon.text;
+
+        return $icon;
     }
 
-    // Initialize
+    // Initialize with options
     $(".select-actions").select2({
-        minimumResultsForSearch: -1,
-        formatResult: iconFormat,
-        width: '100%',
-        formatSelection: iconFormat,
+        templateResult: iconFormat,
+        minimumResultsForSearch: Infinity,
+        templateSelection: iconFormat,
         escapeMarkup: function(m) { return m; }
     });
 
@@ -64,10 +66,10 @@ $(function() {
     // Change select state on toggle
     controls.onchange = function() {
         if(controls.checked) {
-            $('#available_controls').select2("enable", true);
+            $('#available_controls').prop("disabled", false);
         }
         else {
-            $('#available_controls').select2("enable", false);
+            $('#available_controls').prop("disabled", true);
         }
     };
 

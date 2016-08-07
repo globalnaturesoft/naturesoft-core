@@ -4,8 +4,8 @@
 *
 *  Specific JS code additions for multiple navbar pages
 *
-*  Version: 1.0
-*  Latest update: Aug 1, 2015
+*  Version: 1.1
+*  Latest update: Nov 25, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -18,8 +18,9 @@ $(function() {
     // Single
     $('#single').select2({
         width: 180,
-        minimumResultsForSearch: '-1',
+        minimumResultsForSearch: Infinity,
         allowClear: true,
+        containerCssClass: 'bg-slate-600',
         dropdownCssClass: 'bg-slate-600'
     });
 
@@ -27,10 +28,11 @@ $(function() {
     // Multiple
     $('#multiple').select2({
         width: 180,
-        minimumResultsForSearch: '-1',
+        minimumResultsForSearch: Infinity,
         allowClear: true,
+        containerCssClass: 'bg-slate-600',
         dropdownCssClass: 'bg-slate-600'
-    })
+    });
 
 
 
@@ -49,10 +51,10 @@ $(function() {
 
         // If one select is active, another one is disabled
         if ((vals == 'main_top') || (vals == 'main_bottom') || (vals == 'secondary_top')) {
-            $("#multiple").select2("disable");
+            $("#multiple").prop("disabled", true);
         }
         else {
-            $("#multiple").select2("enable");
+            $("#multiple").prop("disabled", false);
         }
 
 
@@ -121,10 +123,10 @@ $(function() {
 
         // If one select is active, another one is disabled
         if ((vals == 'multiple_top') || (vals == 'multiple_bottom')) {
-            $("#single").select2("disable");
+            $("#single").prop("disabled", true);
         }
         else {
-            $("#single").select2("enable");
+            $("#single").prop("disabled", false);
         }
 
 

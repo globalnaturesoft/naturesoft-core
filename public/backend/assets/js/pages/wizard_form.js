@@ -54,7 +54,6 @@ $(function() {
     $(".form-validation").formwizard({
         disableUIStyles: true,
         validationEnabled: true,
-        disableInputFields: false,
         inDuration: 150,
         outDuration: 150,
         validationOptions: {
@@ -95,6 +94,11 @@ $(function() {
                 }
             }
         }
+    });
+
+    // Update single file input state
+    $(".form-validation").on("step_shown", function(event, data) {
+        $.uniform.update();
     });
 
 
@@ -149,7 +153,7 @@ $(function() {
 
     // Simple select without search
     $('.select-simple').select2({
-        minimumResultsForSearch: '-1'
+        minimumResultsForSearch: Infinity
     });
 
 

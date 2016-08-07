@@ -11,12 +11,15 @@ function openTab(url, name) {
 	
 	var id = randomString(10);
 	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab">'+name+' <i class="icon-reload-alt tab-refresh"></i> <i class="icon-cross2 tab-close"></i></a></li>');
-	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe src="'+url+'"></iframe></div>');
+	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	tab_ids.push(id);
 	
 	// Check if iframe load
 	$('#'+id+' iframe').load(function() {
+		// height
+		
+		
 		var current_url = $(this)[0].contentWindow.location.href.replace(/^.*\/\/[^\/]+/, '');
 		
 		// Check if page exist
@@ -43,18 +46,26 @@ function ajustActiveNavPos() {
 	// ajust tab scroll
 	var ol = $(".ns-main-tabs .nav li.active").offset().left;
 	var ou = $(".ns-main-tabs .nav").offset().left;
-	$(".tabs-scroll").scrollLeft(ol - ou - 20);
+	$(".tabs-scroll").scrollLeft(ol - ou - 20);	
 }
 
 function autoLayout() {
 	// Auto iframe
 	$(".tab-pane iframe").each(function() {
-		resizeIframe($(this)[0]);
+		resizeIframe($(this));
 	});
 	// tabbar width
 	ajustTabbar();
 	// scroll active
 	
+	// tab layout
+	if($(window).width() > 768) {
+		$(".tabs-scroll").width($(window).width()-$(".navbar-right").width()-$(".sidebar").width()-100);
+		$(".tabs-scroll .bottom-line").css("margin-right", "-"+($(".navbar-right").width()+35)+"px");
+	} else {
+		$(".tabs-scroll").removeAttr("style");
+		$(".tabs-scroll .bottom-line").removeAttr("style");
+	}
 }
 
 function refreshTab(url) {
@@ -93,8 +104,9 @@ function closeTab(url) {
 }
 
 function resizeIframe(obj) {
-	if(typeof(obj.contentWindow) != 'undefined' && obj.contentWindow.document.body) {
-		obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	if(typeof(obj[0].contentWindow) != 'undefined' && obj[0].contentWindow.document.body) {
+			// obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+			obj.height(obj.contents().find(".inner-page").height()+20);
 	}	
 }
 

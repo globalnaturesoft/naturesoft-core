@@ -59,6 +59,8 @@
         .ranges,
         .calendar {
             float: none;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
@@ -219,8 +221,9 @@
         &.secondselect,
         &.ampmselect {
             width: 60px;
+            padding-left: 0;
+            padding-right: 0;
             margin-bottom: 0;
-            display: inline-block;
         }
     }
 
@@ -231,15 +234,16 @@
         // Calendar icons
         i {
             position: absolute;
-            right: @padding-base-horizontal;
+            right: @padding-small-horizontal;
             top: auto;
             bottom: ((@icon-font-size / 2) + 2); // half icon size + borders
             color: @text-muted;
         }
 
         // Add right padding for inputs
-        .form-control {
-            padding-right: (@padding-base-horizontal + @icon-font-size + @padding-base-vertical)
+        input {
+            padding-left: @padding-small-horizontal;
+            padding-right: (@padding-small-horizontal + @icon-font-size + @padding-base-vertical);
         }
     }
 

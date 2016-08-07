@@ -4,8 +4,8 @@
  *
  *  Styles for sidebar components, main navigation and sidebar itself
  *
- *  Version: 1.1
- *  Latest update: Oct 20, 2015
+ *  Version: 1.2
+ *  Latest update: Nov 25, 2015
  *
  * ---------------------------------------------------------------------------- */
 
@@ -28,17 +28,17 @@
 		width: @sidebar-base-width;
 	}
 
-	// Main sidebar
+	// Main z-index
 	&-main {
 		z-index: 99;
 	}
 
-	// Secondary sidebar
+	// Secondary z-index
 	&-secondary {
 		z-index: 98;
 	}
 
-	// Opposite sidebar
+	// Opposite z-index
 	&-opposite {
 		display: none;
 		z-index: 97;
@@ -269,6 +269,12 @@
 				background-color: @gray-lighter;
 			}
 		}
+
+		// Transparent labels
+		&:not(.active) .label-transparent {
+			color: fade(#fff, 50%);
+			font-weight: 400;
+		}
 	}
 
 	// First level items
@@ -296,6 +302,15 @@
 				// Make all texts white
 				> [class*=text-] {
 					color: #fff;
+				}
+
+				// No color dependency - make all labela and badges white
+				.label,
+				.badge {
+					background-color: transparent;
+					border-color: transparent;
+					color: #fff;
+					.transition(background-color ease-in-out 0.2s);
 				}
 			}
 		}
@@ -432,8 +447,8 @@
 	// Labels and badges
 	.label,
 	.badge {
-	  float: right;
-	  margin-top: 1px;
+		float: right;
+		margin-top: 1px;
 	}
 }
 
@@ -474,6 +489,12 @@
 					}
 				}
 			}
+
+			// Transparent labels
+			.label-transparent {
+				color: @text-muted;
+				font-weight: 400;
+			}
 		}
 
 		// Child levels
@@ -489,6 +510,11 @@
 					&:hover,
 					&:focus {
 						background-color: @navigation-light-active-bg;
+						color: #fff;
+					}
+
+					// Make transparent labels white
+					.label-transparent {
 						color: #fff;
 					}
 				}
@@ -511,9 +537,11 @@
 				padding-right: @navigation-padding-base-horizontal;
 			}
 
+			// Reverse horizontal margin for icon
 			> i {
 				float: right;
 				margin-right: 0;
+				margin-left: @content-padding-base;
 			}
 		}
 
@@ -599,11 +627,6 @@
 				}
 			}
 		}
-		.sidebar-xs .sidebar-main & {
-			> ul {
-				top: (@line-height-computed + (@navigation-padding-large-vertical * 2));
-			}
-		}
 	}
 }
 
@@ -628,11 +651,6 @@
 				}
 			}
 		}
-		.sidebar-xs .sidebar-main & {
-			> ul {
-				top: (@line-height-computed + (@navigation-padding-small-vertical * 2));
-			}
-		}
 	}
 }
 
@@ -655,11 +673,6 @@
 					padding-bottom: @navigation-padding-mini-vertical - 2;
 					min-height: ((@line-height-computed + (@navigation-padding-mini-vertical * 2)) - 4);
 				}
-			}
-		}
-		.sidebar-xs .sidebar-main & {
-			> ul {
-				top: (@line-height-computed + (@navigation-padding-mini-vertical * 2));
 			}
 		}
 	}
@@ -989,6 +1002,14 @@
 								top: 50%;
 								margin-top: -@arrow-size;
 							}
+
+							// No color dependency - make all labela and badges white
+							.label,
+							.badge {
+								background-color: transparent;
+								border-color: transparent;
+								color: #fff;
+							}
 						}
 
 						// Icon
@@ -1141,6 +1162,25 @@
 			}
 		}
 
+		// Navigation sizing in mini sidebar
+		.sidebar-main {
+
+			// Large
+			.navigation-lg > li > ul {
+				top: (@line-height-computed + (@navigation-padding-large-vertical * 2));
+			}
+
+			// Small
+			.navigation-sm > li > ul {
+				top: (@line-height-computed + (@navigation-padding-small-vertical * 2));
+			}
+
+			// Mini
+			.navigation-xs > li > ul {
+				top: (@line-height-computed + (@navigation-padding-mini-vertical * 2));
+			}
+		}
+
 		// Inside light sidebar
 		.sidebar-default {
 			.navigation-main {
@@ -1149,7 +1189,7 @@
 						background-color: @navigation-light-active-bg;
 						border-color: @navigation-light-active-bg;
 					}
-
+					
 					> ul {
 						background-color: @sidebar-light-bg;
 						border: 1px solid @panel-default-border;

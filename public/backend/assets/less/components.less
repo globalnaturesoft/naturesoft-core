@@ -4,8 +4,8 @@
  *
  *  Common less file with imports of plugins and pages
  *
- *  Version: 1.0
- *  Latest update: Sep 1st, 2015
+ *  Version: 1.2
+ *  Latest update: Nov 12, 2015
  *
  * ---------------------------------------------------------------------------- */
 
@@ -204,25 +204,19 @@
 // NoUI slider
 @import "components/plugins/sliders/noui-slider.less";
 
+// Ion range slider
+@import "components/plugins/sliders/ion-range-slider.less";
+
 
 
 // jQuery UI components
 // ------------------------------
 
-// Datepicker
-@import "components/extensions/jquery_ui/datepicker.less";
+// Interactions
+@import "components/extensions/jquery_ui/interactions.less";
 
-// Sliders
-@import "components/extensions/jquery_ui/sliders.less";
-
-// Sortable
-@import "components/extensions/jquery_ui/sortable.less";
-
-// Autocomplete
-@import "components/extensions/jquery_ui/autocomplete.less";
-
-// Menu
-@import "components/extensions/jquery_ui/menu.less";
+// Widgets
+@import "components/extensions/jquery_ui/widgets.less";
 
 
 
@@ -243,6 +237,9 @@
 
 // Full calendar
 @import "components/plugins/ui/fullcalendar.less";
+
+// Dragula
+@import "components/plugins/ui/dragula.less";
 
 
 
@@ -275,7 +272,15 @@
 // ------------------------------
 
 // Footable - responsive table tools
-@import "components/plugins/tables/footable.less";
+@import "components/plugins/tables/footable/footable.less";
+
+
+
+// Handsontable
+// ------------------------------
+
+// Handsontable - excel-like spreadsheet for apps
+@import "components/plugins/tables/handsontable/handsontable.less";
 
 
 
@@ -283,25 +288,37 @@
 // ------------------------------
 
 // Core
-@import "components/plugins/tables/datatables.less";
+@import "components/plugins/tables/datatables/datatables.less";
 
 // Datatables - columns reorder
-@import "components/plugins/tables/datatable-columns-reorder.less";
+@import "components/plugins/tables/datatables/datatable-columns-reorder.less";
+
+// Datatables - rows reorder
+@import "components/plugins/tables/datatables/datatable-rows-reorder.less";
 
 // Datatables - fixed columns
-@import "components/plugins/tables/datatable-fixed-columns.less";
+@import "components/plugins/tables/datatables/datatable-fixed-columns.less";
 
-// Datatables - columns visibility
-@import "components/plugins/tables/datatable-columns-visibility.less";
+// Datatables - fixed header
+@import "components/plugins/tables/datatables/datatable-fixed-header.less";
 
-// Datatables - table tools
-@import "components/plugins/tables/datatable-tabletools.less";
+// Datatables - autofill
+@import "components/plugins/tables/datatables/datatable-autofill.less";
+
+// Datatables - select
+@import "components/plugins/tables/datatables/datatable-select.less";
+
+// Datatables - buttons
+@import "components/plugins/tables/datatables/datatable-buttons.less";
+
+// Datatables - key table
+@import "components/plugins/tables/datatables/datatable-keytable.less";
 
 // Datatables - scroller
-@import "components/plugins/tables/datatable-scroller.less";
+@import "components/plugins/tables/datatables/datatable-scroller.less";
 
 // Datatables - responsive
-@import "components/plugins/tables/datatable-responsive.less";
+@import "components/plugins/tables/datatables/datatable-responsive.less";
 
 
 

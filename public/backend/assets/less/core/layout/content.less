@@ -57,7 +57,7 @@
     }
 
     // If content comes after page header, remove top padding
-    .page-header + & {
+    .page-header:not(.page-header-filled) + & {
         padding-top: 0;
     }
 }

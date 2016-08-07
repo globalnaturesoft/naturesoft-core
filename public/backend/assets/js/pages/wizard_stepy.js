@@ -127,7 +127,7 @@ $(function() {
 
     // Simple select without search
     $('.select-simple').select2({
-        minimumResultsForSearch: '-1'
+        minimumResultsForSearch: Infinity
     });
 
 

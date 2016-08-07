@@ -341,7 +341,7 @@ $(function() {
 
     // Select2 selects
     $('.select').select2({
-        minimumResultsForSearch: '-1'
+        minimumResultsForSearch: Infinity
     });
 
 

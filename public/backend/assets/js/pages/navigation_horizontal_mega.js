@@ -4,8 +4,8 @@
 *
 *  Specific JS code additions for navigation_horizontal_mega.html page
 *
-*  Version: 1.0
-*  Latest update: Aug 1, 2015
+*  Version: 1.1
+*  Latest update: Dec 2, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -30,11 +30,11 @@ $(function() {
     $(window).on('resize', function() {
         setTimeout(function() {
             if($(window).width() <= 768) {
-                $('.menu-list, .menu-list ul').getNiceScroll().remove();
-                $(".menu-list, .menu-list ul").removeAttr('style').removeAttr('tabindex');
+                $('.menu-list').getNiceScroll().remove();
+                $(".menu-list").removeAttr('style').removeAttr('tabindex');
             }
             else {
-                $(".menu-list, .menu-list ul").niceScroll({
+                $(".menu-list").niceScroll({
                     mousescrollstep: 100,
                     cursorcolor: '#ccc',
                     cursorborder: '',
@@ -58,8 +58,7 @@ $(function() {
 
 	// Select2 select
 	$('.select').select2({
-	    minimumResultsForSearch: "-1",
-	    width: '100%'
+	    minimumResultsForSearch: Infinity
 	});
 
 

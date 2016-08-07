@@ -496,11 +496,17 @@
     }
 
     // Page header elements
-    .page-header .heading-elements.visible {
-        border-width: 1px 0;
-        left: 0;
-        right: 0;
-        z-index: (@zindex-navbar - 1);
+    .page-header {
+        .heading-elements {
+            background-color: #fcfcfc;
+
+            &.visible {
+                border-width: 1px 0;
+                left: 0;
+                right: 0;
+                z-index: (@zindex-navbar - 2);
+            }
+        }
     }
 
     // Breadcrumb elements

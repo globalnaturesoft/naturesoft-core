@@ -4,8 +4,8 @@
 *
 *  Overrides for navbar bootstrap component
 *
-*  Version: 1.1
-*  Latest update: Oct 20, 2015
+*  Version: 1.2
+*  Latest update: Dec 2, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -32,10 +32,16 @@
     margin-bottom: @line-height-computed;
     border-width: 1px;
 
+    // Inside page header
+    .page-header & {
+        margin-left: @grid-gutter-width;
+        margin-right: @grid-gutter-width;
+    }
+
     // Default navbar
     &.navbar-default {
         border-color: @panel-default-border;
-        background-color: #fff;
+        background-color: @panel-bg;
     }
 
     // First child border radius
@@ -148,6 +154,86 @@
     }
 }
 
+
+// Highlighted navbar header
+// -------------------------
+
+.header-highlight {
+
+    // Header
+    .navbar-header {
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        margin-top: -1px;
+        margin-bottom: -1px;
+
+        // Darken header
+        &:not([class*=bg-]) {
+            background-color: @sidebar-dark-bg;
+            @header-box-shadow: 0 0 0 1000px fade(#000, 10%) inset, 0 -1px 0 fade(#fff, 10%) inset;
+            .box-shadow(@header-box-shadow);
+        }
+
+        // Make links in navbar header as in inverse navbar
+        > .navbar-nav {
+            > li > a {
+                color: @navbar-inverse-link-color;
+
+                &:hover,
+                &:focus {
+                    color: @navbar-inverse-link-hover-color;
+                    background-color: @navbar-inverse-link-hover-bg;
+                }
+            }
+        }
+
+        // Desktop view setup
+        @media (min-width: @grid-float-breakpoint) {
+
+            // In mini sidebar
+            .sidebar-xs & {
+                min-width: 0;
+                width: @sidebar-mini-width;
+                padding-left: 0;
+
+                // Change logo
+                .navbar-brand {
+                    padding-left: 0;
+                    padding-right: 0;
+                    background: url(../images/logo_icon_light.png) no-repeat center center;
+                    background-size: auto 16px;
+                    float: none;
+                    display: block;
+
+                    > img {
+                        display: none;
+                    }
+                }
+            }
+
+            // Hide if main sidebar is hidden
+            .sidebar-main-hidden &,
+            .sidebar-all-hidden & {
+                display: none;
+            }
+        }
+    }
+
+    // If fixed sidebar is mini, when expanded
+    .sidebar-fixed-expanded & {
+        @media (min-width: @grid-float-breakpoint) {
+            .navbar-collapse {
+                margin-left: @sidebar-mini-width - 20;
+            }
+
+            // Make header fixed as sidebar
+            .navbar-header {
+                position: fixed;
+                z-index: 99;
+            }
+        }
+    }
+}
 
 
 // Fixed navbar setup
@@ -1409,11 +1495,8 @@
 
     // Setup desktop view
     @media (min-width: @grid-float-breakpoint) {
-        &,
-        ul {
-            overflow-y: auto;
-            max-height: @navbar-collapse-max-height;
-        }
+        overflow-y: auto;
+        max-height: @navbar-collapse-max-height;
     }
 }
 

@@ -11,11 +11,11 @@
 		
 		<%= render "admin/modules/header_script" %>		
         
-    </head>
+    </head>   
     
-    <body>
 	
-		<% if params[:controller] == "naturesoft/admin/dashboard" %>
+	<% if params[:controller] == "naturesoft/admin/dashboard" %>
+		<body class="navbar-top">
 			<!-- Main navbar -->
 			<%= render "admin/modules/main_navbar" %>
 			<!-- /main navbar -->
@@ -62,9 +62,10 @@
 											</li>									
 										</ul>
 									</div>
+									<div class="bottom-line"></div>
 								</div>
 								<div class="tab-content">
-									<div class="tab-pane active" id="tab_home">									
+									<div class="tab-pane active" id="tab_home">										
 										<%= yield %>
 									</div>
 								</div>
@@ -86,17 +87,27 @@
 			</div>
 			<!-- /page container -->
 			
-		<% else %>
-			<style>
-				body {
-					background: none
-				}
-			</style>
-			<div class="tab-loading">
-				<i class="icon-spinner11 spinner position-left"></i>
+	<% else %>
+		<body style="background: none">
+			<div class="inner-page">
+				<div class="tab-loading">
+					<i class="icon-spinner11 spinner position-left"></i>
+				</div>
+				<div class="breadcrumb-line ">
+					<ul class="breadcrumb breadcrumb-flat">
+						<li><%= link_to '<i class="icon-home2 position-left"></i> Home'.html_safe, naturesoft.admin_dashboard_path %></li>
+						<%= render_breadcrumbs :tag => :li, :separator => "" %>
+					</ul>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class=""><%= yield(:title) %></h1>
+					</div>
+				</div>
+				<%= yield %>
+				<br style="clear: both" />
 			</div>
-			<%= yield %>
-		<% end %>
+	<% end %>
 		
 		<!-- Flash messages -->
 		<%= render 'admin/modules/flash_messages' %>

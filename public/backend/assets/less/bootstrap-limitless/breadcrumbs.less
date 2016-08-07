@@ -4,8 +4,8 @@
 *
 *  Overrides for breadcrumb bootstrap component
 *
-*  Version: 1.1
-*  Latest update: Oct 20, 2015
+*  Version: 1.0
+*  Latest update: May 25, 2015
 *
 * ---------------------------------------------------------------------------- */
 
@@ -59,7 +59,7 @@
         &.location-text {
             margin-right: @element-horizontal-spacing;
 
-            & + li {
+            + li {
                 &:before {
                     content: none;
                 }
@@ -177,9 +177,12 @@
 
 // Base
 .breadcrumb-line {
-    background-color: @navbar-default-bg;
-    border-bottom: 1px solid @page-header-border-color;
     position: relative;
+    background-color: #fafafa;
+    border: 1px solid @panel-inner-border;
+    border-radius: @border-radius-base;
+    margin-bottom: @line-height-computed;
+    .box-shadow(0 1px 1px fade(#000, 5%));
 
     // Clearing floats
     &:after {
@@ -188,24 +191,23 @@
         clear: both;
     }
 
-    // Add border if placed after page header content
-    .page-header-content + & {
-        border-bottom-width: 0;
-        border-top: 1px solid @page-header-border-color;
-    }
+    // Inside page header (all levels)
+    .page-header & {
+        margin-left: @grid-gutter-width;
+        margin-right: @grid-gutter-width;
 
-    // If after page header content in transparent header
-    .page-header-transparent .page-header-content + & {
-        border-bottom-width: 1px;
-        margin-bottom: @line-height-computed;
+        &:first-child {
+            margin-top: @line-height-computed;
+            margin-bottom: 0;
+        }
     }
 
     // Breadcrumb
     .breadcrumb {
-        margin-left: @grid-gutter-width;
-        margin-right: ((@grid-gutter-width * 2) + @icon-font-size);
+        margin-left: @content-padding-base;
+        margin-right: ((@content-padding-base * 2) + @icon-font-size);
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @grid-float-breakpoint) {
             float: left;
             margin-right: 0;
         }
@@ -217,22 +219,48 @@
     }
 }
 
-// Inside transparent page header
-.page-header-transparent {
+// Full width line
+.breadcrumb-line-wide {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+    border-width: 1px 0;
 
-    // Breadcrumb line
-    .breadcrumb-line {
-        background-color: #fff;
+    // Inside page header
+    .page-header & {
+        margin-left: 0;
+        margin-right: 0;
+
+        // If first, remove top border and margin
+        &:first-child {
+            margin-top: 0;
+            border-top-width: 0;
+        }
     }
 
-    // As a component
-    .breadcrumb-line-component {
-        margin-left: @grid-gutter-width;
-        margin-right: @grid-gutter-width;
-        padding-right: 0;
+    // In filled page header
+    .page-header-filled & {
+        border-bottom-width: 0;
+        margin-bottom: 0;
 
-        > .breadcrumb-elements {
-            margin-right: 0;
+        &:first-child {
+            border-bottom-width: 1px;
+        }
+    }
+
+    // Adjust horizontal spacing of breadcrumb
+    .breadcrumb {
+        margin-left: @grid-gutter-width;
+    }
+
+    // Adjust horizontal spacing of breadcrumb elements
+    @media (min-width: @grid-float-breakpoint) {
+        .breadcrumb-elements {
+            margin-right: @grid-gutter-width;
+
+            .dropdown-menu {
+                right: 0;
+            }
         }
     }
 }
@@ -261,7 +289,6 @@
         > li {
             > a {
                 color: #fff;
-                .opacity(1);
             }
 
             // Highlight on hover
@@ -270,52 +297,6 @@
             > a:focus {
                 background-color: fade(#000, 10%);
             }
-        }
-    }
-}
-
-// As a component
-.breadcrumb-line-component {
-    border: 1px solid @panel-inner-border;
-    margin-bottom: @line-height-computed;
-    border-radius: @border-radius-base;
-    background-color: @panel-bg;
-    .box-shadow(0 1px 1px fade(#000, 5%));
-
-    // Inside page header (all levels)
-    .page-header & {
-        margin-left: @grid-gutter-width;
-        margin-right: @grid-gutter-width;
-        background-color: @navbar-default-bg;
-    }
-
-    // Inside page header (1st level)
-    .page-header > & {
-        border-width: 1px;
-
-        &:first-child {
-            margin-top: @line-height-computed;
-            margin-bottom: 0;
-        }
-    }
-
-    // Breadcrumb
-    .breadcrumb {
-        margin-left: @content-padding-base;
-    }
-
-    // Breadcrumb elements
-    .breadcrumb-elements {
-        margin-right: 0;
-
-        // Display all borders
-        .dropdown-menu {
-            border-width: 1px;
-        }
-
-        // Count 1px border
-        > li:last-child > .dropdown-menu-right {
-            right: -1px;
         }
     }
 }
@@ -352,25 +333,28 @@
             color: @breadcrumb-color;
         }
 
-        // Mute on hover
+        // Highlight on hover
         &.open > a,
         > a:hover,
         > a:focus {
-            .opacity(0.75);
+            background-color: #fafafa;
         }
     }
 
     // Dropdown menu
     .dropdown-menu {
         margin-top: 0;
+        left: auto;
+        right: -1px;
         .border-top-radius(0);
 
         // Mobile view
         @media (max-width: @screen-xs-max) {
-            left: 0;
-            right: 0;
-            border-width: 1px 0;
-            border-radius: 0;
+            left: -1px;
+
+            .breadcrumb-line-wide & {
+                border-radius: 0;
+            }
 
             > li > a {
                 padding-left: @content-padding-base;
@@ -396,7 +380,6 @@
     // Desktop view
     @media (min-width: @grid-float-breakpoint) {
         float: right;
-        margin-right: @grid-gutter-width;
         text-align: inherit;
         border-top: 0;
 
@@ -407,15 +390,20 @@
 
         > li {
             float: left;
-        }
 
-        > li,
-        > li .btn-group {
-            position: relative;
+            &,
+            .btn-group {
+                position: relative;
+            }
         }
 
         [data-toggle="collapse"] {
             display: none;
+        }
+
+        // Round right corners in last item
+        .breadcrumb-line:not(.breadcrumb-line-wide) & > li:last-child > a {
+            .border-right-radius(@border-radius-base);
         }
     }
 

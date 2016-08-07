@@ -131,18 +131,14 @@ hl {
 .ns-main-tabs li.active .tab-close, .ns-main-tabs li.active .tab-refresh {
 	color: #ddd;
 }
-.ns-main-tabs .tab-close {
-	margin-left: 5px;	
-}
 .ns-main-tabs .tab-refresh {
-	margin-left: 5px;
 	display: none;
 }
 .ns-main-tabs li.active .tab-refresh {
 	display: inline-block;
 }
-.ns-main-tabs li.active .tab-close:hover {
-	color: #f44336;
+.ns-main-tabs li .tab-close:hover {
+	color: #fff;
 }
 .ns-main-tabs li.active .tab-refresh:hover {
 	color: #fff;
@@ -207,4 +203,26 @@ hl {
 }
 .breadcrumb-line {
 	margin: -20px -20px 0;
+}
+.ns-main-tabs li a {
+    white-space: nowrap;
+}
+.ns-main-tabs li .tabs-buts {
+    margin-left: 7px;
+    margin-right: -7px;
+}
+.ns-main-tabs li .tabs-buts i {
+    background: rgba(255,255,255,0.1);
+    margin: -4px 0 -4px 0;
+    padding: 4px;
+    border-radius: 5px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+}
+.ns-main-tabs li .tabs-buts i:hover {
+    background: rgba(255,255,255,0.2);
+}
+.ns-main-tabs li .tabs-buts i.tab-close:hover {
+    background: #f44336;
 }

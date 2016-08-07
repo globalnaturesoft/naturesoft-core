@@ -11,9 +11,9 @@ function selectNextTab() {
 	selectTab(next_id);
 }
 
-function openTab(url, name) {
+function openTab(url, name, hide_close) {
 	// Remove domain from url
-	url = url.replace(/^.*\/\/[^\/]+/, '')
+	url = url.replace(/^.*\/\/[^\/]+/, '');
 	
 	// Check if tab already open
 	if($('a[data-src="'+url+'"]').length) {
@@ -22,8 +22,14 @@ function openTab(url, name) {
 		return;
 	}
 	
+	// Show tab close buttons
+	close_but = '';
+	if(typeof(hide_close) == 'undefined' || !hide_close) {
+		close_but = '<i class="icon-cross2 tab-close"></i>';
+	}
+	
 	var id = randomString(10);
-	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab">'+name+' <i class="icon-reload-alt tab-refresh"></i> <i class="icon-cross2 tab-close"></i></a></li>');
+	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab">'+name+' <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+close_but+'</span></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
@@ -181,12 +187,12 @@ $(document).ready(function() {
 	
 	// close tab
 	$(document).on('click', '.ns-main-tabs .tab-close', function(e) {
-		var url = $(this).parent().attr("data-src");
+		var url = $(this).parents("a").attr("data-src");
 		closeTab(url);
 	});
 	
 	$(document).on('click', '.ns-main-tabs .tab-refresh', function(e) {
-		var url = $(this).parent().attr("data-src");
+		var url = $(this).parents("a").attr("data-src");
 		refreshTab(url);
 	});
 	

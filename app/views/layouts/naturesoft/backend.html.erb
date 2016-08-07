@@ -14,7 +14,7 @@
     </head>   
     
 	
-	<% if params[:controller] == "naturesoft/admin/dashboard" %>
+	<% if params[:controller] == "naturesoft/admin/admin" %>
 		<body class="navbar-top">
 			<!-- Main navbar -->
 			<%= render "admin/modules/main_navbar" %>
@@ -55,19 +55,11 @@
 								<div class="tabs-scroll">
 									<div class="tabs-scroll-cont">
 										<ul class="nav nav-pills nav-pills-highlight nav-pills-toolbar">
-											<li class="active">
-												<a data-src="tab_home" href="#tab_home" data-toggle="tab">
-													<i class="icon-home4"></i>
-												</a>									
-											</li>									
 										</ul>
 									</div>
 									<div class="bottom-line"></div>
 								</div>
 								<div class="tab-content">
-									<div class="tab-pane active" id="tab_home">										
-										<%= yield %>
-									</div>
 								</div>
 							</div>
 							
@@ -86,6 +78,8 @@
 			
 			</div>
 			<!-- /page container -->
+			
+			<%= yield %>
 			
 	<% else %>
 		<body style="background: none">

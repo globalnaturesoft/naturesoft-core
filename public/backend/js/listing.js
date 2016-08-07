@@ -294,9 +294,9 @@ $(document).ready(function() {
     $(document).on("click", ".listing-form .pagination a", function(e) {
         tableFilter($(this).parents(".listing-form"), $(this).attr("href"));
 
-		e.preventDefault();
-		e.stopPropagation();
-		e.stopImmediatePropagation();
+				e.preventDefault();
+				e.stopPropagation();
+				e.stopImmediatePropagation();
     });
     
     // Change item per page

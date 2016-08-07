@@ -1,3 +1,16 @@
+function removeTabUrl(url) {
+	var index = tab_urls.indexOf(url);
+	while (index != -1) {
+    tab_urls.splice(index, 1);
+		index = tab_urls.indexOf(url);
+	}
+}
+
+function selectNextTab() {
+	var next_id = tab_urls[tab_urls.length-1];
+	selectTab(next_id);
+}
+
 function openTab(url, name) {
 	// Remove domain from url
 	url = url.replace(/^.*\/\/[^\/]+/, '')
@@ -13,7 +26,8 @@ function openTab(url, name) {
 	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab">'+name+' <i class="icon-reload-alt tab-refresh"></i> <i class="icon-cross2 tab-close"></i></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
-	tab_ids.push(id);
+	// log tab actione
+	tab_urls.push(url);
 	
 	// Check if iframe load
 	$('#'+id+' iframe').load(function() {
@@ -84,6 +98,9 @@ function selectTab(url) {
 	
 	// ative pos
 	setTimeout("ajustActiveNavPos()", 500);
+	
+	// log tab actione
+	tab_urls.push(url);
 }
 
 function selectTabById(id) {
@@ -97,10 +114,11 @@ function closeTab(url) {
 	tab_but.remove();
 	tab.remove();
 	
-	var index = tab_ids.indexOf(id);
-	tab_ids.splice(index, 1);
-	var next_id = tab_ids[tab_ids.length-1];
-	selectTabById(next_id);
+	// remove tab url
+	setTimeout("removeTabUrl(url)", 100);
+	
+	// next tab
+	setTimeout("selectNextTab()", 200);
 }
 
 function resizeIframe(obj) {
@@ -122,7 +140,7 @@ var randomString = function (len, bits)
     return outStr.toUpperCase();
 };
 
-var tab_ids = ["tab_home"];
+var tab_urls = ["tab_home"];
 $(document).ready(function() {
 	setInterval("autoLayout()", 500);
 	
@@ -148,20 +166,30 @@ $(document).ready(function() {
 				selectTab(url)
 			}
 		}
-	});
+	});	
 	
-	$(document).on('click', '.ns-main-tabs .tab-close', function(e) {
-		var url = $(this).parent().attr("data-src");
-		closeTab(url);
-	});
-	
+	// select tab
 	$(document).on('click', '.ns-main-tabs .nav li a', function(e) {
 		// ative pos
 		setTimeout("ajustActiveNavPos()", 500);
+		
+		//// log last tab click
+		//// log tab actione
+		url = $(this).attr("data-src");
+		tab_urls.push(url);
+	});
+	
+	// close tab
+	$(document).on('click', '.ns-main-tabs .tab-close', function(e) {
+		var url = $(this).parent().attr("data-src");
+		closeTab(url);
 	});
 	
 	$(document).on('click', '.ns-main-tabs .tab-refresh', function(e) {
 		var url = $(this).parent().attr("data-src");
 		refreshTab(url);
 	});
+	
+	
+	
 });

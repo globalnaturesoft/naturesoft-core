@@ -35,6 +35,9 @@ $(document).ready(function() {
 		var msg = $(this).attr("data-confirm");
 		var url = $(this).attr("href");
 		var modal = $('#modal_cofirm');
+        if (window.frameElement) {
+            modal = parent.$('#modal_cofirm');
+        }
 		var method = $(this).attr("data-method");
 		if(typeof(msg) != 'undefined') {
 			modal.find('.btn-confirm').attr('href', url);
@@ -47,16 +50,24 @@ $(document).ready(function() {
 				type: method,
 				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 				success: function(response) {
-					tableFilterAll();
-					swal({
+                    var config = {
 						title: response,
 						confirmButtonColor: "#00acc1",
 						type: "success",
 						allowOutsideClick: true
-					});
+					}
+                    if (window.frameElement) {
+                        tableFilterAll();
+                        parent.swal(config);
+                    } else {
+                        $(".tab-pane.active iframe")[0].contentWindow.tableFilterAll();
+                        swal(config);
+                    }
 				}
 			});
 		}
 		e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
 	});
 });

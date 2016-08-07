@@ -184,7 +184,7 @@ hl {
 	.tabs-scroll {
 			position: fixed;
 			width: 100%;
-			z-index: 10000;
+			z-index: 1030;
 			top: 0;
 			margin-left: 65px;
 	}

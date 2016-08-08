@@ -240,6 +240,9 @@ hl {
 .ns-main-tabs li .tabs-buts i.tab-close:hover {
     background: #f44336;
 }
+div.form_fix {
+    margin-bottom: 35px;
+}
 .tabs-scroll {
     background: #eee;
     border-right: solid 1px #ddd;

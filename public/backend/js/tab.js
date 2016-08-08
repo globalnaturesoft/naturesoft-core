@@ -1,3 +1,18 @@
+function ajustTabScroll() {
+	var ts_width = $(".tabs-scroll").width();
+	var tc_width = $(".tabs-scroll .tabs-scroll-cont").width();
+	
+	if (ts_width < tc_width) {
+		$('.tabs-scroll .navi').show();
+	} else {
+		$('.tabs-scroll .navi').hide();
+	}
+}
+
+function setTabName(url, name) {
+	$('a[data-src="'+url+'"] .tab_name').html(name);
+}
+
 function removeTabUrl(url) {
 	var index = tab_urls.indexOf(url);
 	while (index != -1) {
@@ -29,7 +44,7 @@ function openTab(url, name, hide_close) {
 	}
 	
 	var id = randomString(10);
-	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab">'+name+' <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+close_but+'</span></a></li>');
+	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+close_but+'</span></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
@@ -59,7 +74,7 @@ function ajustTabbar() {
 	$(".ns-main-tabs ul li").each(function() {
 		width += $(this).width();
 	});
-	$(".ns-main-tabs .tabs-scroll-cont").width(width+200);
+	$(".ns-main-tabs .tabs-scroll-cont").width(width+100);
 }
 
 function ajustActiveNavPos() {
@@ -86,6 +101,9 @@ function autoLayout() {
 		$(".tabs-scroll").removeAttr("style");
 		$(".tabs-scroll .bottom-line").removeAttr("style");
 	}
+	
+	// scroll tabs
+	ajustTabScroll();
 }
 
 function refreshTab(url) {
@@ -121,7 +139,7 @@ function closeTab(url) {
 	tab.remove();
 	
 	// remove tab url
-	setTimeout("removeTabUrl(url)", 100);
+	setTimeout("removeTabUrl('"+url+"')", 100);
 	
 	// next tab
 	setTimeout("selectNextTab()", 200);
@@ -196,6 +214,20 @@ $(document).ready(function() {
 		refreshTab(url);
 	});
 	
+	// update tab title
+	if (window.frameElement) {
+		var title = document.title.split(" - ")[0];
+		var url = window.location.href.replace(/^.*\/\/[^\/]+/, '');
+		if(url != "/admin/dashboard" && title != "") {
+			parent.setTabName(url, title);
+		}
+	}
 	
+	$(document).on('click', '.tabs-scroll .navi-left', function(e) {
+		$('.tabs-scroll-out').scrollLeft($('.tabs-scroll-out').scrollLeft() - 100);
+	});
+	$(document).on('click', '.tabs-scroll .navi-right', function(e) {
+		$('.tabs-scroll-out').scrollLeft($('.tabs-scroll-out').scrollLeft() + 100);
+	});
 	
 });

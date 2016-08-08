@@ -110,12 +110,21 @@ hl {
 		border-radius: 0;
 	}	
 	.tabs-scroll {
-    width: 100%;
-    overflow: scroll;
+        width: 100%;
+        overflow: scroll;
 	}
 	.main-content {
 			padding: 5px 0 0 0;
 	}
+    .tabs-scroll .navi {
+        display: none !important;
+    }
+    .ns-main-tabs .nav {
+        border-bottom: solid 2px #00838F;
+    }
+    .tabs-scroll .bottom-line {
+		border-bottom: none !important;
+    }
 }
 .tabs-scroll-cont {
 	min-width: 100%;
@@ -191,6 +200,11 @@ hl {
 	.ns-main-tabs .nav {
 		padding-left: 0px;
 	}
+    .tabs-scroll-out {
+        max-width: 100%;
+        overflow: hidden;
+        margin-right: 40px;
+    }
 }
 .tab-pane iframe {
 	overflow: hidden;
@@ -228,4 +242,31 @@ hl {
 }
 div.form_fix {
     margin-bottom: 35px;
+}
+.tabs-scroll {
+    background: #eee;
+    border-right: solid 1px #ddd;
+}
+.tabs-scroll .navi {
+    position: absolute;
+    right: 3px;
+    top: 0;
+    border: solid 1px #ccc;
+    height: 34px;
+    color: #666;
+    padding: 6px 0px;
+    margin: 5px 0;
+    background: #f8f8f8;
+    cursor: pointer;
+    display: none;
+}
+.tabs-scroll .navi:hover {
+    background: #fff;
+}
+.tabs-scroll .navi i {
+}
+.tabs-scroll .navi-left {
+    right: 19px;
+}
+.tabs-scroll .navi-right {
 }

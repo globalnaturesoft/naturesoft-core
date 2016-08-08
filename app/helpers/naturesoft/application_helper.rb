@@ -23,19 +23,5 @@ module Naturesoft
       return "<span class=\"label label-#{statuses[:"#{status}"][:'class']}\">#{statuses[:"#{status}"][:'label']}</span>".html_safe
     end
     
-    # display button enable/disable for status
-    def display_btn_status(status)
-      statuses = {
-        'active': {
-          'label': 'Disable',
-          'class': 'lock2'
-        },
-        'inactive': {
-          'label': 'Enable',
-          'class': 'unlocked2'
-        },
-      }
-      return "<i class=\"icon-#{statuses[:"#{status}"][:'class']}\"></i> #{statuses[:"#{status}"][:'label']}".html_safe
-    end
   end
 end

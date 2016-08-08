@@ -1,5 +1,4 @@
 function setTabName(url, name) {
-	alert(name);
 	$('a[data-src="'+url+'"] .tab_name').html(name);
 }
 

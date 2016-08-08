@@ -79,9 +79,24 @@ function ajustTabbar() {
 
 function ajustActiveNavPos() {
 	// ajust tab scroll
-	var ol = $(".ns-main-tabs .nav li.active").offset().left;
-	var ou = $(".ns-main-tabs .nav").offset().left;
-	$(".tabs-scroll").scrollLeft(ol - ou - 20);	
+	if($(window).width() <= 768) {
+		var ol = $(".ns-main-tabs .nav li.active").offset().left;
+		var ou = $(".ns-main-tabs .nav").offset().left;
+		$(".tabs-scroll").scrollLeft(ol - ou - 20);
+	}	
+	if($(window).width() > 768) {
+		var ol = $(".ns-main-tabs .nav li.active").offset().left;
+		var ow = $(".ns-main-tabs .nav li.active").width();
+		var ou = $(".ns-main-tabs .nav").offset().left;
+		var wo = $(".tabs-scroll").offset().left;
+		var w = $(".tabs-scroll").width();
+		if ((ol+ow)+50 > (wo+w)) {
+			$(".tabs-scroll-out").scrollLeft($(".tabs-scroll-out").scrollLeft() + ((ol+ow) - (wo+w)) + 50);
+		}
+		if (ol - 50 < wo) {
+			$(".tabs-scroll-out").scrollLeft($(".tabs-scroll-out").scrollLeft() - ((wo - ol)) - 50);
+		}
+	}
 }
 
 function autoLayout() {
@@ -121,7 +136,7 @@ function selectTab(url) {
 	$(".sidebar-xs-indicator").removeClass("sidebar-mobile-main");
 	
 	// ative pos
-	setTimeout("ajustActiveNavPos()", 500);
+	setTimeout("ajustActiveNavPos()", 300);
 	
 	// log tab actione
 	tab_urls.push(url);
@@ -166,7 +181,7 @@ var randomString = function (len, bits)
 
 var tab_urls = ["tab_home"];
 $(document).ready(function() {
-	setInterval("autoLayout()", 500);
+	setInterval("autoLayout()", 200);
 	
 	// remove loading effect
 	$(".tab-loading").hide();

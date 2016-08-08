@@ -119,6 +119,12 @@ hl {
     .tabs-scroll .navi {
         display: none !important;
     }
+    .ns-main-tabs .nav {
+        border-bottom: solid 2px #00838F;
+    }
+    .tabs-scroll .bottom-line {
+		border-bottom: none !important;
+    }
 }
 .tabs-scroll-cont {
 	min-width: 100%;
@@ -235,7 +241,6 @@ hl {
     background: #f44336;
 }
 .tabs-scroll {
-    width: 889px;
     background: #eee;
     border-right: solid 1px #ddd;
 }

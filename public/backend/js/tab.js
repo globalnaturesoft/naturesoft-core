@@ -125,7 +125,7 @@ function closeTab(url) {
 	tab.remove();
 	
 	// remove tab url
-	setTimeout("removeTabUrl(url)", 100);
+	setTimeout("removeTabUrl('"+url+"')", 100);
 	
 	// next tab
 	setTimeout("selectNextTab()", 200);

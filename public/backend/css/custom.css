@@ -197,7 +197,7 @@ hl {
     .tabs-scroll-out {
         max-width: 100%;
         overflow: hidden;
-        margin-right: 45px;
+        margin-right: 46px;
     }
 }
 .tab-pane iframe {
@@ -234,9 +234,14 @@ hl {
 .ns-main-tabs li .tabs-buts i.tab-close:hover {
     background: #f44336;
 }
+.tabs-scroll {
+    width: 889px;
+    background: #eee;
+    border-right: solid 1px #ddd;
+}
 .tabs-scroll .navi {
     position: absolute;
-    right: 0;
+    right: 3px;
     top: 0;
     border: solid 1px #ccc;
     height: 34px;
@@ -251,7 +256,7 @@ hl {
     background: #fff;
 }
 .tabs-scroll .navi i {
-    font-size: 18px;
+    font-size: 22px;
 }
 .tabs-scroll .navi-left {
     right: 19px;

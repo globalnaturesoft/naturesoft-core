@@ -226,4 +226,6 @@ hl {
 .ns-main-tabs li .tabs-buts i.tab-close:hover {
     background: #f44336;
 }
-.page_actions
+div.form_fix {
+    margin-bottom: 35px;
+}

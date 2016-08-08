@@ -197,7 +197,7 @@ hl {
     .tabs-scroll-out {
         max-width: 100%;
         overflow: hidden;
-        margin-right: 46px;
+        margin-right: 40px;
     }
 }
 .tab-pane iframe {
@@ -256,7 +256,6 @@ hl {
     background: #fff;
 }
 .tabs-scroll .navi i {
-    font-size: 22px;
 }
 .tabs-scroll .navi-left {
     right: 19px;

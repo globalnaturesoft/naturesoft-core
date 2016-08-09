@@ -392,9 +392,9 @@ $(document).ready(function() {
 	if (window.frameElement) {
 		var title = document.title.split(" - ")[0];
 		var url = window.location.href.replace(/^.*\/\/[^\/]+/, '');
-		if(url != "/admin/dashboard" && title != "") {
+		// if(url != "/admin/dashboard" && title != "") {
 			parent.setTabName(url, title);
-		}
+		// }
 	}
 	
 	// hide parent menu context when in iframe

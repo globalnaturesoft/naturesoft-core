@@ -274,3 +274,14 @@ div.form_fix {
 }
 .tabs-scroll .navi-right {
 }
+.tab-context-menu {
+    margin-top: 0;
+}
+@media (min-width: 769px) {
+    .tab-context-menu {
+        position: fixed;
+    }
+    .ns-main-tabs .nav .tab-menu {
+        display: none;
+    }
+}

@@ -315,8 +315,6 @@ $(document).ready(function() {
 			return false;
 	});
 	
-	
-	
 	// update tab title
 	if (window.frameElement) {
 		var title = document.title.split(" - ")[0];
@@ -324,6 +322,15 @@ $(document).ready(function() {
 		if(url != "/admin/dashboard" && title != "") {
 			parent.setTabName(url, title);
 		}
+	}
+	
+	// hide parent menu context when in iframe
+	if (window.frameElement) {
+		$(document).on('click', 'body', function() {
+			if(parent.$(".tab-context-menu").css("display", "block")) {
+				parent.$(".tab-context-menu").hide();
+			}
+		});
 	}
 	
 	$(document).on('click', '.tabs-scroll .navi-left', function(e) {

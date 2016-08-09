@@ -417,9 +417,9 @@ $(document).ready(function() {
 			if(parent.$(".tab-context-menu").css("display", "block")) {
 				parent.$(".tab-context-menu").hide();
 			}
-			
-			parent.$(".dropdown-user .dropdown-toggle").click();
-
+			if(parent.$(".dropdown-user").hasClass("open")) {
+				parent.$(".dropdown-user").removeClass("open");
+			}
 		});
 	}
 	

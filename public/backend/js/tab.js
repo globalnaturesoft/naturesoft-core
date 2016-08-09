@@ -227,19 +227,16 @@ function autoLayout() {
 		if (!current_tab.find(".tab-close").length) {
 			$('.tab-context-menu li a.close-tab').parent().addClass('disabled');
 		}
-		if (current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').last().find("a").attr("data-src")) {
+		if (!current_tab.next().length) {
 			$('.tab-context-menu li a.close-right').parent().addClass('disabled');
 		}
-		if (current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').first().find("a").attr("data-src")
-			|| current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').eq(1).find("a").attr("data-src")
-		) {
+		if (!current_tab.prev().length) {
 			$('.tab-context-menu li a.close-left').parent().addClass('disabled');
 		}
 		if ($('.ns-main-tabs .nav li').length < 2 ) {
 			$('.tab-context-menu li a.close-all').parent().addClass('disabled');
-			$('.tab-context-menu li a.close-other').parent().addClass('disabled');
 		}
-		if ($('.ns-main-tabs .nav li').length < 3 && current_tab.find("a").attr("data-src") != $('.ns-main-tabs .nav li').first().find("a").attr("data-src")) {
+		if ($('.ns-main-tabs .nav li').length < 3) {
 			$('.tab-context-menu li a.close-other').parent().addClass('disabled');
 		}
 	}

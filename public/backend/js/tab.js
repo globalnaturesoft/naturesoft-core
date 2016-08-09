@@ -417,6 +417,9 @@ $(document).ready(function() {
 			if(parent.$(".tab-context-menu").css("display", "block")) {
 				parent.$(".tab-context-menu").hide();
 			}
+			
+			parent.$(".dropdown-user .dropdown-toggle").click();
+
 		});
 	}
 	

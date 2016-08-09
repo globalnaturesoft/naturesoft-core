@@ -187,6 +187,10 @@ $(document).ready(function() {
 	$(".tab-loading").hide();
 	
 	$(document).on('click', 'a', function(e) {
+		if($(this).hasClass("no-tab")) {
+			return;
+		}
+		
 		var url = $(this).attr("href");
 		var title = $(this).attr("title");
 		
@@ -195,12 +199,11 @@ $(document).ready(function() {
 		}
 		
 		if (typeof(url) != 'undefined' && url[0] != "#" && url !="" ) {
-			if (window.frameElement) {
-				e.preventDefault();
+			e.preventDefault();
+			if (window.frameElement) {				
 				parent.openTab(url, title);
 				parent.selectTab(url)
 			} else {
-				e.preventDefault();
 				openTab(url, title);
 				selectTab(url)
 			}

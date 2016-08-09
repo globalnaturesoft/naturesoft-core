@@ -26,7 +26,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <%= link_to '<i class="icon-switch2"></i> Logout'.html_safe, naturesoft.destroy_user_session_path, method: :delete %>
+                            <%= link_to '<i class="icon-switch2"></i> Logout'.html_safe, naturesoft.destroy_user_session_path, method: :delete, class: "no-tab", redirect_to: admin_path %>
                         </li>
                     </ul>
                 </li>

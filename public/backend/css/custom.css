@@ -137,7 +137,7 @@ hl {
 .ns-main-tabs i {
 	
 }
-.ns-main-tabs li.active .tab-close, .ns-main-tabs li.active .tab-refresh {
+.ns-main-tabs li.active .tabs-buts i {
 	color: #ddd;
 }
 .ns-main-tabs .tab-refresh {
@@ -149,7 +149,7 @@ hl {
 .ns-main-tabs li .tab-close:hover {
 	color: #fff;
 }
-.ns-main-tabs li.active .tab-refresh:hover {
+.ns-main-tabs li.active .tabs-buts i:hover {
 	color: #fff;
 }
 .tab-loading, .table-loading {
@@ -282,6 +282,9 @@ div.form_fix {
         position: fixed;
     }
     .ns-main-tabs .nav .tab-menu {
+        display: none;
+    }
+    .ns-main-tabs .nav .tab-move {
         display: none;
     }
 }

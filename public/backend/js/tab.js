@@ -106,9 +106,10 @@ function openTab(url, name, hide_close) {
 	var id = randomString(10);
 	
 	// context menu
-	var context_but = '<i class="icon-cog3 tab-menu"></i>';	
+	var context_but = '<i class="icon-cog3 tab-menu"></i>';
+	var move_but = '<i class="icon-move tab-move"></i>';	
 	
-	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+context_but+' '+close_but+'</span></a></li>');
+	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+context_but+' '+close_but+' '+move_but+'</span></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
@@ -131,6 +132,41 @@ function openTab(url, name, hide_close) {
 			}
 		}
 	});
+	
+	if($(window).width() > 768) {
+		$(".ns-main-tabs .nav").sortable({
+				connectWith: '.ns-main-tabs .nav',
+				items: 'li',
+				helper: 'original',
+				cursor: 'move',
+				revert: 100,
+				containment: 'html',
+				forceHelperSize: true,
+				placeholder: 'sortable-placeholder',
+				forcePlaceholderSize: true,
+				tolerance: 'pointer',
+				start: function(e, ui){
+						ui.placeholder.height(ui.item.outerHeight());
+				}
+		});
+	} else {
+		$(".ns-main-tabs .nav").sortable({
+				connectWith: '.ns-main-tabs .nav',
+				items: 'li',
+				helper: 'original',
+				cursor: 'move',
+				handle: '.tab-move',
+				revert: 100,
+				containment: 'html',
+				forceHelperSize: true,
+				placeholder: 'sortable-placeholder',
+				forcePlaceholderSize: true,
+				tolerance: 'pointer',
+				start: function(e, ui){
+						ui.placeholder.height(ui.item.outerHeight());
+				}
+		});
+	}
 }
 
 function ajustTabbar() {

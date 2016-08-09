@@ -165,7 +165,8 @@ hl {
 	top: 50px;
 }
 .table-container {
-	position: relative;
+    position: relative;
+    overflow: scroll;
 }
 .table-loading {
 	position: absolute;

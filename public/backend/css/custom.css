@@ -294,3 +294,11 @@ div.form_fix {
         display: none;
     }
 }
+.listing-form {
+    clear: both;
+}
+@media (min-width: 769px) {
+    .sidebar-xs .header-highlight .navbar-header .navbar-brand {
+        background-size: auto 24px;
+    }
+}

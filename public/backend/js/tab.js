@@ -1,5 +1,10 @@
 /// CONTEXT MENU
 function showContextMenu(item) {
+	if($(".tab-context-menu").css("display") == "block") {
+		$(".tab-context-menu").hide();
+		return;
+	}
+	
 	$(".tab-context-menu").show();
 	$(".tab-context-menu").css("left", item.offset().left+"px");
 	if($(window).width() <= 768) {

@@ -17,6 +17,10 @@ function closeAllTab() {
 	});
 	selectNextTab();
 }
+function closeTabContext() {
+	current_tab.find(".tab-close").click();
+	selectNextTab();
+}
 function closeOtherTab() {
 	$(".tabs-scroll .nav li a").each(function() {
 		if(current_tab.find("a").attr("data-src") != $(this).attr("data-src")) {
@@ -180,6 +184,29 @@ function autoLayout() {
 	
 	// scroll tabs
 	ajustTabScroll();
+	
+	// update tab menu
+	if(typeof(current_tab) != 'undefined') {
+		$('.tab-context-menu li').removeClass('disabled');
+		if (!current_tab.find(".tab-close").length) {
+			$('.tab-context-menu li a.close-tab').parent().addClass('disabled');
+		}
+		if (current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').last().find("a").attr("data-src")) {
+			$('.tab-context-menu li a.close-right').parent().addClass('disabled');
+		}
+		if (current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').first().find("a").attr("data-src")
+			|| current_tab.find("a").attr("data-src") == $('.ns-main-tabs .nav li').eq(1).find("a").attr("data-src")
+		) {
+			$('.tab-context-menu li a.close-left').parent().addClass('disabled');
+		}
+		if ($('.ns-main-tabs .nav li').length < 2 ) {
+			$('.tab-context-menu li a.close-all').parent().addClass('disabled');
+			$('.tab-context-menu li a.close-other').parent().addClass('disabled');
+		}
+		if ($('.ns-main-tabs .nav li').length < 3 && current_tab.find("a").attr("data-src") != $('.ns-main-tabs .nav li').first().find("a").attr("data-src")) {
+			$('.tab-context-menu li a.close-other').parent().addClass('disabled');
+		}
+	}
 }
 
 function refreshTab(url) {
@@ -212,7 +239,7 @@ function closeTab(url) {
 	var tab_but = $("a[data-src='"+url+"']");
 	var id = tab_but.attr("href").slice(1);
 	var tab = $("#"+id);
-	tab_but.remove();
+	tab_but.parent().remove();
 	tab.remove();
 	
 	// remove tab url
@@ -306,6 +333,9 @@ $(document).ready(function() {
 	$(document).on('click', '.ns-main-tabs .tab-menu', function(e) {
 		e.stopPropagation();
 		showContextMenu($(this).parents("li"));
+	});
+	$(document).on('click', '.tab-context-menu .close-tab', function(e) {
+		closeTabContext();
 	});
 	$(document).on('click', '.tab-context-menu .close-other', function(e) {
 		closeOtherTab();

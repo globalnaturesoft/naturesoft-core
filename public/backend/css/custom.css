@@ -125,6 +125,12 @@ hl {
     .tabs-scroll .bottom-line {
 		border-bottom: none !important;
     }
+    .ns-main-tabs .nav li.active .tab-refresh {
+        display: none !important;
+    }
+    .ns-main-tabs .nav .tab-close {
+        display: none;
+    }
 }
 .tabs-scroll-cont {
 	min-width: 100%;

@@ -21,6 +21,10 @@ function closeTabContext() {
 	current_tab.find(".tab-close").click();
 	selectNextTab();
 }
+function refreshTabContext() {
+	current_tab.find(".tab-refresh").click();
+	selectNextTab();
+}
 function closeOtherTab() {
 	$(".tabs-scroll .nav li a").each(function() {
 		if(current_tab.find("a").attr("data-src") != $(this).attr("data-src")) {
@@ -106,10 +110,10 @@ function openTab(url, name, hide_close) {
 	var id = randomString(10);
 	
 	// context menu
-	var context_but = '<i class="icon-cog3 tab-menu"></i>';
+	var context_but = '<i class="icon-chevron-down tab-menu"></i>';
 	var move_but = '<i class="icon-move tab-move"></i>';	
 	
-	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+context_but+' '+close_but+' '+move_but+'</span></a></li>');
+	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+move_but+' '+context_but+' '+close_but+'</span></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
@@ -364,8 +368,13 @@ $(document).ready(function() {
 		}
 	});
 	$(document).on('click', '.ns-main-tabs .tab-menu', function(e) {
+		e.preventDefault();
 		e.stopPropagation();
+		e.stopImmediatePropagation();
 		showContextMenu($(this).parents("li"));
+	});
+	$(document).on('click', '.tab-context-menu .refresh-tab', function(e) {
+		refreshTabContext();
 	});
 	$(document).on('click', '.tab-context-menu .close-tab', function(e) {
 		closeTabContext();

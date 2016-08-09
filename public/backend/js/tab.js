@@ -15,7 +15,6 @@ function closeAllTab() {
 	$(".tabs-scroll .nav li a").each(function() {
 		$(this).find(".tab-close").click();
 	});
-	tab_urls = [tab_urls[0]];
 	selectNextTab();
 }
 function closeOtherTab() {
@@ -24,24 +23,32 @@ function closeOtherTab() {
 			$(this).find(".tab-close").click();
 		}
 	});
-	tab_urls = [tab_urls[0], current_tab.find("a").attr("data-src")];
 	selectNextTab();
 }
 function closeRightTab() {
-	var new_tab_urls = [tab_urls[0]];
 	var right = false;
 	$(".tabs-scroll .nav li a").each(function() {
-		if(!right) {
-			new_tab_urls.push($(this).attr("data-src"));
-		} else {
+		if(right) {
 			$(this).find(".tab-close").click();
 		}
 		if(current_tab.find("a").attr("data-src") == $(this).attr("data-src")) {
 			right = true;
 		}
 	});
-	
-	tab_urls = new_tab_urls;
+
+	selectNextTab();
+}
+function closeLeftTab() {
+	var left = true;
+	$(".tabs-scroll .nav li a").each(function() {
+		if(current_tab.find("a").attr("data-src") == $(this).attr("data-src")) {
+			left = false;
+		}
+		if(left) {			
+			$(this).find(".tab-close").click();
+		}		
+	});
+
 	selectNextTab();
 }
 ////////////////////////////////////////////////////////////////
@@ -101,7 +108,7 @@ function openTab(url, name, hide_close) {
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
-	removeTabUrl(url)
+	removeTabUrl(url);
 	tab_urls.push(url);
 	
 	// Check if iframe load
@@ -308,6 +315,9 @@ $(document).ready(function() {
 	});
 	$(document).on('click', '.tab-context-menu .close-right', function(e) {
 		closeRightTab();
+	});
+	$(document).on('click', '.tab-context-menu .close-left', function(e) {
+		closeLeftTab();
 	});
 	$(document).on('contextmenu', '.ns-main-tabs .nav li', function(e) {
 			showContextMenu($(this));

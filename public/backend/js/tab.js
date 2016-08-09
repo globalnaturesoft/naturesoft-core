@@ -27,6 +27,7 @@ function selectNextTab() {
 }
 
 function openTab(url, name, hide_close) {
+
 	// Remove domain from url
 	url = url.replace(/^.*\/\/[^\/]+/, '');
 	
@@ -44,7 +45,11 @@ function openTab(url, name, hide_close) {
 	}
 	
 	var id = randomString(10);
-	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+close_but+'</span></a></li>');
+	
+	// context menu
+	var context_but = '<i class="icon-cog3 tab-menu"></i>';	
+	
+	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+context_but+' '+close_but+'</span></a></li>');
 	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
@@ -246,6 +251,11 @@ $(document).ready(function() {
 	});
 	$(document).on('click', '.tabs-scroll .navi-right', function(e) {
 		$('.tabs-scroll-out').scrollLeft($('.tabs-scroll-out').scrollLeft() + 100);
+	});
+	
+	// tab menu
+	$(document).on('click', '.tabs-scroll .nav .tab-menu', function(e) {
+		$(this).parents("li").find(".context_menu").toggle();
 	});
 	
 });

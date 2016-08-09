@@ -205,6 +205,9 @@ hl {
         overflow: hidden;
         margin-right: 40px;
     }
+    .navbar {
+        padding-right: 0;
+    }
 }
 .tab-pane iframe {
 	overflow: hidden;

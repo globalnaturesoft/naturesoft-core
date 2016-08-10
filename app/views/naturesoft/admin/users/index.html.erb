@@ -23,11 +23,7 @@
                     <% @users.each do |item| %>
                         <tr>
                             <td>
-                                <% if !current_user.image.present? %>
-                                    <img width="50" class="img-circle" src="<%= url_for("/backend/assets/images/placeholder.jpg") %>" alt="">
-                                <% else %>
-                                    <img width="50" class="img-circle" src="<%= current_user.image.system %>" alt="">
-                                <% end %>
+                                <img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt="">
                             </td>
                             <td>
                                 <%= item.email %>

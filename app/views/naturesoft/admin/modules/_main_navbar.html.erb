@@ -16,11 +16,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
-                        <% if !current_user.image.present? %>
-							<img src="<%= url_for("/backend/assets/images/placeholder.jpg") %>" alt="">
-						<% else %>
-							<img src="<%= current_user.image.system %>" alt="">
-						<% end %>
+						<img src="<%= image_src(current_user.image.system) %>" alt="">
                         <span><%= current_user.display_name %></span>
                         <i class="caret"></i>
                     </a>

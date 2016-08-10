@@ -2,11 +2,7 @@
     <div class="category-content">
         <div class="media">
             <a href="#" class="media-left">
-                <% if !current_user.image.present? %>
-                    <img src="<%= url_for("/backend/assets/images/placeholder.jpg") %>" class="img-circle img-sm" alt="">
-                <% else %>
-                    <img src="<%= current_user.image.system %>" class="img-circle img-sm" alt="">
-                <% end %>
+                <img src="<%= image_src(current_user.image.system) %>" class="img-circle img-sm" alt="">
             </a>
             <div class="media-body">
                 <span class="media-heading text-semibold"><%= current_user.display_name %></span>

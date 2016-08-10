@@ -23,5 +23,14 @@ module Naturesoft
       return "<span class=\"label label-#{statuses[:"#{status}"][:'class']}\">#{statuses[:"#{status}"][:'label']}</span>".html_safe
     end
     
+    # display image
+    def image_src(image)
+      if !image.present?
+        url_for("/backend/assets/images/placeholder.jpg")
+      else
+        image
+      end
+    end
+    
   end
 end

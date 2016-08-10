@@ -31,11 +31,7 @@
             <label class="control-label" ><%= t(:avatar) %> <span class='text-danger'>*</span></label>
             <div class="no-margin-top">
               <div class="avatar-box pull-left img-circle" style="">
-                <% if !user.image.present? %>
-                  <%= image_tag("/backend/assets/images/placeholder.jpg", class: "",  "preview-for": "user[image]") %>
-                <% else %>
-                  <%= image_tag(user.image.system, size: "80x80", class: "",  "preview-for": "user[image]") %>
-                <% end %>
+                <%= image_tag(image_src(user.image.system), class: "",  "preview-for": "user[image]") %>
               </div>
         
               <div class="media-body">

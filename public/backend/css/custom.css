@@ -302,3 +302,12 @@ div.form_fix {
         background-size: auto 24px;
     }
 }
+.avatar-box {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+.avatar-box img {
+    width: 100%;
+}

@@ -302,3 +302,9 @@ div.form_fix {
         background-size: auto 24px;
     }
 }
+label.error {
+	display: none !important;
+}
+#validate_checking .error {
+    border-color: red;
+}

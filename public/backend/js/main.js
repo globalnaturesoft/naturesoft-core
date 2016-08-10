@@ -1,3 +1,45 @@
+// crop image in box
+function cropImage(img) {
+    var box = img.parent();
+    
+    // calculate crop part
+    var box_width = box.width();
+    var box_height = box.height();
+    var width = img[0].naturalWidth;
+    var height = img[0].naturalHeight;
+    var cal_width, cal_height;
+
+    if(width/height < box_width/box_height) {
+        cal_height = box_height;
+        cal_width = box_height*(height/width);
+    } else {
+        cal_width = box_width;
+        cal_height = box_width*(width/height);
+    }
+    
+    img.width(cal_height);
+    img.height(cal_width);
+    
+    var mleft = -Math.abs(cal_width - box_width)/2;
+    var mtop = -Math.abs(cal_height - box_height)/2;
+    img.css("margin-left", mtop+"px");
+    img.css("margin-top", mleft+"px");
+}
+
+// Preview upload image
+function readURL(input, img) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            img.attr('src', e.target.result);
+            
+            // calculate crop part
+            cropImage(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 $(document).ready(function() {
     // Default select2
     $(".select2").select2();
@@ -79,4 +121,16 @@ $(document).ready(function() {
         e.stopPropagation();
         e.stopImmediatePropagation();
 	});
+    
+    // Preview upload image    
+    $(".previewable").change(function() {
+        var img = $("img[preview-for='" + $(this).attr("name") + "']");
+        readURL(this, img);
+    });
+    $(".remove-profile-image").click(function() {
+        var img = $(this).parents(".profile-image").find("img");
+        var imput = $(this).parents(".profile-image").find("input[name='_remove_image']");
+        img.attr("src", img.attr("empty-src"));
+        imput.val("true");
+    });
 });

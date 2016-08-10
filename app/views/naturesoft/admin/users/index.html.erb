@@ -1,17 +1,18 @@
 <% title t(:users) %>
 
+<div class="page_actions">
+    <%= link_to ("#{t(:new_user)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_user_path, class: 'btn btn-primary' %>
+</div>
+<br />
+
 <!-- Basic datatable -->
 <div class="panel panel-flat listing-form">
-    
-    <div class="panel-heading col-md-12">
-        <h5 class="panel-title col-md-6"><span class="text-semibold"><%= t(:users) %></span></h5>        
-    </div>
-    
     <form class="listing-form" data-url="">				
         <div class="table-container">
             <table class="table">
                 <thead>
                     <tr class="bg-teal-800">
+                        <th width="1%"><%= t(:image) %></th>
                         <th><%= t(:email) %></th>
                         <th><%= t(:is_admin) %></th>
                         <th><%= t(:created_at) %></th>
@@ -22,13 +23,26 @@
                     <% @users.each do |item| %>
                         <tr>
                             <td>
+                                <img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt="">
+                            </td>
+                            <td>
                                 <%= item.email %>
                             </td>
                             <td>
                                 <%= item.admin %>
                             </td>
                             <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
-                            <td></td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft.edit_admin_user_path(item), class: "btn bg-teal-400 btn-icon" %>
+                                    <button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">                                        
+                                        <li>
+                                            <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_user_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                     <% end %>
                 </tbody>

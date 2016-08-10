@@ -18,7 +18,7 @@ module Naturesoft
         app.middleware.use ::ActionDispatch::Static, "#{root}/public"
       end
       
-	  # config.autoload_paths << File.expand_path("../lib/some/path", __FILE__)
+			# config.autoload_paths << File.expand_path("../lib/some/path", __FILE__)
 	  
     end
   end

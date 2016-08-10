@@ -16,13 +16,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="/backend/assets/images/placeholder.jpg" alt="">
+						<img src="<%= image_src(current_user.image.system) %>" alt="">
                         <span><%= current_user.display_name %></span>
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="<%= active(naturesoft.edit_user_registration_path) %>">
-                            <%= link_to '<i class="icon-cog5"></i> Account'.html_safe, naturesoft.edit_user_registration_path %>
+                            <%= link_to '<i class="icon-cog5"></i> Account'.html_safe, naturesoft.account_admin_users_path %>
                         </li>
                         <li class="divider"></li>
                         <li>

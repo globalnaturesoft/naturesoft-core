@@ -1,1 +1,1 @@
-Naturesoft::User.create :email => "admin@globalnaturesoft.com", :password => "aA456321@"
+Naturesoft::User.create :first_name => "Global", :last_name => "Naturesoft", :email => "admin@globalnaturesoft.com", :password => "aA456321@"

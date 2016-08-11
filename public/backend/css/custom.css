@@ -305,7 +305,7 @@ div.form_fix {
 label.error {
 	display: none !important;
 }
-#validate_checking .error {
+.validate .error {
     border-color: red;
 }
 .avatar-box {

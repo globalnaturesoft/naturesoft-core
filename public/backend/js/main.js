@@ -133,4 +133,7 @@ $(document).ready(function() {
         img.attr("src", img.attr("empty-src"));
         imput.val("true");
     });
+    
+    // Validate form
+    $("form.validate").validate();
 });

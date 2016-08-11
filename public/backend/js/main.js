@@ -1,3 +1,7 @@
+function format_number(element, digits) {
+    element.inputmask("decimal", { radixPoint: ".", autoGroup: true, groupSeparator: "", digits: digits, groupSize: 3 });
+}
+
 // crop image in box
 function cropImage(img) {
     var box = img.parent();
@@ -136,4 +140,7 @@ $(document).ready(function() {
     
     // Validate form
     $("form.validate").validate();
+    
+    // format number input
+    format_number($(".number_input"), 0);
 });

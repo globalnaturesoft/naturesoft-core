@@ -5,8 +5,11 @@ Naturesoft::Core::Engine.routes.draw do
     get '/dashboard' => 'dashboard#index', as: :dashboard
     resources :users do
       collection do
-        match '/admin/account' => 'users#account', :as => 'account', via: [:get, :patch, :put]
+        match '/account' => 'users#account', :as => 'account', via: [:get, :patch, :put]
       end
     end
+    
+    # Setting
+    match '/settings' => 'options#index', as: :options, via: [:get, :post]
   end
 end

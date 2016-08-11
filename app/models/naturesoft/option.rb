@@ -50,5 +50,10 @@ module Naturesoft
     def self.get_default(cat)
       {cat => eval("@#{cat}")}
     end
+    
+    def self.get(cat, name)
+      option = Option.where(category: cat).where(name: name).first
+      return option.nil? ? nil : JSON.parse(option.value)
+    end
   end
 end

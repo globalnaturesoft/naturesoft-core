@@ -47,6 +47,7 @@ function readURL(input, img) {
 $(document).ready(function() {
     // Default select2
     $(".select2").select2();
+    $(".select").select2();
     
     // Default initialization
     $(".styled").uniform();
@@ -143,4 +144,32 @@ $(document).ready(function() {
     
     // format number input
     format_number($(".number_input"), 0);
+    
+    // Addable form
+    $(document).on('click', '.addable-add', function() {
+        var form = $(this).parents(".addable-form");
+        var sample = $('.'+form.attr("data-sample"));
+        if(sample.find("span.select2").length) {
+            sample.find("select.select2").select2('destroy');
+        }
+        var data = sample.html();
+        var container = form.find(".addable-container");
+        
+        // calculate index
+        var index = 0;
+        container.children().each(function() {
+            if(index <= parseInt($(this).attr("data-index"))) {
+                index = parseInt($(this).attr("data-index")) + 1;
+            }
+        });
+        
+        // add child
+        data = data.replace(/\<\<index\>\>/g, index);
+
+        container.append(data);
+        container.children().last().find('.select2').select2();
+    });
+    $(document).on('click', '.addable-remove', function() {
+        var row = $(this).parents(".addable-row").remove();
+    });
 });

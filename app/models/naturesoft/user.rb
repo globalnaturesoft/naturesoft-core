@@ -13,7 +13,7 @@ module Naturesoft
     
     # Display name
     def display_name
-      email.split("@").first
+      first_name.to_s + " " + last_name.to_s
     end
     
   end

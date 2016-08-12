@@ -1,10 +1,12 @@
 <% flash.each do |key, value| %>
 <script>
+	
 	$(document).ready(function() {
 		<% flash.each do |key, value| %>
+			<% colors = {"success" => "#00acc1", "alert" => "#F44336"} %>
 			var config = {
 				title: '<%= value %>',
-				confirmButtonColor: "#00acc1",
+				confirmButtonColor: "<%= colors[key].present? ? colors[key] : "#00acc1" %>",
 				allowOutsideClick: true
 			};
 			

@@ -53,7 +53,12 @@ module Naturesoft
     
     def self.get(cat, name)
       option = Option.where(category: cat).where(name: name).first
-      return option.nil? ? nil : JSON.parse(option.value)
+      if !option.nil?
+        return JSON.parse(option.value)
+      else
+        options = self.get_default(cat)
+        return options[cat][name]
+      end
     end
   end
 end

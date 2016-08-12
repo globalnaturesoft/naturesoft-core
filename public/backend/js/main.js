@@ -172,4 +172,15 @@ $(document).ready(function() {
     $(document).on('click', '.addable-remove', function() {
         var row = $(this).parents(".addable-row").remove();
     });
+    $(document).on('click', '.addable-nested-remove', function() {
+        var row = $(this).parents(".addable-row");
+        row.find('input.delete').prop('checked', true);;        
+        $(this).parents(".addable-row").hide();
+    });
+    
+    // check group
+    $(document).on('change', 'input[check-group]', function(e) {
+        $('input[check-group]').prop('checked', false);
+        $(this).prop('checked', true);
+    });
 });

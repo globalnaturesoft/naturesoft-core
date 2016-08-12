@@ -19,7 +19,7 @@ module Naturesoft::Admin
         # save to database
         Naturesoft::Option.update(JSON.parse(params[:options].to_json))
         
-        redirect_to :back
+        redirect_to :back, notice: 'Settings were successfully updated.'
       end
     end
   end

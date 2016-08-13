@@ -180,7 +180,8 @@ $(document).ready(function() {
     
     // check group
     $(document).on('change', 'input[check-group]', function(e) {
-        $('input[check-group]').prop('checked', false);
+        var group = $(this).attr('check-group');
+        $('input[check-group="' + group + '"]').prop('checked', false);
         $(this).prop('checked', true);
     });
 });

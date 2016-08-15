@@ -323,3 +323,10 @@ label.error {
 input.checkbox {
     width: 20px;
 }
+.listing-form .checker {
+    background: #fff;
+}
+.check_all_list.check-some .checker span.checked:after {
+    content: "\e9b7";
+    font-size: 16px;
+}

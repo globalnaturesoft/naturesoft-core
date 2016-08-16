@@ -203,4 +203,59 @@ $(document).ready(function() {
           '//www.tinymce.com/css/codepen.min.css'
         ]
     });
+    
+    // Select2 ajax
+    $(".select2-ajax").each(function() {
+        var url = $(this).attr("data-url");
+        var id = $(this).attr("value");
+        var text = $(this).attr("text");
+        var placeholder = $(this).attr("placeholder");
+        var excluded = $(this).attr("data-excluded");
+        if(typeof(placeholder) == 'undefined') {
+            placeholder = 'choose';
+        }
+        if(typeof(excluded) == 'undefined') {
+            excluded = '';
+        }
+        $(this).select2({
+            ajax: {
+                url: url,
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                  return {
+                    q: params.term, // search term
+                    page: params.page,
+                    excluded: excluded
+                  };
+                },
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+              
+                    return {
+                        results: data.items,
+                        pagination: {
+                            more: (params.page * 30) < data.total_count
+                        }
+                    };
+                },
+                cache: true
+            },
+            initSelection: function (element, callback) {
+                if(typeof(id) != 'undefined') {
+                    callback({ id: id, text: text });
+                } else {
+                    callback({ id: "", text: "none" });
+                }
+            },
+            placeholder: placeholder,
+            allowClear: true,
+            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 0,
+        });
+    });
 });

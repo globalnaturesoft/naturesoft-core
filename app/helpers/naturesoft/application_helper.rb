@@ -47,5 +47,23 @@ module Naturesoft
       end
     end
     
+    # display user box
+    def user_box(user)
+      html = '<span class="align_center" style="display: inline">' +
+            '<img width="30" src="' + image_src(user.image.system) + '" class="img-circle" alt="">' +
+            '<br />' + user.display_name +
+        '</span>';
+      return html.html_safe
+    end
+    
+    # display date
+    def display_date(datetime)
+      return datetime.strftime("%d/%m/%Y")
+    end
+    
+    # convert string to url friendly string
+    def url_friendly(string)
+      string.unaccent.downcase.to_s.gsub(/[^0-9a-z ]/i, '').gsub(/ +/i, '-').strip
+    end
   end
 end

@@ -211,9 +211,11 @@ function ajustActiveNavPos() {
 
 function autoLayout() {
 	// Auto iframe
-	$(".tab-pane iframe").each(function() {
-		resizeIframe($(this));
-	});
+	if (!window.frameElement) {
+		$(".tab-pane iframe").each(function() {
+			resizeIframe($(this));
+		});
+	}
 	// tabbar width
 	ajustTabbar();
 	// scroll active

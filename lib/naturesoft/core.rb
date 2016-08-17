@@ -5,6 +5,7 @@ require 'will_paginate-bootstrap'
 require 'breadcrumbs_on_rails'
 require 'carrierwave'
 require 'mini_magick'
+require 'sixarm_ruby_unaccent'
 
 module Naturesoft
   module Core

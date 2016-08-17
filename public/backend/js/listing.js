@@ -166,7 +166,7 @@ function updateCheckList() {
         
         // Check if none checked
         if (vals.length == 0) {            
-            form.find('.check_all_list input.check_all').prop("checked", false);            
+            form.find('.check_all_list input').prop("checked", false);            
             form.find('.check_all_list').removeClass('check-some');
             form.find('.list_actions').removeClass('check-some');
             form.find('.list_actions').addClass('hide');
@@ -175,7 +175,7 @@ function updateCheckList() {
         
         // Check if some checked
         else if (total > vals.length) {
-            form.find('.check_all_list input.check_all').prop("checked", true);
+            form.find('.check_all_list input').prop("checked", true);
             form.find('.check_all_list').addClass('check-some');
             form.find('.list_actions').removeClass('hide');
             $.uniform.update();
@@ -183,7 +183,7 @@ function updateCheckList() {
         
         // check if all checked
         else if (total == vals.length) {
-            form.find('.check_all_list input.check_all').prop("checked", true);
+            form.find('.check_all_list input').prop("checked", true);
             form.find('.check_all_list').removeClass('check-some');
             form.find('.list_actions').removeClass('hide');
             listCheckAll(form);
@@ -279,7 +279,7 @@ $(document).ready(function() {
     
     // Check / Uncheck all
     $(document).on("mouseup", ".check_all_list", function() {
-        var checked = $(this).find('input.check_all').is(':checked');
+        var checked = $(this).find('input').is(':checked');
 
         if (checked) {
             listUncheckAll($(this).parents(".listing-form"));
@@ -358,5 +358,17 @@ $(document).ready(function() {
         var form = $(this).parents(".listing-form");
         
         tableFilter(form);
+    });
+		
+		// Action list event
+    // ------------------------------
+    $(document).on("click", ".list_actions a", function(e) {
+        var form = $(this).parents(".listing-form");
+        var vals = form.find("input[name='ids[]']:checked").map(function () {
+            return this.value;
+        }).get();
+        
+        $(this).attr("href", $(this).attr("data-href") + "?ids=" + vals.join(","));
+        $(this).attr("items-count", vals.length);
     });
 });

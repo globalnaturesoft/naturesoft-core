@@ -2,6 +2,6 @@
 
 <div class="panel panel-flat">
   <div class="panel-body">
-    <%= render "naturesoft/articles/admin/options/form", action: [naturesoft, :admin, Naturesoft::Option.new] %>
+    <%= render "naturesoft/"+params[:engine]+"/admin/options/form", action: [naturesoft, :admin, Naturesoft::Option.new] %>
   </div>
 </div>

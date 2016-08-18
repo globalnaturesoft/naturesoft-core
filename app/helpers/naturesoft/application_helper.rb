@@ -50,7 +50,7 @@ module Naturesoft
     # display user box
     def user_box(user)
       html = '<span class="align_center" style="display: inline">' +
-            '<img width="30" src="' + image_src(user.image.system) + '" class="img-circle" alt="">' +
+            '<img width="30" src="' + image_src(user.image.system).to_s + '" class="img-circle" alt="">' +
             '<br />' + user.display_name +
         '</span>';
       return html.html_safe

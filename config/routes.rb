@@ -10,6 +10,6 @@ Naturesoft::Core::Engine.routes.draw do
     end
     
     # Setting
-    match '/settings' => 'options#index', as: :options, via: [:get, :post]
+    match '/settings/:engine' => 'options#index', as: :options, via: [:get, :post]
   end
 end

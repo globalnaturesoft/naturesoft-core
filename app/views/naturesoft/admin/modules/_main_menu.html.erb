@@ -16,8 +16,11 @@
             <li>
                 <a href="#"><i class="icon-cog2"></i> <span>Setting</span></a>
                 <ul>
-                    <li data-naturesoft-hook='setting_menu'>
-                    </li>
+                    <% Naturesoft::Option.engines.each do |e| %>
+                        <li>
+                            <a href="<%= naturesoft.admin_options_path(engine: e) %>"><%= e.capitalize %></a>
+                        </li>
+                    <% end %>
                 </ul>
             </li>
         </ul>

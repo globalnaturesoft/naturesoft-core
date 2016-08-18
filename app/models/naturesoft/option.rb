@@ -60,5 +60,16 @@ module Naturesoft
         return options[cat][name]
       end
     end
+    
+    # Get all engines with options
+    def self.engines
+      engines = []
+      Dir.glob(Rails.root.join('engines').to_s + "/*") do |d|
+        eg = d.split(/[\/\\]/).last
+        engines << eg if eval("@#{eg}").present?
+      end
+      engines.sort{|x,y| x<=>y}
+    end
+    
   end
 end

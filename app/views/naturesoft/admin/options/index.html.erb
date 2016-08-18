@@ -1,1 +1,7 @@
-<% title "Settings" %>
+<% title params[:engine].capitalize %>
+
+<div class="panel panel-flat">
+  <div class="panel-body">
+    <%= render "naturesoft/articles/admin/options/form", action: [naturesoft, :admin, Naturesoft::Option.new] %>
+  </div>
+</div>

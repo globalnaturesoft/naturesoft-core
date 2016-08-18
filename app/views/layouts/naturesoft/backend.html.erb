@@ -115,15 +115,21 @@
 			</div>
 	<% end %>
 		
-		<!-- Flash messages -->
-		<%= render 'admin/modules/flash_messages' %>
-		<!-- /flash messages -->
-		
-		<!-- Footer -->
-		<%= render 'admin/modules/modals' %>
-		<!-- /footer -->
-		
-		
-		
+	<!-- Flash messages -->
+	<%= render 'admin/modules/flash_messages' %>
+	<!-- /flash messages -->
+	
+	<!-- Footer -->
+	<%= render 'admin/modules/modals' %>
+	<!-- /footer -->
+	
+	<!-- Hidden elements -->
+	<% if content_for?(:hidden) %>
+		<div class="hide">
+			<%= yield :hidden %>
+		</div>
+	<% end %>
+	<!-- /hidden elements -->
+	
     </body>
 </html>

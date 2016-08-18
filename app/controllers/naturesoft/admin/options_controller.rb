@@ -11,15 +11,15 @@ module Naturesoft::Admin
     
     # Setting default page
     def index
-      add_breadcrumb "Settings", nil
-      options = {}
+      add_breadcrumb params[:engine].capitalize, nil      
+      @options = Naturesoft::Option.options(params[:engine])
       
       # save options
       if params[:options].present?
         # save to database
         Naturesoft::Option.update(JSON.parse(params[:options].to_json))
         
-        redirect_to :back, notice: 'Settings were successfully updated.'
+        redirect_to naturesoft.admin_options_path(engine: params[:engine]), notice: 'Settings were successfully updated.'
       end
     end
   end

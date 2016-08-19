@@ -1,1 +1,2 @@
-<%= render "naturesoft/"+@nsmodule.engine_name+"/admin/nsmodules/"+@nsmodule.module_name+"/form", options: @options %>
+<% engine_path = @nsmodule.engine_name == "core" ? "" : "/"+@nsmodule.engine_name %>
+<%= render "naturesoft"+engine_path+"/admin/nsmodules/"+@nsmodule.module_name+"/form", options: @options %>

@@ -71,7 +71,8 @@ module Naturesoft
       text = ""
       @modules = Naturesoft::Nsmodule.get_by_position(pos)
       @modules.each do |mod|
-        text += render("naturesoft/"+mod.engine_name+"/admin/nsmodules/"+mod.module_name+"/show", nsmodule: mod)
+        engine_path = mod.engine_name == "core" ? "" : "/"+mod.engine_name
+        text += render("naturesoft"+engine_path+"/admin/nsmodules/"+mod.module_name+"/show", nsmodule: mod)
       end
       text.html_safe
     end

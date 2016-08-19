@@ -295,8 +295,8 @@ function closeTab(url) {
 
 function resizeIframe(obj) {
 	if(typeof(obj[0].contentWindow) != 'undefined' && obj[0].contentWindow.document.body) {
-			// obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-			obj.height(obj.contents().find(".inner-page").height()+20);
+			obj[0].style.height = obj[0].contentWindow.document.body.scrollHeight + 'px';
+			// obj.height(obj.contents().find(".inner-page").scrollHeight()+20);
 	}	
 }
 

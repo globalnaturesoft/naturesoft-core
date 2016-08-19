@@ -4,6 +4,15 @@ module Naturesoft
     
     validates :name, :module, :options, :position, presence: true
     
+    @core = {
+      "custom_html" => {
+        "label" => "Cutom HTML",
+        "options" => {
+          "content" => nil,
+        }
+      }
+    }
+    
     @core_positions = {
       "dashboard-left" => nil,
       "dashboard-right" => nil,

@@ -19,7 +19,7 @@
   
   <div class="panel-body">
 
-    <%= form_for([naturesoft, :admin, user], html: {id: "validate_checking", multipart: true}) do |f| %>
+    <%= form_for([naturesoft, :admin, user], html: {class: "validate", multipart: true}) do |f| %>
       
       <div class="row">
         <div class="col-sm-6 col-md-6">
@@ -45,7 +45,7 @@
           <div class="form-group">
             <label class="control-label" ><%= t(:email) %> <span class='text-danger'>*</span></label>
             <div class="">
-              <%= f.text_field :email, class: "form-control required" %>
+              <%= f.text_field :email, class: "form-control required email" %>
             </div>
           </div>
         </div>

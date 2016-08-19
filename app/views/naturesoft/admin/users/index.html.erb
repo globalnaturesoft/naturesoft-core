@@ -23,7 +23,7 @@
                     <% @users.each do |item| %>
                         <tr>
                             <td>
-                                <img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt="">
+                                <a href="<%= naturesoft.edit_admin_user_path(item) %>"><img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt=""></a>
                             </td>
                             <td>
                                 <%= item.email %>

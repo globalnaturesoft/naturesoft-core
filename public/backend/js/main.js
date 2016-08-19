@@ -1,3 +1,56 @@
+function select2Ajax(item) {
+    var url = item.attr("data-url");
+    var id = item.attr("value");
+    var text = item.attr("text");
+    var placeholder = item.attr("placeholder");
+    var excluded = item.attr("data-excluded");
+    if(typeof(placeholder) == 'undefined') {
+        placeholder = 'none';
+    }
+    if(typeof(excluded) == 'undefined') {
+        excluded = '';
+    }
+    item.select2({
+        ajax: {
+            url: url,
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+              return {
+                q: params.term, // search term
+                page: params.page,
+                excluded: excluded
+              };
+            },
+            processResults: function (data, params) {
+                // parse the results into the format expected by Select2
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data, except to indicate that infinite
+                // scrolling can be used
+                params.page = params.page || 1;
+          
+                return {
+                    results: data.items,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        initSelection: function (element, callback) {
+            if(typeof(id) != 'undefined') {
+                callback({ id: id, text: text });
+            } else {
+                callback({ id: "", text: "none" });
+            }
+        },
+        placeholder: placeholder,
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+    });
+}
+
 function format_number(element, digits) {
     element.inputmask("decimal", { radixPoint: ".", autoGroup: true, groupSeparator: "", digits: digits, groupSize: 3 });
 }
@@ -206,56 +259,39 @@ $(document).ready(function() {
     
     // Select2 ajax
     $(".select2-ajax").each(function() {
-        var url = $(this).attr("data-url");
-        var id = $(this).attr("value");
-        var text = $(this).attr("text");
-        var placeholder = $(this).attr("placeholder");
-        var excluded = $(this).attr("data-excluded");
-        if(typeof(placeholder) == 'undefined') {
-            placeholder = 'choose';
-        }
-        if(typeof(excluded) == 'undefined') {
-            excluded = '';
-        }
-        $(this).select2({
-            ajax: {
-                url: url,
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                  return {
-                    q: params.term, // search term
-                    page: params.page,
-                    excluded: excluded
-                  };
-                },
-                processResults: function (data, params) {
-                    // parse the results into the format expected by Select2
-                    // since we are using custom formatting functions we do not need to
-                    // alter the remote JSON data, except to indicate that infinite
-                    // scrolling can be used
-                    params.page = params.page || 1;
-              
-                    return {
-                        results: data.items,
-                        pagination: {
-                            more: (params.page * 30) < data.total_count
-                        }
-                    };
-                },
-                cache: true
-            },
-            initSelection: function (element, callback) {
-                if(typeof(id) != 'undefined') {
-                    callback({ id: id, text: text });
-                } else {
-                    callback({ id: "", text: "none" });
-                }
-            },
-            placeholder: placeholder,
-            allowClear: true,
-            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-            minimumInputLength: 0,
-        });
+        select2Ajax($(this));        
     });
+    
+    // module select
+    $(document).on("change", ".module-type-select", function() {
+        var val = $(this).val();
+        var url = $(this).attr("data-url");
+        
+        if(val != "") {
+            $.ajax({
+                method: "GET",
+                url: url,
+                data: { type: val }
+            })
+            .done(function( msg ) {
+                // Success alert
+                $('.module_options_container').html(msg);
+                
+                // Select2 ajax
+                $(".module_options_container select.select2-ajax").each(function() {
+                    select2Ajax($(this));        
+                });
+                
+                // Select2 ajax
+                $(".module_options_container select.select2").select2();
+                
+                // format number input
+                format_number($(".module_options_container .number_input"), 0);
+            });
+        } else {
+            $('.module_options_container').html('');
+        }
+    });
+    
+    $(".module-type-select").trigger("change");
 });

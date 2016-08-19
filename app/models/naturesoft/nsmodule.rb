@@ -2,7 +2,12 @@ module Naturesoft
   class Nsmodule < ApplicationRecord
     belongs_to :user
     
-    validates :name, :module, :options, presence: true
+    validates :name, :module, :options, :position, presence: true
+    
+    @core_positions = {
+      "dashboard-left" => nil,
+      "dashboard-right" => nil,
+    }
     
     #Filter, Sort
     def self.search(params)
@@ -50,7 +55,10 @@ module Naturesoft
     end
     
     # get options by category
-    def get_options(engine, mod)
+    def get_options
+      engine = self.engine_name
+      mod = self.module_name
+        
       # Get default options
       result = Nsmodule.get_default(engine, mod)
       
@@ -64,8 +72,39 @@ module Naturesoft
       return result
     end
     
+    # get default values from model
     def self.get_default(engine, mod)
       options = eval("@#{engine}")[mod]["options"]
+    end
+    
+    # get all positions
+    def self.positions
+      positions = []
+      Dir.glob(Rails.root.join('engines').to_s + "/*") do |d|
+        eg = d.split(/[\/\\]/).last
+        
+        if eval("@#{eg}_positions").present?
+          eval("@#{eg}_positions").each do |row|
+            positions << "#{eg}::" + row[0]
+          end
+        end
+      end
+      positions
+    end
+    
+    # get modules by position
+    def self.get_by_position(pos)
+      self.where(position: pos)
+    end
+    
+    # get engine name
+    def engine_name
+      self.module.split("::")[0]
+    end
+    
+    # get module name
+    def module_name
+      self.module.split("::")[1]
     end
   end
 end

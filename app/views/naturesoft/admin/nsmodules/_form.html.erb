@@ -16,7 +16,7 @@
 <%= form_for([naturesoft, :admin, nsmodule], html: {class: "validate"}) do |f| %>
     
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
             <label class="control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
             <div class="">
@@ -24,11 +24,19 @@
             </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
             <label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
             <div class="">
                 <%= f.select :module, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions, nsmodule.module), {include_blank: "Choose..."}, {class: "select2 module-type-select required", "data-url": naturesoft.options_admin_nsmodules_path(id: nsmodule.id)} %>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label" ><%= t(:position) %> <span class='text-danger'>*</span></label>
+            <div class="">
+                <%= f.select :position, options_for_select(Naturesoft::Nsmodule.positions, nsmodule.position), {include_blank: "Choose..."}, {class: "select2 required"} %>
             </div>
         </div>
       </div>

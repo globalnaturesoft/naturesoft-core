@@ -38,13 +38,13 @@ function select2Ajax(item) {
             },
             cache: true
         },
-        initSelection: function (element, callback) {
-            if(typeof(id) != 'undefined') {
-                callback({ id: id, text: text });
-            } else {
-                callback({ id: "", text: "none" });
-            }
-        },
+        //initSelection: function (element, callback) {
+        //    if(typeof(id) != 'undefined') {
+        //        callback({ id: id, text: text });
+        //    } else {
+        //        callback({ id: "", text: "none" });
+        //    }
+        //},
         placeholder: placeholder,
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
         minimumInputLength: 0,

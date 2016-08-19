@@ -61,11 +61,9 @@ module Naturesoft::Admin
     
     # GET /nsmodules/form
     def options
-      @engine = params[:type].split("::")[0]
-      @module = params[:type].split("::")[1]
-      
       @nsmodule = params[:id].present? ? Naturesoft::Nsmodule.find(params[:id]) : Naturesoft::Nsmodule.new
-      @options = @nsmodule.get_options(@engine, @module)
+      @nsmodule.module = params[:type]
+      @options = @nsmodule.get_options
       
       render layout: nil
     end
@@ -78,7 +76,7 @@ module Naturesoft::Admin
 
       # Only allow a trusted parameter "white list" through.
       def nsmodule_params
-        params.fetch(:nsmodule, {}).permit(:name, :module)
+        params.fetch(:nsmodule, {}).permit(:name, :module, :position)
       end
   end
 end

@@ -65,5 +65,15 @@ module Naturesoft
     def url_friendly(string)
       string.unaccent.downcase.to_s.gsub(/[^0-9a-z ]/i, '').gsub(/ +/i, '-').strip
     end
+    
+    # render content to position
+    def position(pos)
+      text = ""
+      @modules = Naturesoft::Nsmodule.get_by_position(pos)
+      @modules.each do |mod|
+        text += render("naturesoft/"+mod.engine_name+"/admin/nsmodules/"+mod.module_name+"/show", nsmodule: mod)
+      end
+      text.html_safe
+    end
   end
 end

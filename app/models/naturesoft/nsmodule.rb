@@ -88,17 +88,31 @@ module Naturesoft
     
     # get all positions
     def self.positions
-      positions = []
+      positions = {}
       Dir.glob(Rails.root.join('engines').to_s + "/*") do |d|
         eg = d.split(/[\/\\]/).last
         puts eg.to_s + ": " + eval("@#{eg}_positions").present?.to_s
         if eval("@#{eg}_positions").present?
+          positions[eg] = []
           eval("@#{eg}_positions").each do |row|
-            positions << "#{eg}::" + row[0]
+            positions[eg] << row[0]
           end
         end
       end
       positions
+    end
+    
+    # modules select options
+    def self.positionsSelectOptions
+      options = []
+      self.positions.each do |m|
+        opts = []
+        m[1].each do |mm|
+          opts << [mm, m[0]+"::"+mm]
+        end
+        options << [m[0], opts]
+      end
+      options
     end
     
     # get modules by position

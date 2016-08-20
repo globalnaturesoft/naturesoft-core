@@ -299,4 +299,37 @@ $(document).ready(function() {
     });
     
     $(".module-type-select").trigger("change");
+    
+    // menu type select
+    $(document).on("change", ".menu-type-select", function() {
+        var val = $(this).val();
+        var url = $(this).attr("data-url");
+        
+        if(val != "") {
+            $.ajax({
+                method: "GET",
+                url: url,
+                data: { type: val }
+            })
+            .done(function( msg ) {
+                // Success alert
+                $('.menu_params_container').html(msg);
+                
+                // Select2 ajax
+                $(".menu_params_container select.select2-ajax").each(function() {
+                    select2Ajax($(this));        
+                });
+                
+                // Select2 ajax
+                $(".menu_params_container select.select2").select2();
+                
+                // format number input
+                format_number($(".menu_params_container .number_input"), 0);
+            });
+        } else {
+            $('.menu_params_container').html('');
+        }
+    });
+    
+    $(".menu-type-select").trigger("change");
 });

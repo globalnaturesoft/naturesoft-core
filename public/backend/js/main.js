@@ -65,6 +65,7 @@ function select2Ajax(item) {
         //},
         placeholder: placeholder,
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        allowClear: true,
         minimumInputLength: 0,
     });
 }

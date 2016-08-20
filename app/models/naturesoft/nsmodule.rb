@@ -91,7 +91,7 @@ module Naturesoft
       positions = []
       Dir.glob(Rails.root.join('engines').to_s + "/*") do |d|
         eg = d.split(/[\/\\]/).last
-        
+        puts eg.to_s + ": " + eval("@#{eg}_positions").present?.to_s
         if eval("@#{eg}_positions").present?
           eval("@#{eg}_positions").each do |row|
             positions << "#{eg}::" + row[0]

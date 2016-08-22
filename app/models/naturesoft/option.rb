@@ -1,6 +1,25 @@
 module Naturesoft
   class Option < ApplicationRecord
     
+    @core = {
+      "site_info_name" => "",
+      "site_info_address" => "",
+      "site_info_email_1" => "",
+      "site_info_email_2" => "",
+      "site_info_phone_1" => "",
+      "site_info_phone_2" => "",
+      "site_info_hotline_1" => "",
+      "site_info_hotline_2" => "",
+      "site_info_fax" => "",
+      "site_info_head_office" => "",
+      "site_info_branch_office" => "",
+      "site_info_date_of_establishment" => "",
+      "site_info_charter_capital" => "",
+      "site_info_certificate_of_business_registration_no" => "",
+      "site_info_place_of_issue" => "",
+      "site_info_date_of_issue" => "",
+    }
+    
     # update options from hash
     def self.update(options)
       options.each do |row|

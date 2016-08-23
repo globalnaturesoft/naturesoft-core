@@ -22,17 +22,22 @@ function select2Ajax(item) {
     var text = item.attr("text");
     var placeholder = item.attr("placeholder");
     var excluded = item.attr("data-excluded");
+    var multiple = item.attr("multiple");
+    var allowClear = true;
     if(typeof(placeholder) == 'undefined') {
         placeholder = 'none';
     }
     if(typeof(excluded) == 'undefined') {
         excluded = '';
     }
+    if(typeof(multiple) != 'undefined' && multiple != "false") {
+        allowClear = false;
+    }
     item.select2({
         ajax: {
             url: url,
             dataType: 'json',
-            delay: 250,
+            delay: 250,            
             data: function (params) {
               return {
                 q: params.term, // search term
@@ -65,7 +70,7 @@ function select2Ajax(item) {
         //},
         placeholder: placeholder,
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-        allowClear: true,
+        allowClear: allowClear,
         minimumInputLength: 0,
     });
 }

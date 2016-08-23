@@ -143,7 +143,13 @@ $(document).ready(function() {
     $('.multi-select2-article-categories').select2({
         formatSelectionCssClass: function (data, container) { return "bg-primary"; }
     });
+    $('.multi-select2-categories').select2({
+        formatSelectionCssClass: function (data, container) { return "bg-primary"; }
+    });
     $('.multi-select2-labels').select2({
+        formatSelectionCssClass: function (data, container) { return "bg-primary"; }
+    });
+    $('.multi-select2-properties').select2({
         formatSelectionCssClass: function (data, container) { return "bg-primary"; }
     });
     // File input

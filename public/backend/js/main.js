@@ -242,7 +242,14 @@ $(document).ready(function() {
         data = data.replace(/\<\<index\>\>/g, index);
 
         container.append(data);
+        
+        // select2
         container.children().last().find('.select2').select2();
+        
+        // format number input
+        container.children().last().find('.number_input').each(function() {
+            format_number($(this), 0);
+        });
     });
     $(document).on('click', '.addable-remove', function() {
         var row = $(this).parents(".addable-row").remove();

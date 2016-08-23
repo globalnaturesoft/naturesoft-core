@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
             <div class="">
-                <%= f.select :module, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions, nsmodule.module), {include_blank: "Choose..."}, {class: "select2 module-type-select required", "data-url": naturesoft.options_admin_nsmodules_path(id: nsmodule.id)} %>
+                <%= f.select :module, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions, nsmodule.module), {include_blank: "Choose..."}, {class: "select2 module-type-select required"} %>
             </div>
         </div>
       </div>

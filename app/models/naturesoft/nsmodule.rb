@@ -32,6 +32,9 @@ module Naturesoft
       if params[:position].present?
          records = records.where(position: params[:position])
       end
+      if params[:type].present?
+         records = records.where(module: params[:type])
+      end
       
       # for sorting
       sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_nsmodules.name"
@@ -88,6 +91,16 @@ module Naturesoft
     # get default values from model
     def self.get_default(engine, mod)
       options = eval("@#{engine}")[mod]["options"]
+    end
+    
+    # get config
+    def config
+      Nsmodule.get(self)
+    end
+    
+    # get default values from model
+    def self.get(mod)
+      eval("@#{mod.engine_name}")[mod.module_name]
     end
     
     # get all positions

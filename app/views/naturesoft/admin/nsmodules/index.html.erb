@@ -11,6 +11,14 @@
         <div class="panel-body filter-box">
             <div class="row">
 				<div class="col-md-3">
+					<div class="form-group">
+						<label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
+						<div class="">
+							<%= select_tag :type, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions), include_blank: "all", class: "select2" %>
+						</div>
+					</div>
+				  </div>
+				<div class="col-md-3">
                     <div class="form-group">
                         <label><%= t(:position) %></label>
                         <%= select_tag(:position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions), include_blank: "all", class: "select2") %>
@@ -52,6 +60,7 @@
                             <input type="checkbox" class="styled">
                         </th>
                         <th><%= t(:name) %></th>
+						<th><%= t(:type) %></th>
 						<th><%= t(:position) %></th>
 						<th class="text-center"><%= t(:creator) %></th>
                         <th><%= t(:created_at) %></th>
@@ -69,6 +78,9 @@
                             </td>
 							<td>
 								<%= item.name %>
+							</td>
+							<td>
+								<%= item.config["label"] %>
 							</td>
 							<td>
 								<%= item.position %>

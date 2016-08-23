@@ -29,6 +29,10 @@ module Naturesoft
         end
       end
       
+      if params[:position].present?
+         records = records.where(position: params[:position])
+      end
+      
       # for sorting
       sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_nsmodules.name"
       sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "asc"

@@ -9,7 +9,13 @@
     
     <div class="panel panel-flat">
         <div class="panel-body filter-box">
-            <div class="row">                
+            <div class="row">
+				<div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:position) %></label>
+                        <%= select_tag(:position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions), include_blank: "all", class: "select2") %>
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="form-group has-feedback">
                         <label><%= t(:search) %></label>
@@ -46,6 +52,7 @@
                             <input type="checkbox" class="styled">
                         </th>
                         <th><%= t(:name) %></th>
+						<th><%= t(:position) %></th>
 						<th class="text-center"><%= t(:creator) %></th>
                         <th><%= t(:created_at) %></th>
                         <th class="text-right"><%= t(:actions) %></th>
@@ -62,6 +69,9 @@
                             </td>
 							<td>
 								<%= item.name %>
+							</td>
+							<td>
+								<%= item.position %>
 							</td>
                             <td class="text-center">
 								<%= user_box(item.user) %>

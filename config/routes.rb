@@ -14,10 +14,12 @@ Naturesoft::Core::Engine.routes.draw do
       collection do
         delete 'delete'
         get 'options'
+        get 'sort'
       end
     end
     
     # Setting
     match '/settings/:engine' => 'options#index', as: :options, via: [:get, :post]
+    match '/custom_sort/:class' => 'admin#custom_sort', as: :custom_sort, via: [:get]
   end
 end

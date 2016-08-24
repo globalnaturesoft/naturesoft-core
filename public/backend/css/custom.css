@@ -339,3 +339,6 @@ input.checkbox {
 .number_input {
     text-align: left !important;
 }
+i[data-action="move"] {
+    cursor: move;
+}

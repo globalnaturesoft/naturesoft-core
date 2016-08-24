@@ -5,11 +5,25 @@
 </div>
 <br />
 
-<form class="listing-form">
+<form class="listing-form sortable"
+	sort-url="<%= naturesoft.admin_custom_sort_path(class: "Naturesoft::Nsmodule") %>"
+>
     
     <div class="panel panel-flat">
         <div class="panel-body filter-box">
             <div class="row">
+				<div class="col-md-2">
+                  <div class="form-group">
+                      <label><%= t(:sort_by) %></label>
+                      <%= select_tag(:sort_by, options_for_select(Naturesoft::Nsmodule.sort_by, :selected => params[:sort_by]), class: "select2", "sort-cond": "naturesoft_nsmodules.custom_order") %>
+                  </div>
+				</div>
+				<div class="col-md-2 sort-hide">
+					<div class="form-group">
+						<label><%= t(:sort_order) %></label>
+						<%= select_tag(:sort_orders, options_for_select(Naturesoft::Nsmodule.sort_orders, :selected => params[:sort_orders]), class: "select2", "sort-cond": "asc") %>
+					</div>
+				</div>
 				<div class="col-md-3">
 					<div class="form-group">
 						<label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
@@ -18,7 +32,7 @@
 						</div>
 					</div>
 				  </div>
-				<div class="col-md-3">
+				<div class="col-md-2">
                     <div class="form-group">
                         <label><%= t(:position) %></label>
                         <%= select_tag(:position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions), include_blank: "all", class: "select2") %>
@@ -57,7 +71,7 @@
                 <thead>
                     <tr class="bg-teal-800">
 						<th width="1%" class="check_all_list">
-                            <input type="checkbox" class="styled">
+                            <input type="checkbox" class="styled" />
                         </th>
                         <th><%= t(:name) %></th>
 						<th><%= t(:type) %></th>
@@ -70,12 +84,17 @@
                 <tbody>
                     <% @nsmodules.each do |item| %>
                         <tr>
-                            <td width="1%">
+                            <td class="text-nowrap">
                                 <input type="checkbox" class="node styled"
                                     name="ids[]"
                                     value="<%= item.id %>"
                                 />
-                            </td>
+								<input type="hidden"
+                                    name="custom_order"
+                                    value="<%= item.custom_order %>"
+                                />
+								
+                            </td>							
 							<td>
 								<%= item.name %>
 							</td>

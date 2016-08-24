@@ -1,3 +1,42 @@
+function initSort() {
+	var string = '<i class="icon-move sort-show ml-10" data-action="move"></i>' +
+								'<a href="#"><i class="icon-move text-muted sort-hide enable-sort ml-10"></i></a>';
+	$('.listing-form.sortable tr').each(function() {
+		$(this).find("td").first().append(string);
+	});
+	
+	$(".listing-form").each(function() {
+		updateSort($(this));
+	});
+}
+
+function updateSort(form) {
+	var sortable = true;
+	form.find("[sort-cond]").each(function() {
+		var val = $(this).val();
+		var data = $(this).attr("sort-cond");
+		if(val != data) {
+			sortable = false;
+		}
+	});
+	
+	if (sortable) {
+		form.find(".sort-hide").hide();
+		form.find(".sort-show").show();
+	} else {
+		form.find(".sort-show").hide();
+		form.find(".sort-hide").show();
+	}
+}
+
+function enableSort(form) {
+	form.find("[sort-cond]").each(function() {
+		var data = $(this).attr("sort-cond");
+		$(this).val(data);
+		$(this).trigger("change");
+	});	
+}
+
 function urlParams(url) {
 	var result = {};
 
@@ -136,9 +175,13 @@ function tableFilter(form, custom_url) {
         
         // update checklist
         updateCheckList();
+				
+				updateSort(form);
+				
+				initSort();
 		
-		// After filter
-		// form.find(".table-loading").hide();
+			// After filter
+			// form.find(".table-loading").hide();
     });
 }
 
@@ -193,25 +236,19 @@ function updateCheckList() {
 }
 
 function updateCustomOrder(form) {
-    var per_page = parseInt(form.attr("per-page"));
-    var page = parseInt(form.find('table').attr("current-page"));
     var sort = [];
     var sort_url = form.attr("sort-url");
-    form.find("table tr input.node").each(function(index) {
-        var num = index + ((page-1)*per_page);
+    form.find("table tr input[name='custom_order']").each(function(index) {
+        var num = $(this).parents("td").find("input[name='ids[]']").val();
         var row = [];
         row.push($(this).val());
         row.push(num);
         sort.push(row);
-        // if row has custom order input
-        if ($(this).parents('tr').find('input.custom_order').length) {
-            $(this).parents('tr').find('input.custom_order').val(num);
-        }
     });
     console.log(JSON.stringify(sort));
     
     // ajax update custom sort
-    if (typeof(sort_url) != 'undefined') {
+    if (typeof(sort_url) != 'undefined') {				
         $.ajax({
             method: "GET",
             url: sort_url,
@@ -225,8 +262,10 @@ function updateCustomOrder(form) {
                 confirmButtonColor: "#00695C",
                 type: "success",
                 allowOutsideClick: true,
-                confirmButtonText: LANG_OK,
-            });	
+                confirmButtonText: "OK",
+            });
+						
+						tableFilter(form);
         });
     }
 }
@@ -237,36 +276,36 @@ $(document).ready(function() {
     $(".listing-form").each(function() {
         var form = $(this);
         
-        //// Make list sortable        
-        //form.sortable({
-        //    connectWith: '.row-sortable',
-        //    items: 'tr',
-        //    helper: 'original',
-        //    cursor: 'move',
-        //    handle: '[data-action=move]',
-        //    revert: 100,
-        //    containment: 'tbody',
-        //    forceHelperSize: true,
-        //    placeholder: 'sortable-placeholder',
-        //    forcePlaceholderSize: true,
-        //    tolerance: 'pointer',
-        //    start: function(e, ui) {
-        //        drag_child = ui.item.next().next();
-        //        $("tr.child").hide();
-        //        ui.placeholder.height(ui.item.outerHeight());
-        //    },
-        //    update: function(e, ui) {
-        //        $("tr.child").each(function() {
-        //            var rel = $(this).attr("parent");
-        //            $(this).insertAfter($("tr[rel='"+rel+"']"));   
-        //        });
-        //        $("tr.child").fadeIn();
-        //        updateCustomOrder(form);
-        //    },
-        //    stop: function(event, ui) {
-        //        $("tr.child").fadeIn();
-        //    }
-        //});
+        // Make list sortable        
+        form.sortable({
+            connectWith: '.sortable',
+            items: 'tr',
+            helper: 'original',
+            cursor: 'move',
+            handle: '[data-action=move]',
+            revert: 100,
+            containment: 'tbody',
+            forceHelperSize: true,
+            // placeholder: 'sortable-placeholder',
+            forcePlaceholderSize: true,
+            tolerance: 'pointer',
+            start: function(e, ui) {
+                //drag_child = ui.item.next().next();
+                //$("tr.child").hide();
+                //ui.placeholder.height(ui.item.outerHeight());
+            },
+            update: function(e, ui) {
+                //$("tr.child").each(function() {
+                //    var rel = $(this).attr("parent");
+                //    $(this).insertAfter($("tr[rel='"+rel+"']"));   
+                //});
+                //$("tr.child").fadeIn();
+                updateCustomOrder(form);
+            },
+            stop: function(event, ui) {
+                //$("tr.child").fadeIn();
+            }
+        });
         
         // Render table
         tableFilter(form);
@@ -328,15 +367,15 @@ $(document).ready(function() {
     // Sort button
     $(document).on("change", ".listing-form select", function() {
         var form = $(this).parents(".listing-form");
-		var container = form.find(".table-container");
-		container.attr("data-page", 1);
+				var container = form.find(".table-container");
+				container.attr("data-page", 1);
         
         tableFilter(form);
     });    
     $(document).on("keyup", ".listing-form input", function() {
         var form = $(this).parents(".listing-form");
-		var container = form.find(".table-container");
-		container.attr("data-page", 1);
+				var container = form.find(".table-container");
+				container.attr("data-page", 1);
         
         tableFilter(form);
     });
@@ -371,4 +410,10 @@ $(document).ready(function() {
         $(this).attr("href", $(this).attr("data-href") + "?ids=" + vals.join(","));
         $(this).attr("items-count", vals.length);
     });
+		
+		// Enable sort
+		$(document).on("click", ".enable-sort", function() {
+			var form = $(this).parents(".listing-form");
+			enableSort(form);
+		});
 });

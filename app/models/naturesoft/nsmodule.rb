@@ -1,7 +1,8 @@
 module Naturesoft
   class Nsmodule < ApplicationRecord
-    belongs_to :user
+    include Naturesoft::CustomOrder
     
+    belongs_to :user    
     validates :name, :module, :options, :position, presence: true
     
     @core = {
@@ -17,6 +18,22 @@ module Naturesoft
       "dashboard-left" => nil,
       "dashboard-right" => nil,
     }
+
+    def self.sort_by
+      [
+        ["Custom order","naturesoft_nsmodules.custom_order"],
+        ["Name","naturesoft_nsmodules.name"],
+        ["Type","naturesoft_nsmodules.module"],
+        ["Position","naturesoft_nsmodules.position"],
+        ["Created at","naturesoft_nsmodules.created_at"],
+      ]
+    end
+    def self.sort_orders
+      [
+        ["ASC","asc"],
+        ["DESC","desc"]
+      ]
+    end
     
     #Filter, Sort
     def self.search(params)

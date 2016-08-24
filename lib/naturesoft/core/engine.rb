@@ -14,6 +14,12 @@ module Naturesoft
         end
       end
       
+      config.to_prepare do
+        Dir.glob(Engine.root.join("app", "models", "concerns", "**", "*.rb")) do |c|
+          Rails.configuration.cache_classes ? require(c) : load(c)
+        end
+      end
+      
       initializer "static assets" do |app|
         app.middleware.use ::ActionDispatch::Static, "#{root}/public"
       end

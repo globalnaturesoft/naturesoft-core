@@ -12,7 +12,7 @@
     <div class="panel panel-flat">
         <div class="panel-body filter-box">
             <div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
                   <div class="form-group">
                       <label><%= t(:sort_by) %></label>
                       <%= select_tag(:sort_by, options_for_select(Naturesoft::Nsmodule.sort_by, :selected => params[:sort_by]), class: "select2", "sort-cond": "naturesoft_nsmodules.custom_order") %>
@@ -24,21 +24,21 @@
 						<%= select_tag(:sort_orders, options_for_select(Naturesoft::Nsmodule.sort_orders, :selected => params[:sort_orders]), class: "select2", "sort-cond": "asc") %>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<!--<div class="col-md-3">
 					<div class="form-group">
 						<label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
 						<div class="">
 							<%= select_tag :type, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions), include_blank: "all", class: "select2" %>
 						</div>
 					</div>
-				  </div>
-				<div class="col-md-2">
+				  </div>-->
+				<div class="col-md-3">
                     <div class="form-group">
                         <label><%= t(:position) %></label>
                         <%= select_tag(:position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions), include_blank: "all", class: "select2") %>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group has-feedback">
                         <label><%= t(:search) %></label>
                         <input type="text" name="keyword" class="form-control" placeholder="Enter search..." value="<%= params[:keyword] %>">
@@ -74,7 +74,6 @@
                             <input type="checkbox" class="styled" />
                         </th>
                         <th><%= t(:name) %></th>
-						<th><%= t(:type) %></th>
 						<th><%= t(:position) %></th>
 						<th class="text-center"><%= t(:creator) %></th>
                         <th><%= t(:created_at) %></th>
@@ -95,13 +94,13 @@
                                 />
 								
                             </td>							
-							<td>
-								<%= item.name %>
+							<td class="kq_search">
+								<%= link_to item.name, naturesoft.edit_admin_nsmodule_path(item), class: "text-semibold", title: item.name %>
+								<div class="text-muted">
+									<%= item.config["label"] %>
+								</div>
 							</td>
-							<td>
-								<%= item.config["label"] %>
-							</td>
-							<td>
+							<td class="kq_search">
 								<%= item.position %>
 							</td>
                             <td class="text-center">

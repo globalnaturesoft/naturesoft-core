@@ -42,7 +42,7 @@ module Naturesoft
       #Search keyword filter
       if params[:keyword].present?
         params[:keyword].split(" ").each do |k|
-          records = records.where("LOWER(CONCAT(naturesoft_nsmodules.name,' ')) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
+          records = records.where("LOWER(CONCAT(naturesoft_nsmodules.name,' ',naturesoft_nsmodules.position)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
         end
       end
       

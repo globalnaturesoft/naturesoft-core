@@ -256,7 +256,7 @@ function updateCustomOrder(form) {
         })
         .done(function( msg ) {
             // Success alert
-            swal({
+            parent.swal({
                 title: msg,
                 text: "",
                 confirmButtonColor: "#00695C",

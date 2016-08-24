@@ -18,7 +18,7 @@
                       <%= select_tag(:sort_by, options_for_select(Naturesoft::Nsmodule.sort_by, :selected => params[:sort_by]), class: "select2", "sort-cond": "naturesoft_nsmodules.custom_order") %>
                   </div>
 				</div>
-				<div class="col-md-2 sort-hide">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label><%= t(:sort_order) %></label>
 						<%= select_tag(:sort_orders, options_for_select(Naturesoft::Nsmodule.sort_orders, :selected => params[:sort_orders]), class: "select2", "sort-cond": "asc") %>

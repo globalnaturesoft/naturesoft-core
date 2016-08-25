@@ -1,5 +1,3 @@
-require 'active_support/concern'
-
 module Naturesoft
   module CustomOrder
     extend ActiveSupport::Concern
@@ -17,7 +15,7 @@ module Naturesoft
     end
     
     def init_custom_order
-      self.update_column(:custom_order, Nsmodule.maximum("custom_order")+1)
+      self.update_column(:custom_order, self.class.maximum("custom_order")+1)
     end
   end
 end

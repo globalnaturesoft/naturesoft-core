@@ -342,3 +342,19 @@ input.checkbox {
 i[data-action="move"] {
     cursor: move;
 }
+.tab-pane .loading-tab-icon {
+    display: none;
+}
+.tab-pane.loading {
+    height: 300px;
+    text-align: center;
+}
+.tab-pane.loading * {
+    visibility: hidden;
+}
+.tab-pane.loading .loading-tab-icon {
+    visibility: visible;
+    margin-top: 50px;
+    font-size: 20px;
+    display: inline-block;
+}

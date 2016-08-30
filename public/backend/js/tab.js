@@ -1,3 +1,7 @@
+function scrollToTop() {
+	$("html, body").animate({ scrollTop: 0 });
+}
+
 /// CONTEXT MENU
 function showContextMenu(item) {
 	if($(".tab-context-menu").css("display") == "block") {
@@ -95,7 +99,9 @@ function selectNextTab() {
 }
 
 function openTab(url, name, hide_close) {
-
+	// scroll to top
+	scrollToTop();
+	
 	// Remove domain from url
 	url = url.replace(/^.*\/\/[^\/]+/, '');
 	
@@ -119,7 +125,7 @@ function openTab(url, name, hide_close) {
 	var move_but = '<i class="icon-move tab-move"></i>';	
 	
 	$(".ns-main-tabs ul.nav").append('<li><a data-src="'+url+'" href="#'+id+'" data-toggle="tab"><span class="tab_name">'+name+'</span> <span class="tabs-buts"><i class="icon-reload-alt tab-refresh"></i> '+move_but+' '+context_but+' '+close_but+'</span></a></li>');
-	$(".ns-main-tabs .tab-content").append('<div class="tab-pane" id="'+id+'"><iframe scrolling="no" src="'+url+'"></iframe></div>');
+	$(".ns-main-tabs .tab-content").append('<div class="tab-pane loading" id="'+id+'"><i class="icon-spinner4 spinner position-left loading-tab-icon"></i><iframe scrolling="no" src="'+url+'"></iframe></div>');
 	
 	// log tab actione
 	removeTabUrl(url);
@@ -127,9 +133,10 @@ function openTab(url, name, hide_close) {
 	
 	// Check if iframe load
 	$('#'+id+' iframe').load(function() {
-		// height
+		// remove loading class
+		$(this).parents(".tab-pane").removeClass("loading");
 		
-		
+		// height		
 		var current_url = $(this)[0].contentWindow.location.href.replace(/^.*\/\/[^\/]+/, '');
 		
 		// Check if page exist
@@ -254,10 +261,14 @@ function autoLayout() {
 }
 
 function refreshTab(url) {
+	// scroll to top
+	scrollToTop();
+	
 	var tab_but = $("a[data-src='"+url+"']");
 	var id = tab_but.attr("href").slice(1);
 	var iframe = $("#"+id).find("iframe");
 	iframe.attr("src", url);
+	iframe.parents(".tab-pane").addClass("loading");
 }
 
 function selectTab(url) {

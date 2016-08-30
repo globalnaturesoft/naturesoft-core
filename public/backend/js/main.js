@@ -1,3 +1,14 @@
+function showTabValidate() {
+    $(".tab-pane").each(function() {
+        var id = $(this).attr("id");
+        if($(this).find("input.error").length || $(this).find("select.error").length) {
+            $(this).parents(".tabbable").find("ul li a[href='#"+id+"']").addClass("tab-error");
+        } else {
+            $(this).parents(".tabbable").find("ul li a[href='#"+id+"']").removeClass("tab-error");
+        }
+    });
+}
+
 function initEditor(item) {
     tinyMCE.editors=[];
     // tinymce
@@ -73,7 +84,9 @@ function select2Ajax(item) {
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
         allowClear: allowClear,
         minimumInputLength: 0,
-    });
+    }).on("change", function (e) {
+        $(this).valid(); //jquery validation script validate on change
+    });;
 }
 
 function format_number(element, digits) {
@@ -124,8 +137,12 @@ function readURL(input, img) {
 
 $(document).ready(function() {
     // Default select2
-    $(".select2").select2();
-    $(".select").select2();
+    $(".select2").select2().on("change", function (e) {
+        $(this).valid(); //jquery validation script validate on change
+    });
+    $(".select").select2().on("change", function (e) {
+        $(this).valid(); //jquery validation script validate on change
+    });;
     
     // Default initialization
     $(".styled").uniform();
@@ -158,11 +175,48 @@ $(document).ready(function() {
     $('.multi-select2-properties').select2({
         formatSelectionCssClass: function (data, container) { return "bg-primary"; }
     });
+    
     // File input
     $(".file-styled").uniform({
         wrapperClass: 'bg-primary',
         fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
     });
+    
+    // Validate form
+    $("form.validate").validate({ 
+        ignore: [],
+        highlight: function (element, errorClass, validClass) {
+            var elem = $(element);
+            
+            if (elem.hasClass("select2-hidden-accessible")) {
+                elem.parent().find(".select2-selection").addClass("error");
+            }
+
+            elem.addClass(errorClass);
+            showTabValidate();
+        },    
+        unhighlight: function (element, errorClass, validClass) {
+            var elem = $(element);
+            
+            if (elem.hasClass("select2-hidden-accessible")) {
+                elem.parent().find(".select2-selection").removeClass("error");
+            }
+            
+            elem.removeClass(errorClass);
+            showTabValidate();
+        },
+    });
+    
+    // format number input
+    format_number($(".number_input"), 0);    
+    
+    // Select2 ajax
+    $(".select2-ajax").each(function() {
+        select2Ajax($(this));        
+    });
+    
+    // tinymce
+    initEditor(".editor");
 	
 	//replace delete-confirm link
 	$(document).on('click', '[data-method]', function(e) {
@@ -226,12 +280,6 @@ $(document).ready(function() {
         imput.val("true");
     });
     
-    // Validate form
-    $("form.validate").validate();
-    
-    // format number input
-    format_number($(".number_input"), 0);
-    
     // Addable form
     $(document).on('click', '.addable-add', function() {
         var form = $(this).parents(".addable-form");
@@ -262,6 +310,12 @@ $(document).ready(function() {
         container.children().last().find('.number_input').each(function() {
             format_number($(this), 0);
         });
+        
+        // File input
+        container.children().last().find("input[type=file]").uniform({
+            wrapperClass: 'bg-primary',
+            fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
+        });
     });
     $(document).on('click', '.addable-remove', function() {
         var row = $(this).parents(".addable-row").remove();
@@ -277,14 +331,6 @@ $(document).ready(function() {
         var group = $(this).attr('check-group');
         $('input[check-group="' + group + '"]').prop('checked', false);
         $(this).prop('checked', true);
-    });
-    
-    // tinymce
-    initEditor(".editor");
-    
-    // Select2 ajax
-    $(".select2-ajax").each(function() {
-        select2Ajax($(this));        
     });
     
     // module select
@@ -316,8 +362,7 @@ $(document).ready(function() {
         } else {
             $('.module_options_container').html('');
         }
-    });
-    
+    });    
     $(".module-type-select").trigger("change");
     
     // menu type select
@@ -349,7 +394,6 @@ $(document).ready(function() {
         } else {
             $('.menu_params_container').html('');
         }
-    });
-    
+    });    
     $(".menu-type-select").trigger("change");
 });

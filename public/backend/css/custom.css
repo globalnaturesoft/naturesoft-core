@@ -306,7 +306,7 @@ label.error {
 	display: none !important;
 }
 .validate .error {
-    border-color: red;
+    border-color: #F44336;
 }
 .avatar-box {
     width: 60px;
@@ -357,4 +357,17 @@ i[data-action="move"] {
     margin-top: 50px;
     font-size: 20px;
     display: inline-block;
+}
+.tabbable ul li a.tab-error {
+    background: #F44336 !important;
+    color: #fff;
+}
+.input-group input.select2-search__field {
+    width: auto !important;
+}
+.select2-selection--multiple .select2-search--inline .select2-search__field {
+    padding: 4px 0;
+}
+.select2-selection.error {
+    border-color: #F44336 !important;
 }

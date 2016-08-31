@@ -1,5 +1,7 @@
 <!-- Global stylesheets -->
-<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" %>
+<%= #stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900"
+%>
+<%= stylesheet_link_tag "/backend/css/font.css" %>
 <%= stylesheet_link_tag "/backend/assets/css/icons/icomoon/styles.css" %>
 <%= stylesheet_link_tag "/backend/assets/css/bootstrap.min.css" %>
 <%= stylesheet_link_tag "/backend/assets/css/core.min.css" %>
@@ -31,11 +33,12 @@
 <%= javascript_include_tag '/backend/inputmask/inputmask.numeric.extensions.min.js' %>
 
 <%= javascript_include_tag '/tinymce/tinymce.min.js' %>
+<%= javascript_include_tag '/backend/js/jquery.validate.min.js' %>
 
 <%= javascript_include_tag '/backend/assets/js/core/app.js' %>
 <%= javascript_include_tag '/backend/assets/js/plugins/tables/datatables/datatables.min.js' %>
 <%= javascript_include_tag '/backend/js/listing.js' %>
 <%= javascript_include_tag '/backend/js/main.js' %>
 <%= javascript_include_tag '/backend/js/tab.js' %>
-<%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js' %>
+
 <!-- /theme JS files -->

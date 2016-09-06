@@ -287,6 +287,9 @@ $(document).ready(function() {
         if(sample.find("span.select2").length) {
             sample.find("select.select2").select2('destroy');
         }
+        if(sample.find("select.select2-ajax").length) {
+            sample.find("select.select2-ajax").select2('destroy');
+        }
         var data = sample.html();
         var container = form.find(".addable-container");
         
@@ -316,6 +319,11 @@ $(document).ready(function() {
         //    wrapperClass: 'bg-primary',
         //    fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
         //});
+        
+        // Select2 ajax
+        container.children().last().find("select.select2-ajax").each(function() {
+            select2Ajax($(this));        
+        });
     });
     $(document).on('click', '.addable-remove', function() {
         var row = $(this).parents(".addable-row").remove();

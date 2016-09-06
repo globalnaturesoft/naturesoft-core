@@ -32,7 +32,7 @@ module Naturesoft
         },
         'inactive': {
           'label': 'Inactive',
-          'class': 'danger'
+          'class': 'default'
         },
       }
       return "<span class=\"label label-#{statuses[:"#{status}"][:'class']}\">#{statuses[:"#{status}"][:'label']}</span>".html_safe

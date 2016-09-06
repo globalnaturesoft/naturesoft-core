@@ -75,5 +75,17 @@ module Naturesoft
       end
       text.html_safe
     end
+    
+    # recursive rows
+    def recursive_rows(rows, deep, view, top=false)
+      text = ""
+      rows.each do |row|
+        text += render(view, item: row, top: top)
+        if (deep != 1) and !row.children.empty?
+          text += recursive_rows(row.children, deep-1, view)
+        end
+      end
+      text.html_safe
+    end
   end
 end

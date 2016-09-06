@@ -311,11 +311,11 @@ $(document).ready(function() {
             format_number($(this), 0);
         });
         
-        // File input
-        container.children().last().find("input[type=file]").uniform({
-            wrapperClass: 'bg-primary',
-            fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
-        });
+        //// File input
+        //container.children().last().find("input[type=file]").uniform({
+        //    wrapperClass: 'bg-primary',
+        //    fileButtonHtml: '<i class="icon-cloud-upload2"></i>'
+        //});
     });
     $(document).on('click', '.addable-remove', function() {
         var row = $(this).parents(".addable-row").remove();

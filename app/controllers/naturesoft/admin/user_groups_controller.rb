@@ -12,7 +12,7 @@ module Naturesoft
   
       # GET /user_groups
       def index
-        @user_groups = UserGroup.all.ordered.paginate(:page => params[:page], :per_page => 10)
+        @user_groups = UserGroup.search(params).ordered.paginate(:page => params[:page], :per_page => 10)
       end
   
       # GET /user_groups/1
@@ -54,6 +54,13 @@ module Naturesoft
       def destroy
         @user_group.destroy
         render text: 'User group was successfully destroyed.'
+      end
+      
+      # DELETE /user_groups/delete?ids=1,2,3
+      def delete
+        @user_groups = UserGroups.where(id: params[:ids].split(","))
+        @user_groups.destroy_all
+        render text: 'User group(s) was successfully destroyed.'
       end
       
       # GET /user_groups/select2

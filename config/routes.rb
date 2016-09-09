@@ -12,6 +12,7 @@ Naturesoft::Core::Engine.routes.draw do
     
     resources :user_groups do
       collection do
+        delete "delete"
         get "select2"
       end
     end

@@ -36,6 +36,7 @@ function select2Ajax(item) {
     var excluded = item.attr("data-excluded");
     var multiple = item.attr("multiple");
     var allowClear = true;
+
     if(typeof(placeholder) == 'undefined') {
         placeholder = 'none';
     }
@@ -45,17 +46,29 @@ function select2Ajax(item) {
     if(typeof(multiple) != 'undefined' && multiple != "false") {
         allowClear = false;
     }
+    
+    // data
+    var data = {        
+        excluded: excluded
+    };
+    
+    // finding more params
+    $("[data-child^='"+item.attr("name")+"']").each(function() {
+        var key = $(this).attr("data-child").split(':')[1];
+        var value = $(this).val();
+        data[key] = value;
+    });
+    
     item.select2({
         ajax: {
             url: url,
             dataType: 'json',
             delay: 250,            
             data: function (params) {
-              return {
-                q: params.term, // search term
-                page: params.page,
-                excluded: excluded
-              };
+                data.keyword = params.term;
+                data.page = params.page;
+                
+                return data;
             },
             processResults: function (data, params) {
                 // parse the results into the format expected by Select2
@@ -73,13 +86,6 @@ function select2Ajax(item) {
             },
             cache: true
         },
-        //initSelection: function (element, callback) {
-        //    if(typeof(id) != 'undefined') {
-        //        callback({ id: id, text: text });
-        //    } else {
-        //        callback({ id: "", text: "none" });
-        //    }
-        //},
         placeholder: placeholder,
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
         allowClear: allowClear,
@@ -404,4 +410,15 @@ $(document).ready(function() {
         }
     });    
     $(".menu-type-select").trigger("change");
+    
+    // select2 ajax parent change
+    $(document).on("change", "[data-child]", function() {
+        var name = $(this).attr("data-child").split(":")[0];
+
+        $("[name='"+name+"']").each(function() {
+            $(this).select2("val","");
+            $(this).select2("destroy");
+            select2Ajax($(this));
+        });
+    });
 });

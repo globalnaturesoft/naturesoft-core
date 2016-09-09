@@ -1,0 +1,55 @@
+<% if user_group.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_group.errors.count, "error") %> prohibited this slide from being saved:</h2>
+  
+      <ul>
+      <% user_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="panel panel-flat">
+  
+  <div class="panel-heading"></div>
+  
+  <div class="panel-body">
+
+    <%= form_for([naturesoft, :admin, user_group], html: {class: "validate", multipart: true}) do |f| %>
+      
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <div class="form-group">
+            <label class="control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="">
+              <%= f.text_field :name, class: "form-control required" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <div class="form-group">
+            <label class="control-label" ><%= t(:description) %> </label>
+            <div class="">
+              <%= f.text_area :description, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <div class="text-right">
+            <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
+          </div>
+        </div>
+      </div>
+        
+    <% end %>
+  </div>
+</div>

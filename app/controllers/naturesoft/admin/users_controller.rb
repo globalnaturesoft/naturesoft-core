@@ -10,7 +10,7 @@ module Naturesoft::Admin
     end
     
     def index
-      @users = Naturesoft::User.ordered.paginate(:page => params[:page], :per_page => 1)
+      @users = Naturesoft::User.ordered.paginate(:page => params[:page], :per_page => 10)
     end
     
     # GET /slides/new
@@ -72,7 +72,7 @@ module Naturesoft::Admin
   
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.fetch(:user, {}).permit(:first_name, :last_name, :email, :image, :password, :password_confirmation)
+        params.fetch(:user, {}).permit(:first_name, :last_name, :email, :image, :password, :password_confirmation, :user_group_id)
       end
   end
 end

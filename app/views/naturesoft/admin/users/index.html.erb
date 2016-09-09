@@ -13,6 +13,8 @@
                 <thead>
                     <tr class="bg-teal-800">
                         <th width="1%"><%= t(:image) %></th>
+                        <th><%= t(:user_name) %></th>
+                        <th><%= t(:user_group) %></th>
                         <th><%= t(:email) %></th>
                         <th><%= t(:is_admin) %></th>
                         <th><%= t(:created_at) %></th>
@@ -25,6 +27,8 @@
                             <td>
                                 <a href="<%= naturesoft.edit_admin_user_path(item) %>"><img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt=""></a>
                             </td>
+                            <td><%= item.display_name %></td>
+                            <td><%= item.user_group.name if item.user_group.present? %></td>
                             <td>
                                 <%= item.email %>
                             </td>

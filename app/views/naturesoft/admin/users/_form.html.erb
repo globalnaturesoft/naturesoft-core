@@ -110,6 +110,31 @@
           </div>
         </div>
       <% end %>
+      
+      <h3><%= t(:permission) %></h3>
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <div class="form-group">
+              <label class="control-label" ><%= t(:user_group) %> <span class='text-danger'>*</span></label>
+              <div class="">
+                <div class="input-group">
+                  <% selected = options_for_select([[user.user_group.name, user.user_group_id]], user.user_group_id) if user.user_group.present? %>
+                  <%= select_tag("user[user_group_id]",
+                    selected,
+                    {
+                      class: "select2-ajax required",
+                      include_blank: "none",
+                      "data-url": select2_admin_user_groups_path,
+                    }
+                  ) %>
+                  <span class="input-group-btn">
+                    <a class="btn btn-info" href="<%= naturesoft.new_admin_user_group_path %>"><i class="icon-plus2"></i></a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     
       <div class="text-right">
         <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>

@@ -1,0 +1,60 @@
+<% title t(:user_groups) %>
+
+<div class="page_actions">
+    <%= link_to ("#{t(:new_user_group)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_user_group_path, class: 'btn btn-primary' %>
+</div>
+<br />
+
+<!-- Basic datatable -->
+<div class="panel panel-flat listing-form">
+    <form class="listing-form" data-url="">				
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+                        <th><%= t(:user_group) %></th>
+                        <th><%= t(:description) %></th>
+                        <th><%= t(:created_at) %></th>
+                        <th class="text-right"><%= t(:actions) %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @user_groups.each do |item| %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.description %></td>
+                            <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft.edit_admin_user_group_path(item), class: "btn bg-teal-400 btn-icon" %>
+                                    <button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">                                        
+                                        <li>
+                                            <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_user_group_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @user_groups %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @user_groups,
+                            previous_label: '←',
+                            next_label: '→',
+                            renderer: BootstrapPagination::Rails
+                        %>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    
+</div>
+<!-- /basic datatable -->

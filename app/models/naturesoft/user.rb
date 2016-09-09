@@ -3,6 +3,7 @@ module Naturesoft
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+    belongs_to :user_group
     scope :ordered, -> { order('created_at desc') }
     
     mount_uploader :image, Naturesoft::UserUploader

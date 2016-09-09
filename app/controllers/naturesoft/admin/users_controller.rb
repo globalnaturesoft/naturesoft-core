@@ -10,7 +10,7 @@ module Naturesoft::Admin
     end
     
     def index
-      @users = Naturesoft::User.ordered.paginate(:page => params[:page], :per_page => 10)
+      @users = Naturesoft::User.search(params).paginate(:page => params[:page], :per_page => 10)
     end
     
     # GET /slides/new

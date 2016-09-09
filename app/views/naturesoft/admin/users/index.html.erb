@@ -6,12 +6,58 @@
 <br />
 
 <!-- Basic datatable -->
-<div class="panel panel-flat listing-form">
-    <form class="listing-form" data-url="">				
+<form class="listing-form">
+    
+    <div class="panel panel-flat border-top-primary">
+        <div class="panel-body filter-box">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:user_groups) %></label>
+                        <%= select_tag(:sort_by, options_for_select([["Manager",1],["Boss",2]]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:sort_by) %></label>
+                        <%= select_tag(:sort_by, options_for_select(Naturesoft::User.sort_by, :selected => params[:sort_by]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:sort_orders) %></label>
+                        <%= select_tag(:sort_orders, options_for_select(Naturesoft::User.sort_orders, :selected => params[:sort_orders]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group has-feedback">
+                        <label><%= t(:search) %></label>
+                        <input type="text" name="keyword" class="form-control" placeholder="Enter search..." value="<%= params[:keyword] %>">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group list_actions mb-10 hide">
+        <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown">
+            Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">											
+                      
+        </ul>
+    </div>
+    
+    <div class="panel panel-flat">
         <div class="table-container">
             <table class="table">
                 <thead>
                     <tr class="bg-teal-800">
+                        <th width="1%" class="check_all_list">
+                            <input type="checkbox" class="styled">
+                        </th>
                         <th width="1%"><%= t(:image) %></th>
                         <th><%= t(:user_name) %></th>
                         <th><%= t(:user_group) %></th>
@@ -24,6 +70,12 @@
                 <tbody>
                     <% @users.each do |item| %>
                         <tr>
+                            <td width="1%">
+                                <input type="checkbox" class="node styled"
+                                    name="ids[]"
+                                    value="<%= item.id %>"
+                                />
+                            </td>
                             <td>
                                 <a href="<%= naturesoft.edit_admin_user_path(item) %>"><img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt=""></a>
                             </td>
@@ -66,7 +118,7 @@
             </div>
             
         </div>
-    </form>
+    </div>
     
-</div>
+</form>
 <!-- /basic datatable -->

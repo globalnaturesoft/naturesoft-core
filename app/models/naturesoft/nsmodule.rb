@@ -11,7 +11,14 @@ module Naturesoft
         "options" => {
           "content" => nil,
         }
+      },
+      "contact_info_box" => {
+        "label" => "Contact Info Box",
+        "options" => {
+          "style" => "default"
+        }
       }
+
     }
     
     @core_positions = {

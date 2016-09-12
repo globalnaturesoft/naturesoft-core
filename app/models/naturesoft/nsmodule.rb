@@ -119,7 +119,7 @@ module Naturesoft
     
     # get config
     def config
-      Nsmodule.get(self).nil? ? [] : Nsmodule.get(self)
+      Nsmodule.get(self)
     end
     
     # get default values from model

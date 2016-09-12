@@ -97,7 +97,7 @@
 							<td class="kq_search">
 								<%= link_to item.name, naturesoft.edit_admin_nsmodule_path(item), class: "text-semibold", title: item.name %>
 								<div class="text-muted">
-									<%= item.config["label"] %>
+									<%= item.config["label"] if !item.config.nil? %>
 								</div>
 							</td>
 							<td class="kq_search">

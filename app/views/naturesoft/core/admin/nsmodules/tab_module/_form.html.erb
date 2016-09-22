@@ -5,7 +5,7 @@
         <div class="">
             <select name="options[modules][]" id="options" class="select2" data-placeholder="<%= t(:placeholder_categories) %>..." multiple="multiple">
                 <% Naturesoft::Nsmodule.all.each do |item| %>
-                    <option <%= "selected" if options["modules"].include?(item.id.to_s) %> value="<%= item.id %>"><%= item.name %></option>
+                    <option <%= "selected" if !options["modules"].nil? and options["modules"].include?(item.id.to_s) %> value="<%= item.id %>"><%= item.name %></option>
                 <% end %>
             </select>
         </div>

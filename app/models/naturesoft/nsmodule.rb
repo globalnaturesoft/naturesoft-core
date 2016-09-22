@@ -3,7 +3,7 @@ module Naturesoft
     include Naturesoft::CustomOrder
     
     belongs_to :user    
-    validates :name, :module, :options, :position, presence: true
+    validates :name, :module, :options, presence: true
     
     @core = {
       "custom_html" => {
@@ -17,8 +17,14 @@ module Naturesoft
         "options" => {
           "style" => "default"
         }
-      }
-
+      },
+      "tab_module" => {
+        "label" => "Tab module",
+        "options" => {
+          "style" => "default",
+          "modules" => nil
+        }
+      },
     }
     
     @core_positions = {

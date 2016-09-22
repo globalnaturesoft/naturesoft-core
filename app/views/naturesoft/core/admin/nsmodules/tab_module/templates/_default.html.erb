@@ -1,0 +1,9 @@
+<% modules.each do |m| %>
+    <%= m.name %>
+<% end %>
+
+<% modules.each do |m| %>
+    <%= render "naturesoft/"+m.engine_name+"/admin/nsmodules/"+m.module_name+"/show",
+        nsmodule: m
+    %>
+<% end %>

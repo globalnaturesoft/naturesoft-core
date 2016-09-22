@@ -36,9 +36,9 @@
         
       <div class="col-md-4">
         <div class="form-group">
-          <label class="control-label" ><%= t(:position) %> <span class='text-danger'>*</span></label>
+          <label class="control-label" ><%= t(:position) %> </label>
           <div class="">
-            <%= f.select :position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions, nsmodule.position), {include_blank: "Choose..."}, {class: "select2 required"} %>
+            <%= f.select :position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions, nsmodule.position), {include_blank: "Choose..."}, {class: "select2"} %>
           </div>
         </div>
       </div>

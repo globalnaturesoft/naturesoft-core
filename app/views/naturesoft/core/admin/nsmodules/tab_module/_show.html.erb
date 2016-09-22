@@ -1,0 +1,10 @@
+<%
+  options = nsmodule.get_options
+  modules = Naturesoft::Nsmodule.where(id: options["modules"])
+%>
+
+<%= render "naturesoft/"+nsmodule.engine_name+"/admin/nsmodules/"+nsmodule.module_name+"/templates/" + options["style"],
+  nsmodule: nsmodule,
+  options: options,
+  modules: modules
+%>

@@ -22,7 +22,7 @@ module Naturesoft
         "label" => "Tab module",
         "options" => {
           "style" => "default",
-          "modules" => nil
+          "modules" => []
         }
       },
     }

@@ -9,6 +9,6 @@ module Naturesoft
         @cart = Naturesoft::Products::Cart.create
         session[:cart_id] = @cart.id
       end
-      
+
   end
 end

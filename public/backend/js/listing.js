@@ -53,7 +53,7 @@ function urlParams(url) {
 }
 
 function hiliter(word, element) {
-    var rgxp = new RegExp(word, 'gi');
+    var rgxp = new RegExp(word, 'i');
     var string = element.html().match(rgxp);
     var repl = '<hl>' + string + '</hl>';    
     element.html(element.html().replace(rgxp, repl));

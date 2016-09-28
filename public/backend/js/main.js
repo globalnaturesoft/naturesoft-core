@@ -189,28 +189,52 @@ $(document).ready(function() {
     });
     
     // Validate form
-    $("form.validate").validate({ 
-        ignore: [],
-        highlight: function (element, errorClass, validClass) {
-            var elem = $(element);
+    $("form.validate").each(function(){
+        $(this).validate({ 
+            ignore: [],
+            highlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.parent().find(".select2-selection").addClass("error");
+                }
+    
+                elem.addClass(errorClass);
+                showTabValidate();
+            },    
+            unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.parent().find(".select2-selection").removeClass("error");
+                }
+                
+                elem.removeClass(errorClass);
+                showTabValidate();
+            },
+        });
+    });
+    
+    // Ajax submit form
+    $("form.ajax-submit").each(function(){
+        var form = $(this)
+        form.submit(function(e) {
+            if(form.valid()) {
+                var url = form.attr("action"); // the script where you handle the form input.
+           
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        alert(data); // show response from the php script.
+                    }
+                });
             
-            if (elem.hasClass("select2-hidden-accessible")) {
-                elem.parent().find(".select2-selection").addClass("error");
+                e.preventDefault(); // avoid to execute the actual submit of the form.
             }
-
-            elem.addClass(errorClass);
-            showTabValidate();
-        },    
-        unhighlight: function (element, errorClass, validClass) {
-            var elem = $(element);
-            
-            if (elem.hasClass("select2-hidden-accessible")) {
-                elem.parent().find(".select2-selection").removeClass("error");
-            }
-            
-            elem.removeClass(errorClass);
-            showTabValidate();
-        },
+        });
     });
     
     // format number input
@@ -294,7 +318,12 @@ $(document).ready(function() {
             sample.find("select.select2").select2('destroy');
         }
         if(sample.find("select.select2-ajax").length) {
-            sample.find("select.select2-ajax").select2('destroy');
+            try {
+                sample.find("select.select2-ajax").select2('destroy');
+            }
+            catch(err) {
+                console.log(err.message);
+            }
         }
         var data = sample.html();
         var container = form.find(".addable-container");

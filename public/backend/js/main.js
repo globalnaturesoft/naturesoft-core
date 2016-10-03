@@ -216,7 +216,7 @@ $(document).ready(function() {
     });
     
     // Ajax submit form
-    $("form.ajax-submit").each(function(){
+    $("form.erp-ajax-submitz").each(function(){
         var form = $(this)
         form.submit(function(e) {
             if(form.valid()) {
@@ -228,7 +228,7 @@ $(document).ready(function() {
                     data: form.serialize(), // serializes the form's elements.
                     success: function(data)
                     {
-                        alert(data); // show response from the php script.
+                        location.reload();
                     }
                 });
             
@@ -247,6 +247,7 @@ $(document).ready(function() {
     
     // tinymce
     initEditor(".editor");
+    initEditor(".editor_2");
 	
 	//replace delete-confirm link
 	$(document).on('click', '[data-method]', function(e) {

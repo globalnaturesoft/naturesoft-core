@@ -164,7 +164,7 @@ module Naturesoft
     
     # get modules by position
     def self.get_by_position(pos)
-      self.where(position: pos)
+      self.where(position: pos).order("custom_order")
     end
     
     # get engine name

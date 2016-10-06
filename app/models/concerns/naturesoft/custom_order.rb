@@ -15,7 +15,7 @@ module Naturesoft
     end
     
     def init_custom_order
-      self.update_column(:custom_order, self.class.maximum("custom_order")+1)
+      self.update_column(:custom_order, self.class.maximum("custom_order").to_i + 1)
     end
   end
 end

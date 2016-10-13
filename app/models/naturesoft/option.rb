@@ -2,6 +2,14 @@ module Naturesoft
   class Option < ApplicationRecord
     
     @core = {
+      "smtp" => {
+        "address" => "smtp.gmail.com",
+        "port" => 587,
+        "domain" => "http://globalnaturesoft.com",
+        "user_name" => "",
+        "password" => '',
+        "authentication" => "plain",
+      },
       "site_info" => {
         "name" => "",
         "address" => "",

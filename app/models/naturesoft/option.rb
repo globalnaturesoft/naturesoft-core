@@ -86,8 +86,11 @@ module Naturesoft
         return JSON.parse(option.value)
       else
         options = self.get_default(cat)
-        return options[cat][name]
+        if options[cat][name].present?
+          return options[cat][name]
+        end
       end
+      return {}
     end
     
     # Get all engines with options

@@ -86,8 +86,8 @@ module Naturesoft
         return JSON.parse(option.value)
       else
         options = self.get_default(cat)
-        if options[cat][name].present?
-          return options[cat][name]
+        if options[cat].present?
+          return options[cat][name].present? ? options[cat][name] : {}
         end
       end
       return {}

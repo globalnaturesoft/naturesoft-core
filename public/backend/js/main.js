@@ -15,6 +15,7 @@ function initEditor(item) {
     tinymce.init({
         selector: item,
         height: 500,
+        valid_elements : '*[*]',
         plugins: [
           'advlist autolink lists link image charmap print preview anchor',
           'searchreplace visualblocks code fullscreen',

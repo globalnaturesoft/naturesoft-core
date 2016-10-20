@@ -157,7 +157,7 @@ $(document).ready(function() {
     $(".breadcrumb li").last().addClass("active");
     
     // Checkboxes and radios
-    $(".styled-level-1, .styled-hotel-star, .room-services, .multiselect-container input").uniform({
+    $(".styled-level-1, .styled-hotel-star, .room-services, .hotel-facilities, .multiselect-container input").uniform({
         radioClass: 'choice',
         checkboxClass: 'checker',
         wrapperClass: "border-teal text-teal-600"

@@ -1,12 +1,13 @@
 module Naturesoft::Admin
     class AdminController < Naturesoft::ApplicationController
-        before_action :authenticate_user!
-        layout :set_layout
-        
-        def index
+		before_action :set_view
+		before_action :authenticate_user!
+		layout :set_layout
+		
+		def index
 		end
         
-        def custom_sort
+    def custom_sort
 			# sorting
 			data = JSON.parse(params[:sort]);
 			orders = []
@@ -25,9 +26,13 @@ module Naturesoft::Admin
 		end
 		
 		private
-		def set_layout		  
-		  return "naturesoft/blank" if params[:ajax]
-		  "naturesoft/backend"
-		end
+			def set_view
+				session[:current_view] = "backend"
+			end
+			
+			def set_layout		  
+			  return "naturesoft/blank" if params[:ajax]
+			  "naturesoft/backend"
+			end			
     end
 end

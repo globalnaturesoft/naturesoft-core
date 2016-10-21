@@ -277,7 +277,7 @@ Devise.setup do |config|
 end
 
 Rails.application.config.to_prepare do
-  Devise::SessionsController.layout "naturesoft/login"
+  #Devise::SessionsController.layout "naturesoft/login"
   Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "naturesoft/backend" : "naturesoft/login" }
   #Devise::ConfirmationsController.layout "devise"
   #Devise::UnlocksController.layout "devise"

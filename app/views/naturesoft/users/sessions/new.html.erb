@@ -1,0 +1,6 @@
+<% if session[:current_view] == 'frontend' %>  
+  <%= render "frontend" %>
+<% else %>
+  <%= render "backend" %>
+<% end %>
+  

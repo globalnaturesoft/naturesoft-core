@@ -395,3 +395,6 @@ i[data-action="move"] {
 .child-padding-7 {
     padding-left: 140px !important;
 }
+.select2-selection--multiple .select2-selection__choice {
+    padding: 4px 12px;
+}

@@ -54,6 +54,9 @@ module Naturesoft
 		end
 		
 		# Thumb size
+		version :profile do
+			process :resize_to_fill => [250, 250]
+		end
 		version :thumb do
 			process :resize_to_fill => [300, 300]
 		end

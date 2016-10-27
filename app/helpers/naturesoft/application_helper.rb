@@ -47,6 +47,15 @@ module Naturesoft
       end
     end
     
+    # display user image src
+    def user_image_src(image)
+      if !image.present?
+        url_for("/frontend/img/no_img_profile.jpg")
+      else
+        image
+      end
+    end
+    
     # display user box
     def user_box(user)
       html = '<span class="align_center" style="display: inline">' +

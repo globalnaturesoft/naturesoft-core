@@ -29,10 +29,30 @@ module Naturesoft
         params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
         
         if @user.update(user_params)
-          redirect_to admin_area_path, notice: 'Account was successfully updated.'
+          redirect_to admin_area_path, notice: 'Profile was successfully updated.'
         end
       end
     end
+    
+    def order_history
+    end
+    
+    def wish_list
+    end
+    
+    def settings
+      @user = current_user
+      
+      if params[:user].present?
+        params[:user].delete(:password) if params[:user][:password].blank?
+        params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+        
+        if @user.update(user_params)
+          redirect_to login_path, notice: 'Password was successfully updated.'
+        end
+      end
+    end
+    
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user

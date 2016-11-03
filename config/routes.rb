@@ -7,6 +7,7 @@ Naturesoft::Core::Engine.routes.draw do
     resources :users do
       collection do
         match '/account' => 'users#account', :as => 'account', via: [:get, :patch, :put]
+        get "confirm_email"
       end
     end
     

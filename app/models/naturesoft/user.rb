@@ -5,7 +5,7 @@ module Naturesoft
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
     belongs_to :user_group
     scope :ordered, -> { order('created_at desc') }
-    
+    before_create :confirmation_token
     mount_uploader :image, Naturesoft::UserUploader
     
     # additional validate
@@ -48,6 +48,13 @@ module Naturesoft
       records = records.order("#{sort_by} #{sort_orders}")
       
       return records
+    end
+    
+    private
+    def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
     end
     
   end

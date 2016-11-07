@@ -80,7 +80,7 @@ module Naturesoft
       text = ""
       @modules = Naturesoft::Nsmodule.get_by_position(pos)
       @modules.each do |mod|
-        text += render("naturesoft/"+mod.engine_name+"/admin/nsmodules/"+mod.module_name+"/show", nsmodule: mod)
+        text += render("naturesoft/"+mod.engine_name+"/backend/nsmodules/"+mod.module_name+"/show", nsmodule: mod)
       end
       text.html_safe
     end

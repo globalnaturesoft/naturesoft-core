@@ -1,0 +1,124 @@
+<% title t(:users) %>
+
+<div class="page_actions">
+    <%= link_to ("#{t(:new_user)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_backend_user_path, class: 'btn btn-primary' %>
+</div>
+<br />
+
+<!-- Basic datatable -->
+<form class="listing-form">
+    
+    <div class="panel panel-flat border-top-primary">
+        <div class="panel-body filter-box">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:user_groups) %></label>
+                        <%= select_tag(:sort_by, options_for_select([["Manager",1],["Boss",2]]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:sort_by) %></label>
+                        <%= select_tag(:sort_by, options_for_select(Naturesoft::User.sort_by, :selected => params[:sort_by]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:sort_orders) %></label>
+                        <%= select_tag(:sort_orders, options_for_select(Naturesoft::User.sort_orders, :selected => params[:sort_orders]), class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group has-feedback">
+                        <label><%= t(:search) %></label>
+                        <input type="text" name="keyword" class="form-control" placeholder="Enter search..." value="<%= params[:keyword] %>">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group list_actions mb-10 hide">
+        <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown">
+            Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">											
+                      
+        </ul>
+    </div>
+    
+    <div class="panel panel-flat">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+                        <th width="1%" class="check_all_list">
+                            <input type="checkbox" class="styled">
+                        </th>
+                        <th width="1%"><%= t(:image) %></th>
+                        <th><%= t(:user_name) %></th>
+                        <th><%= t(:user_group) %></th>
+                        <th><%= t(:email) %></th>
+                        <th><%= t(:is_admin) %></th>
+                        <th><%= t(:created_at) %></th>
+                        <th class="text-right"><%= t(:actions) %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |item| %>
+                        <tr>
+                            <td width="1%">
+                                <input type="checkbox" class="node styled"
+                                    name="ids[]"
+                                    value="<%= item.id %>"
+                                />
+                            </td>
+                            <td>
+                                <a href="<%= naturesoft.edit_backend_user_path(item) %>"><img width="50" class="img-circle" src="<%= image_src(item.image.system) %>" alt=""></a>
+                            </td>
+                            <td><%= item.display_name %></td>
+                            <td><%= item.user_group.name if item.user_group.present? %></td>
+                            <td>
+                                <%= item.email %>
+                            </td>
+                            <td>
+                                <%= item.admin %>
+                            </td>
+                            <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft.edit_backend_user_path(item), class: "btn bg-teal-400 btn-icon" %>
+                                    <button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">                                        
+                                        <li>
+                                            <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.backend_user_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @users %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @users,
+                            previous_label: '←',
+                            next_label: '→',
+                            renderer: BootstrapPagination::Rails
+                        %>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</form>
+<!-- /basic datatable -->

@@ -1,0 +1,56 @@
+<% if nsmodule.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(nsmodule.errors.count, "error") %> prohibited this nsmodule from being saved:</h2>
+  
+      <ul>
+      <% nsmodule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft, :backend, nsmodule], html: {class: "validate"}) do |f| %>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="">
+                <%= f.text_field :name, class: "form-control required" %>
+            </div>
+        </div>
+      </div>
+        
+      <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
+            <div class="">
+                <%= f.select :module, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions, nsmodule.module), {include_blank: "Choose..."}, {class: "select2 module-type-select required", "data-url": naturesoft.options_backend_nsmodules_path(id: nsmodule)} %>
+            </div>
+        </div>
+      </div>
+        
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" ><%= t(:position) %> </label>
+          <div class="">
+            <%= f.select :position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions, nsmodule.position), {include_blank: "Choose..."}, {class: "select2"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Options</h3>
+    
+    <div class="module_options_container"></div>
+    
+    <br style="clear:both" />
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+    
+<% end %>

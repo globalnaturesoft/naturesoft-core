@@ -9,15 +9,15 @@
         
         <meta content="abc123blahblahauthenticitytoken" name="csrf-token">
 		
-		<%= render "admin/modules/header_script" %>		
+		<%= render "backend/modules/header_script" %>		
         
     </head>   
     
 	
-	<% if params[:controller] == "naturesoft/admin/admin" %>
+	<% if params[:controller] == "naturesoft/backend/backend" %>
 		<body class="navbar-top">
 			<!-- Main navbar -->
-			<%= render "admin/modules/main_navbar" %>
+			<%= render "backend/modules/main_navbar" %>
 			<!-- /main navbar -->
 			
 			<!-- Page container -->
@@ -31,11 +31,11 @@
 						<div class="sidebar-content">
 			
 							<!-- User menu -->
-							<%= render "admin/modules/user_menu" %>
+							<%= render "backend/modules/user_menu" %>
 							<!-- /user menu -->
 			
 							<!-- Main navigation -->
-							<%= render "admin/modules/main_menu" %>
+							<%= render "backend/modules/main_menu" %>
 							<!-- /main navigation -->
 			
 						</div>
@@ -45,7 +45,7 @@
 					<!-- Main content -->
 					<div class="content-wrapper">
 						
-						<!-- Page header render "admin/modules/page_header" -->
+						<!-- Page header render "backend/modules/page_header" -->
 						
 						<!-- /page header -->
 
@@ -68,7 +68,7 @@
 							</div>
 							
 							<!-- Footer -->
-							<%= render 'admin/modules/footer' %>
+							<%= render 'backend/modules/footer' %>
 							<!-- /footer -->
 						
 						</div>
@@ -105,7 +105,7 @@
 				</div>
 				<div class="breadcrumb-line ">
 					<ul class="breadcrumb breadcrumb-flat">
-						<li><%= link_to '<i class="icon-home2 position-left"></i> Home'.html_safe, naturesoft.admin_dashboard_path %></li>
+						<li><%= link_to '<i class="icon-home2 position-left"></i> Home'.html_safe, naturesoft.backend_dashboard_path %></li>
 						<%= render_breadcrumbs :tag => :li, :separator => "" %>
 					</ul>
 				</div>
@@ -116,11 +116,11 @@
 	<% end %>
 		
 	<!-- Flash messages -->
-	<%= render 'admin/modules/flash_messages' %>
+	<%= render 'backend/modules/flash_messages' %>
 	<!-- /flash messages -->
 	
 	<!-- Footer -->
-	<%= render 'admin/modules/modals' %>
+	<%= render 'backend/modules/modals' %>
 	<!-- /footer -->
 	
 	<!-- Hidden elements -->

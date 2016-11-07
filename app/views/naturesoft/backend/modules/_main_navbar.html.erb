@@ -1,0 +1,35 @@
+<div class="navbar navbar-default header-highlight navbar-fixed-top">
+		<div class="navbar-header">
+			<%= link_to image_tag("/backend/assets/images/logo_light.png"), naturesoft.backend_dashboard_path , class: "navbar-brand" %>
+
+			<ul class="nav navbar-nav visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+    
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="<%= image_src(current_user.image.system) %>" alt="">
+                        <span><%= current_user.display_name %></span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="">
+                            <%= link_to '<i class="icon-cog5"></i> Account'.html_safe, naturesoft.account_backend_users_path %>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <%= link_to '<i class="icon-switch2"></i> Logout'.html_safe, naturesoft.destroy_user_session_path, method: :delete, class: "no-tab", redirect_to: backend_path %>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+		</div>
+	</div>

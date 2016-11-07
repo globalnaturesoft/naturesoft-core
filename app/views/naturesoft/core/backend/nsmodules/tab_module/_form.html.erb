@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:children_modules) %> <span class='text-danger'>*</span></label>
+        <div class="">
+            <select name="options[modules][]" id="options" class="select2" data-placeholder="" multiple="multiple">
+                <% Naturesoft::Nsmodule.all.each do |item| %>
+                    <option <%= "selected" if !options["modules"].nil? and options["modules"].include?(item.id.to_s) %> value="<%= item.id %>"><%= item.name %></option>
+                <% end %>
+            </select>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
+        <div class="">
+            <input type="text" value="default" name="options[style]" class="form-control" >
+        </div>
+    </div>
+  </div>  
+</div>

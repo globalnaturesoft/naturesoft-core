@@ -12,12 +12,6 @@ module Naturesoft
           "content" => nil,
         }
       },
-      "contact_info_box" => {
-        "label" => "Contact Info Box",
-        "options" => {
-          "style" => "default"
-        }
-      },
       "tab_module" => {
         "label" => "Tab module",
         "options" => {

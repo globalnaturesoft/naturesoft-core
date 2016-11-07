@@ -1,0 +1,39 @@
+<div class="sidebar-category sidebar-category-visible">
+    <div class="category-content no-padding">
+        <ul class="navigation navigation-main navigation-accordion">
+
+            <!-- Main -->
+            <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main Dashboard"></i></li>
+            <li class="" data-naturesoft-hook='main_nav'><%= link_to '<i class="icon-home4"></i> <span>Dashboard</span>'.html_safe, naturesoft.backend_dashboard_path %></li>
+            <li>
+                <a href="#"><i class="icon-puzzle3"></i> <span>Module</span></a>
+                <ul>
+                    <li class="">
+                        <%= link_to "Modules", naturesoft.backend_nsmodules_path %>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-users4"></i> <span>User</span></a>
+                <ul>
+                    <li class="">
+                        <%= link_to "Users", naturesoft.backend_users_path %>
+                    </li>
+                    <li class="">
+                        <%= link_to "User Groups", naturesoft.backend_user_groups_path %>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-cog2"></i> <span>Setting</span></a>
+                <ul>
+                    <% Naturesoft::Option.engines.each do |e| %>
+                        <li>
+                            <a href="<%= naturesoft.backend_options_path(engine: e) %>"><%= e.capitalize %></a>
+                        </li>
+                    <% end %>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

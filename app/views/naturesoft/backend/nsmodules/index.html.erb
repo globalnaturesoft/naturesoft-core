@@ -1,0 +1,136 @@
+<% title t(:modules) %>
+
+<div class="page_actions">
+    <%= link_to "#{t(:new_module)} <i class=\"icon-plus22 position-right\"></i>".html_safe, naturesoft.new_backend_nsmodule_path, class: 'btn btn-primary' %>
+</div>
+<br />
+
+<form class="listing-form sortable"
+	sort-url="<%= naturesoft.backend_custom_sort_path(class: "Naturesoft::Nsmodule") %>"
+>
+    
+    <div class="panel panel-flat border-top-primary">
+        <div class="panel-body filter-box">
+            <div class="row">
+				<div class="col-md-3">
+                  <div class="form-group">
+                      <label><%= t(:sort_by) %></label>
+                      <%= select_tag(:sort_by, options_for_select(Naturesoft::Nsmodule.sort_by, :selected => params[:sort_by]), class: "select2", "sort-cond": "naturesoft_nsmodules.custom_order") %>
+                  </div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label><%= t(:sort_order) %></label>
+						<%= select_tag(:sort_orders, options_for_select(Naturesoft::Nsmodule.sort_orders, :selected => params[:sort_orders]), class: "select2", "sort-cond": "asc") %>
+					</div>
+				</div>
+				<!--<div class="col-md-3">
+					<div class="form-group">
+						<label class="control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
+						<div class="">
+							<%= select_tag :type, grouped_options_for_select(Naturesoft::Nsmodule.modulesSelectOptions), include_blank: "all", class: "select2" %>
+						</div>
+					</div>
+				  </div>-->
+				<div class="col-md-3">
+                    <div class="form-group">
+                        <label><%= t(:position) %></label>
+                        <%= select_tag(:position, grouped_options_for_select(Naturesoft::Nsmodule.positionsSelectOptions), include_blank: "all", class: "select2") %>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group has-feedback">
+                        <label><%= t(:search) %></label>
+                        <input type="text" name="keyword" class="form-control" placeholder="Enter search..." value="<%= params[:keyword] %>">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="btn-group list_actions mb-10 hide">
+        <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown">
+            Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">											
+            <li>
+                <a href="" data-href="<%= naturesoft.delete_backend_nsmodules_path %>" data-confirm="Are you sure!" data-method="DELETE">
+                    <i class="icon-enter"></i> Delete
+                </a>
+            </li>            
+        </ul>
+    </div>
+                
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+						<th width="1%" class="check_all_list">
+                            <input type="checkbox" class="styled" />
+                        </th>
+                        <th><%= t(:name) %></th>
+						<th><%= t(:position) %></th>
+						<th class="text-center"><%= t(:creator) %></th>
+                        <th><%= t(:created_at) %></th>
+                        <th class="text-right"><%= t(:actions) %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @nsmodules.each do |item| %>
+                        <tr>
+                            <td class="text-nowrap">
+                                <input type="checkbox" class="node styled"
+                                    name="ids[]"
+                                    value="<%= item.id %>"
+                                />
+								<input type="hidden"
+                                    name="custom_order"
+                                    value="<%= item.custom_order %>"
+                                />
+								
+                            </td>							
+							<td class="kq_search">
+								<%= link_to item.name, naturesoft.edit_backend_nsmodule_path(item), class: "text-semibold", title: item.name %>
+								<div class="text-muted">
+									<%= item.config["label"] if !item.config.nil? %>
+								</div>
+							</td>
+							<td class="kq_search">
+								<%= item.position %>
+							</td>
+                            <td class="text-center">
+								<%= user_box(item.user) %>
+							</td>
+                            <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft.edit_backend_nsmodule_path(item), class: "btn bg-teal btn-icon btn-xs", title: item.name %>
+                                    <button type="button" class="btn bg-teal dropdown-toggle btn-xs" data-toggle="dropdown"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+											<%= link_to '<i class="icon-cross2"></i> '.html_safe + t(:delete), naturesoft.backend_nsmodule_path(item), method: :delete, data: {confirm: 'Are you sure?'} %>
+										</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @nsmodules %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @nsmodules, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /basic datatable -->

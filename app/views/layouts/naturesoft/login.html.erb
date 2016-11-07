@@ -39,7 +39,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<%= link_to image_tag("/backend/assets/images/logo_light.png"), naturesoft.admin_dashboard_path, class: "navbar-brand" %>
+			<%= link_to image_tag("/backend/assets/images/logo_light.png"), naturesoft.backend_dashboard_path, class: "navbar-brand" %>
 			<ul class="nav navbar-nav pull-right visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
 			</ul>
@@ -62,7 +62,7 @@
 					<%= yield %>
 
 					<!-- Footer -->
-					<%= render "admin/modules/footer" %>
+					<%= render "backend/modules/footer" %>
 					<!-- /footer -->
 
 				</div>
@@ -78,7 +78,7 @@
 	<!-- /page container -->
 	
 	<!-- Flash messages -->
-	<%= render 'admin/modules/flash_messages' %>
+	<%= render 'backend/modules/flash_messages' %>
 	<!-- /flash messages -->
 	
 	<script>

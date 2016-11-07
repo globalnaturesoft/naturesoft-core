@@ -15,13 +15,13 @@ module Naturesoft
       params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
       
       if @user.update(user_params)
-        redirect_to admin_area_path, notice: 'User was successfully updated.'
+        redirect_to backend_area_path, notice: 'User was successfully updated.'
       else
         render :edit
       end
     end
     
-    def admin_area
+    def backend_area
       @user = current_user
       
       if params[:user].present?
@@ -29,7 +29,7 @@ module Naturesoft
         params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
         
         if @user.update(user_params)
-          redirect_to admin_area_path, notice: 'Profile was successfully updated.'
+          redirect_to backend_area_path, notice: 'Profile was successfully updated.'
         end
       end
     end

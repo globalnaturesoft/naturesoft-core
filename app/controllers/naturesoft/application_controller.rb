@@ -1,6 +1,6 @@
 module Naturesoft
   class ApplicationController < ActionController::Base
-    before_action	:authenticate_user!
+    #before_action	:authenticate_user!
     
     rescue_from	CanCan::AccessDenied do |exception|
       render :file => "static/403.html",

@@ -2,8 +2,8 @@ module Naturesoft::Backend
     class BackendController < Naturesoft::ApplicationController
 		before_action :set_view
 		before_action :authenticate_user!
+		before_action :check_backend_access
 		layout :set_layout
-		# authorize_resource :class => false
 		
 		def index
 		end
@@ -27,6 +27,12 @@ module Naturesoft::Backend
 		end
 		
 		private
+			def check_backend_access
+				if !current_user.admin?
+					redirect_to "/"
+				end
+			end
+			
 			def set_view
 				session[:current_view] = "backend"
 			end

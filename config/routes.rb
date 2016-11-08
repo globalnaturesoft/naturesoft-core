@@ -1,5 +1,12 @@
 Naturesoft::Core::Engine.routes.draw do
-  devise_for :users, class_name: "Naturesoft::User", module: :devise, :controllers => {:sessions => "naturesoft/users/sessions", :registrations => "naturesoft/users/registrations"}
+  devise_for :users,
+    class_name: "Naturesoft::User",
+    module: :devise,    
+    :controllers => {
+      :sessions => "naturesoft/users/sessions",
+      :registrations => "naturesoft/users/registrations"
+    }
+  
   namespace :backend do
     get '/' => 'backend#index'
     get '/dashboard' => 'dashboard#index', as: :dashboard

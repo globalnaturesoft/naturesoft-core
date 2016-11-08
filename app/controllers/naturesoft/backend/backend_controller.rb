@@ -3,6 +3,7 @@ module Naturesoft::Backend
 		before_action :set_view
 		before_action :authenticate_user!
 		layout :set_layout
+		# authorize_resource :class => false
 		
 		def index
 		end

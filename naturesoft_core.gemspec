@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 5.0.0"
   s.add_dependency 'autoprefixer-rails', "~> 5.1.5"
   s.add_dependency 'devise', '~> 4.2.0'
-  s.add_dependency 'cancan',	'~>	1.6.10'
+  s.add_dependency 'cancan', '~>	1.6.10'
   s.add_dependency 'will_paginate'
   s.add_dependency 'will_paginate-bootstrap'
   s.add_dependency 'breadcrumbs_on_rails', "~> 2.3.1"

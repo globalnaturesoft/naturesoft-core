@@ -1,6 +1,6 @@
 module Naturesoft
   class ApplicationController < ActionController::Base
-
+    
     rescue_from	CanCan::AccessDenied do |exception|
       render :file => "static/403.html",
         :status => 403,
@@ -11,7 +11,7 @@ module Naturesoft
       @current_ability ||= AccountAbility.new(current_account)
     end
     
-    private      
+    private
       def after_sign_in_path_for(resource_or_scope)
         if session[:current_view] == 'frontend'
           naturesoft.admin_area_path

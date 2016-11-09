@@ -2,7 +2,7 @@ module Naturesoft
   class User < ApplicationRecord
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
+    devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable #, :confirmable
     belongs_to :user_group
     scope :ordered, -> { order('created_at desc') }
     before_create :confirmation_token

@@ -4,7 +4,8 @@ Naturesoft::Core::Engine.routes.draw do
     module: :devise,    
     :controllers => {
       :sessions => "naturesoft/users/sessions",
-      :registrations => "naturesoft/users/registrations"
+      :registrations => "naturesoft/users/registrations",
+      :passwords => "naturesoft/users/passwords",
     }
   
   namespace :backend do

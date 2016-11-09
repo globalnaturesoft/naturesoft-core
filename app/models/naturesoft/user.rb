@@ -2,10 +2,10 @@ module Naturesoft
   class User < ApplicationRecord
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable #, :confirmable
+    devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable
     belongs_to :user_group
     scope :ordered, -> { order('created_at desc') }
-    before_create :confirmation_token
+    before_create :set_confirmation_token
     mount_uploader :image, Naturesoft::UserUploader
     
     # additional validate
@@ -51,7 +51,7 @@ module Naturesoft
     end
     
     private
-    def confirmation_token
+    def set_confirmation_token
       if self.confirm_token.blank?
           self.confirm_token = SecureRandom.urlsafe_base64.to_s
       end

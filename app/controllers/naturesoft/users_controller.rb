@@ -12,6 +12,9 @@ module Naturesoft
     def reset_password
     end
     
+    def confirmable_email
+    end
+    
     # PATCH/PUT /users/1
     def update
       params[:user].delete(:password) if params[:user][:password].blank?

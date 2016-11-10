@@ -27,7 +27,7 @@ module Naturesoft
       end
     end
     
-    def backend_area
+    def admin_area
       @user = current_user
       
       if params[:user].present?
@@ -35,7 +35,7 @@ module Naturesoft
         params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
         
         if @user.update(user_params)
-          redirect_to backend_area_path, notice: 'Profile was successfully updated.'
+          redirect_to admin_area_path, notice: t('user_profile_updated')
         end
       end
     end

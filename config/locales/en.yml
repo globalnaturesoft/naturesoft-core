@@ -8,4 +8,5 @@ en:
   created_at: "Created At"
   actions: "Actions"
   account: "Account"
+  user_profile_updated: "Profile was successfully updated."
   # Core-------------------------------------

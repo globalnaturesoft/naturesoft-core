@@ -40,6 +40,16 @@ module Naturesoft
       end
     end
     
+    def update_newsletter
+      @user = current_user
+      
+      if params[:user].present?
+        if @user.update(user_params)
+          redirect_to settings_path, notice: t('user_profile_updated')
+        end
+      end
+    end
+    
     def order_history
     end
     
@@ -49,12 +59,18 @@ module Naturesoft
     def settings
       @user = current_user
       
+      # check current password is valid
+      if params[:user].present? and !@user.valid_password?(params[:user][:current_password])
+        redirect_to naturesoft.settings_path, alert: t('current_password_is_invalid')
+        return
+      end
+      
       if params[:user].present?
         params[:user].delete(:password) if params[:user][:password].blank?
         params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
         
         if @user.update(user_params)
-          redirect_to login_path, notice: 'Password was successfully updated.'
+          redirect_to login_path, notice: t('devise.passwords.updated_not_active')
         end
       end
     end
@@ -67,7 +83,7 @@ module Naturesoft
   
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.fetch(:user, {}).permit(:first_name, :last_name, :email, :phone, :address, :birthdate, :zip, :image, :password, :password_confirmation, :user_group_id)
+        params.fetch(:user, {}).permit(:newsletter_enabled, :first_name, :last_name, :email, :phone, :address, :birthdate, :zip, :image, :password, :password_confirmation, :user_group_id)
       end
   end
 end

@@ -9,4 +9,5 @@ en:
   actions: "Actions"
   account: "Account"
   user_profile_updated: "Profile was successfully updated."
+  current_password_is_invalid: "Current password is not valid. Please try again."
   # Core-------------------------------------

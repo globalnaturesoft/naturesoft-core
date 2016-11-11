@@ -5,17 +5,17 @@
   <div class="row">
     <div class="col-sm-6 col-md-6">
       <div class="form-group">
-        <label class="control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+        <label class="control-label" ><%= t(:name) %> </label>
         <div class="">
-          <%= text_field_tag "options[core][site_info][name]", @options["core"]["site_info"]["name"], class: "form-control required" %>
+          <%= text_field_tag "options[core][site_info][name]", @options["core"]["site_info"]["name"], class: "form-control" %>
         </div>
       </div>          
     </div>
     <div class="col-sm-6 col-md-6">
       <div class="form-group">
-        <label class="control-label" ><%= t(:address) %> <span class='text-danger'>*</span></label>
+        <label class="control-label" ><%= t(:address) %> </label>
         <div class="">
-          <%= text_field_tag "options[core][site_info][address]", @options["core"]["site_info"]["address"], class: "form-control required" %>
+          <%= text_field_tag "options[core][site_info][address]", @options["core"]["site_info"]["address"], class: "form-control" %>
         </div>
       </div>          
     </div>
@@ -24,9 +24,9 @@
   <div class="row">
     <div class="col-sm-6 col-md-6">
       <div class="form-group">
-        <label class="control-label" ><%= t(:email_1) %> <span class='text-danger'>*</span></label>
+        <label class="control-label" ><%= t(:email_1) %> </label>
         <div class="">
-          <%= text_field_tag "options[core][site_info][email_1]", @options["core"]["site_info"]["email_1"], class: "form-control required email" %>
+          <%= text_field_tag "options[core][site_info][email_1]", @options["core"]["site_info"]["email_1"], class: "form-control email" %>
         </div>
       </div>          
     </div>
@@ -43,9 +43,9 @@
   <div class="row">
     <div class="col-sm-6 col-md-6">
       <div class="form-group">
-        <label class="control-label" ><%= t(:phone_1) %> <span class='text-danger'>*</span></label>
+        <label class="control-label" ><%= t(:phone_1) %> </label>
         <div class="">
-          <%= text_field_tag "options[core][site_info][phone_1]", @options["core"]["site_info"]["phone_1"], class: "form-control required" %>
+          <%= text_field_tag "options[core][site_info][phone_1]", @options["core"]["site_info"]["phone_1"], class: "form-control" %>
         </div>
       </div>          
     </div>
